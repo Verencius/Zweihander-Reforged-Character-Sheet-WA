@@ -129,30 +129,43 @@
                 <div class="row header">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-12">
-                                My name is&nbsp;{% if variables.name is defined %}<h1>{{ variables.name}}{% else %}Survivor{% endif %}</h1>
-                                <!-- this should loop through 3 different professions and select the highest defined -->
-                                and I'm&nbsp;<h2>The&nbsp;{% if profession_current is not empty %}{{ profession_current|title}}{% else %}Mystery{% endif %}</h2>
-                            </div>
-                            <div class="col-sm-12">
-                                I'm&nbsp;{{ variables.personal_age_group}}&nbsp;{{ variables.personal_gender }}&nbsp;{{ variables.personal_ancestry }}.&nbsp;I was born in&nbsp;{{ variables.personal_season_of_birth }}
-                                in the place called {{ variables.personal_place_of_birth}}.I was raised in a {{ variables.personal_upbringing}} home of the{{ variables.personal_social_class}} class {% if variables.personal_patron_deity is not empty %} and became a follower of {{ variables.personal_patron_deity}}{% endif %}.
-                                When you see me  I am of a/an {{ variables.personal_height}} stature with a/an {{ variables.personal_build_type}} build, {{ variables.personal_hair_color}} hair, 
-                                {{ variables.personal_eye_color}} eyes, {{ variables.personal_complexion}} complexion. and a {{ variables.personal_distinguishing_marks_1}}.
-                                My life changed the day that {% if variables.personal_brush_with_death is defined and variables.personal_brush_with_death is not empty %}{{ variables.personal_brush_with_death}}{% else %}"This one's fate is not determined yet"{% endif %}. 
-                                Yet I lived to tell the tale.
-                            </div>
-                        <div class="row">
-                            <div class="col-sm-12"><h3>""</h3> 
+                            <div class="col-sm-9">
+                                <div class="row">
+                                    My name is&nbsp;{% if variables.name is defined %}<h1>{{ variables.name}}{% else %}Survivor{% endif %}</h1>
+                                    <!-- this should loop through 3 different professions and select the highest defined -->
+                                    and I'm&nbsp;<h2>The&nbsp;{% if profession_current is not empty %}{{ profession_current|title}}{% else %}Mystery{% endif %}</h2>
+                                    
+                                </div>
+                                <div class="row">
+                                    I'm&nbsp;{{ variables.personal_age_group}}&nbsp;{{ variables.personal_gender }}&nbsp;{{ variables.personal_ancestry }}.&nbsp;I was born in&nbsp;{{ variables.personal_season_of_birth }}
+                                    in the place called {{ variables.personal_place_of_birth}}.I was raised in a {{ variables.personal_upbringing}} home of the{{ variables.personal_social_class}} class {% if variables.personal_patron_deity is not empty %} and became a follower of {{ variables.personal_patron_deity}}{% endif %}.
+                                    When you see me  I am of a/an {{ variables.personal_height}} stature with a/an {{ variables.personal_build_type}} build, {{ variables.personal_hair_color}} hair, 
+                                    {{ variables.personal_eye_color}} eyes, {{ variables.personal_complexion}} complexion. and a {{ variables.personal_distinguishing_marks_1}}.
+                                    My life changed the day that {% if variables.personal_brush_with_death is defined and variables.personal_brush_with_death is not empty %}{{ variables.personal_brush_with_death}}{% else %}"This one's fate is not determined yet"{% endif %}. 
+                                    Yet I lived to tell the tale.<br>
+                                </div>
+                                <div class="row">
+                                    <b>Inner Strength:</b> {{ variables.alignment_inner_strenght }}
+                                    <br>
+                                    Did you call upon one of your Inner Strengths 5 RP
+                                    <br>
+                                    <b>Tragic Flaw:</b> {{ variables.alignment_tragic_flaw }}
+                                    <br>
+                                    Did you call upon one of your Tragic Flaws 5 RP
+                                </div>
+                            <div class="col-sm-3">
+                                {% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} 
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                {% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} 
-            </div>
         </div>
+    </div>
+    <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
+    <div class="tab content2">
+        <!-- TAB #3 temporary fun and order and chaos concept -->
         <div class="row card">
             <div class="col-sm-12">
                 <div class="row">
