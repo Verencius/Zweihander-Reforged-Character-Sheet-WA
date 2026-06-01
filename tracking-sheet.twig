@@ -15,27 +15,42 @@
 {% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor') + variables.attribute_willpower_bonus_mod + attribute_willpower_advance_array|reduce((carry, v) => carry + v) %}
 {% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + variables.attribute_fellowship_bonus_mod + attribute_fellowship_advance_array|reduce((carry, v) => carry + v)%}
 <!-- skill advances value -->
-{% set skill_combat_melee_value = variables.attribute_combat + ([variables.skill_combat_melee_10,variables.skill_combat_melee_20,variables.skill_combat_melee_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_combat_ranged_value = variables.attribute_combat + ([variables.skill_combat_ranged_10,variables.skill_combat_ranged_20,variables.skill_combat_ranged_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_combat_blackpowder_value = variables.attribute_combat + ([variables.skill_combat_blackpowder_10,variables.skill_combat_blackpowder_20,variables.skill_combat_blackpowder_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_combat_simple_melee_value = variables.attribute_combat + ([variables.skill_combat_simple_melee_10,variables.skill_combat_simple_melee_20,variables.skill_combat_simple_melee_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_combat_martial_melee_value = variables.attribute_combat + ([variables.skill_combat_martial_melee_10,variables.skill_combat_martial_melee_20,variables.skill_combat_martial_melee_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_combat_simple_ranged_value = variables.attribute_combat + ([variables.skill_combat_simple_ranged_10,variables.skill_combat_simple_ranged_20,variables.skill_combat_simple_ranged_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_combat_martial_ranged_value = variables.attribute_combat + ([variables.skill_combat_martial_ranged_10,variables.skill_combat_martial_ranged_20,variables.skill_combat_martial_ranged_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_brawn_athletics_value = variables.attribute_brawn + ([variables.skill_brawn_athletics_10,variables.skill_brawn_athletics_20,variables.skill_brawn_athletics_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_brawn_handling_value = variables.attribute_brawn + ([variables.skill_brawn_handling_10,variables.skill_brawn_handling_20,variables.skill_brawn_handling_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_brawn_drive_value = variables.attribute_brawn + ([variables.skill_brawn_drive_10,variables.skill_brawn_drive_20,variables.skill_brawn_drive_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_brawn_intimidate_value = variables.attribute_brawn + ([variables.skill_brawn_intimidate_10,variables.skill_brawn_intimidate_20,variables.skill_brawn_intimidate_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_brawn_toughness_value =  variables.attribute_brawn + ([variables.skill_brawn_toughness_10,variables.skill_brawn_toughness_20,variables.skill_brawn_toughness_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_agility_coordination_value =  variables.attribute_agility + ([variables.skill_agility_coordination_10,variables.skill_agility_coordination_20,variables.skill_agility_coordination_30]|reduce((carry, v) => carry + v))*10 %}     
-{% set skill_agility_thievery_value =  variables.attribute_agility + ([variables.skill_agility_thievery_10,variables.skill_agility_thievery_20,variables.skill_agility_thievery_30]|reduce((carry, v) => carry + v))*10 %}     
+{% set skill_agility_pilot_value =  variables.attribute_agility + ([variables.skill_agility_pilot_10,variables.skill_agility_pilot_20,variables.skill_agility_pilot_30]|reduce((carry, v) => carry + v))*10 %}     
+{% set skill_agility_ride_value =  variables.attribute_agility + ([variables.skill_agility_ride_10,variables.skill_agility_ride_20,variables.skill_agility_ride_30]|reduce((carry, v) => carry + v))*10 %}     
+{% set skill_agility_skulduggery_value =  variables.attribute_agility + ([variables.skill_agility_skulduggery_10,variables.skill_agility_skulduggery_20,variables.skill_agility_skulduggery_30]|reduce((carry, v) => carry + v))*10 %}     
 {% set skill_agility_stealth_value =  variables.attribute_agility + ([variables.skill_agility_stealth_10,variables.skill_agility_stealth_20,variables.skill_agility_stealth_30]|reduce((carry, v) => carry + v))*10 %}       
 {% set skill_perception_awareness_value =  variables.attribute_perception + ([variables.skill_perception_awareness_10,variables.skill_perception_awareness_20,variables.skill_perception_awareness_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_perception_insight_value =  variables.attribute_perception + ([variables.skill_perception_insight_10,variables.skill_perception_insight_20,variables.skill_perception_insight_30]|reduce((carry, v) => carry + v))*10 %}    
+{% set skill_perception_eavesdrop_value =  variables.attribute_perception + ([variables.skill_perception_eavesdrop_10,variables.skill_perception_eavesdrop_20,variables.skill_perception_eavesdrop_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_perception_scrutinize_value =  variables.attribute_perception + ([variables.skill_perception_scrutinize_10,variables.skill_perception_scrutinize_20,variables.skill_perception_scrutinize_30]|reduce((carry, v) => carry + v))*10 %}    
 {% set skill_perception_survival_value =  variables.attribute_perception + ([variables.skill_perception_survival_10,variables.skill_perception_survival_20,variables.skill_perception_survival_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_intelligence_alchemy_value =  variables.attribute_intelligence + ([variables.skill_intelligence_alchemy_10,variables.skill_intelligence_alchemy_20,variables.skill_intelligence_alchemy_30]|reduce((carry, v) => carry + v))*10 %}    
+{% set skill_intelligence_counterfeit_value =  variables.attribute_intelligence + ([variables.skill_intelligence_counterfeit_10,variables.skill_intelligence_counterfeit_20,variables.skill_intelligence_counterfeit_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_intelligence_education_value =  variables.attribute_intelligence + ([variables.skill_intelligence_education_10,variables.skill_intelligence_education_20,variables.skill_intelligence_education_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_intelligence_folklore_value =  variables.attribute_intelligence + ([variables.skill_intelligence_folklore_10,variables.skill_intelligence_folklore_20,variables.skill_intelligence_folklore_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_intelligence_gamble_value =  variables.attribute_intelligence + ([variables.skill_intelligence_gamble_10,variables.skill_intelligence_gamble_20,variables.skill_intelligence_gamble_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_intelligence_leechcraft_value =  variables.attribute_intelligence + ([variables.skill_intelligence_leechcraft_10,variables.skill_intelligence_leechcraft_20,variables.skill_intelligence_leechcraft_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_willpower_occultism_value =  variables.attribute_willpower + ([variables.skill_willpower_occultism_10,variables.skill_willpower_occultism_20,variables.skill_willpower_occultism_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_intelligence_heal_value =  variables.attribute_intelligence + ([variables.skill_intelligence_heal_10,variables.skill_intelligence_heal_20,variables.skill_intelligence_heal_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_intelligence_navigation_value =  variables.attribute_intelligence + ([variables.skill_intelligence_navigation_10,variables.skill_intelligence_navigation_20,variables.skill_intelligence_navigation_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_intelligence_warfare_value =  variables.attribute_intelligence + ([variables.skill_intelligence_warfare_10,variables.skill_intelligence_warfare_20,variables.skill_intelligence_warfare_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_willpower_incantation_value =  variables.attribute_willpower + ([variables.skill_willpower_incantation_10,variables.skill_willpower_incantation_20,variables.skill_incantation_warfare_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_willpower_interrogation_value =  variables.attribute_willpower + ([variables.skill_willpower_interrogation_10,variables.skill_willpower_interrogation_20,variables.skill_willpower_interrogation_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_willpower_resolve_value =  variables.attribute_willpower + ([variables.skill_willpower_resolve_10,variables.skill_willpower_resolve_20,variables.skill_willpower_resolve_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_willpower_craft_value =  variables.attribute_willpower + ([variables.skill_willpower_craft_10,variables.skill_willpower_craft_20,variables.skill_willpower_craft_30]|reduce((carry, v) => carry + v))*10 %}
-{% set skill_fellowship_persuasion_value =  variables.attribute_fellowship + ([variables.skill_fellowship_persuasion_10,variables.skill_fellowship_persuasion_20,variables.skill_fellowship_persuasion_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_willpower_tradecraft_value =  variables.attribute_willpower + ([variables.skill_willpower_tradecraft_10,variables.skill_willpower_tradecraft_20,variables.skill_willpower_tradecraft_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_fellowship_bargain_value =  variables.attribute_fellowship + ([variables.skill_fellowship_bargain_10,variables.skill_fellowship_bargain_20,variables.skill_fellowship_bargain_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_fellowship_charm_value =  variables.attribute_fellowship + ([variables.skill_fellowship_charm_10,variables.skill_fellowship_charm_20,variables.skill_fellowship_charm_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_fellowship_disguise_value =  variables.attribute_fellowship + ([variables.skill_fellowship_disguise_10,variables.skill_fellowship_disguise_20,variables.skill_fellowship_disguise_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_fellowship_guile_value =  variables.attribute_fellowship + ([variables.skill_fellowship_guile_10,variables.skill_fellowship_guile_20,variables.skill_fellowship_guile_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_fellowship_handle_animal_value =  variables.attribute_fellowship + ([variables.skill_fellowship_handle_animal_10,variables.skill_fellowship_handle_animal_20,variables.skill_fellowship_handle_animal_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_fellowship_leadership_value =  variables.attribute_fellowship + ([variables.skill_fellowship_leadership_10,variables.skill_fellowship_leadership_20,variables.skill_fellowship_leadership_30]|reduce((carry, v) => carry + v))*10 %}
+{% set skill_fellowship_rumor_value =  variables.attribute_fellowship + ([variables.skill_fellowship_rumor_10,variables.skill_fellowship_rumor_20,variables.skill_fellowship_rumor_30]|reduce((carry, v) => carry + v))*10 %}
 <!-- dodge and parry values -->
 <!-- current profession selector -->
 {% if variables.profession_advanced != "" %}
@@ -112,6 +127,41 @@
 {% endif %}
 <!-- end of macros -->
 <div id="karta" class="container-fluid">
+    <!-- difficulty scale -->
+    <div class="row card mt-2">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12 card-title"><h5>Difficulty Rating</h5></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-center">Trivial</div>
+                <div class="col-sm-1 text-center">Easy</div>
+                <div class="col-sm-2 text-center">Routine</div>
+                <div class="col-sm-2 text-center">Standard</div>
+                <div class="col-sm-2 text-center">Challenging</div>
+                <div class="col-sm-1 text-center">Hard</div>
+                <div class="col-sm-2 text-center">Arduous</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-center"><input type="radio" name="diffrat"></div>
+                <div class="col-sm-1 text-center"><input type="radio" name="diffrat"></div>
+                <div class="col-sm-2 text-center"><input type="radio" name="diffrat"></div>
+                <div class="col-sm-2 text-center"><input type="radio" name="diffrat"></div>
+                <div class="col-sm-2 text-center"><input type="radio" name="diffrat"></div>
+                <div class="col-sm-1 text-center"><input type="radio" name="diffrat"></div>
+                <div class="col-sm-2 text-center"><input type="radio" name="diffrat"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 text-center">+30%</div>
+                <div class="col-sm-1 text-center">+20%</div>
+                <div class="col-sm-2 text-center">+10%</div>
+                <div class="col-sm-2 text-center">+/-0%</div>
+                <div class="col-sm-2 text-center">-10%</div>
+                <div class="col-sm-1 text-center">-20%</div>
+                <div class="col-sm-2 text-center">-30%</div>
+            </div>
+        </div>
+    </div>
     <!-- Tabbing -->
     <input class="input-hidden" type="radio" name="tabs" id="tab1" checked/><label for="tab1">Personal</label>
     <input class="input-hidden" type="radio" name="tabs" id="tab2"/><label for="tab2">Alignment & Corruption</label>
@@ -129,43 +179,120 @@
                 <div class="row header">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-9">
-                                <div class="row">
-                                    My name is&nbsp;{% if variables.name is defined %}<h1>{{ variables.name}}{% else %}Survivor{% endif %}</h1>
-                                    <!-- this should loop through 3 different professions and select the highest defined -->
-                                    and I'm&nbsp;<h2>The&nbsp;{% if profession_current is not empty %}{{ profession_current|title}}{% else %}Mystery{% endif %}</h2>
-                                    
-                                </div>
-                                <div class="row">
-                                    I'm&nbsp;{{ variables.personal_age_group}}&nbsp;{{ variables.personal_gender }}&nbsp;{{ variables.personal_ancestry }}.&nbsp;I was born in&nbsp;{{ variables.personal_season_of_birth }}
-                                    in the place called {{ variables.personal_place_of_birth}}.I was raised in a {{ variables.personal_upbringing}} home of the{{ variables.personal_social_class}} class {% if variables.personal_patron_deity is not empty %} and became a follower of {{ variables.personal_patron_deity}}{% endif %}.
-                                    When you see me  I am of a/an {{ variables.personal_height}} stature with a/an {{ variables.personal_build_type}} build, {{ variables.personal_hair_color}} hair, 
-                                    {{ variables.personal_eye_color}} eyes, {{ variables.personal_complexion}} complexion. and a {{ variables.personal_distinguishing_marks_1}}.
-                                    My life changed the day that {% if variables.personal_brush_with_death is defined and variables.personal_brush_with_death is not empty %}{{ variables.personal_brush_with_death}}{% else %}"This one's fate is not determined yet"{% endif %}. 
-                                    Yet I lived to tell the tale.<br>
-                                </div>
-                                <div class="row">
-                                    <b>Inner Strength:</b> {{ variables.alignment_inner_strength }}
-                                    <br>
-                                    Did you call upon one of your Inner Strengths 5 RP
-                                    <br>
-                                    <b>Tragic Flaw:</b> {{ variables.alignment_tragic_flaw }}
-                                    <br>
-                                    Did you call upon one of your Tragic Flaws 5 RP
-                                </div>
-                            <div class="col-sm-3">
-                                {% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} 
+                            <div class="col-sm-12">
+                                {% if variables.name is defined %}
+                                <h1>{{ variables.name}}</h1> 
+                                {% endif %}
                             </div>
                         </div>
-
+                        <div class="row">
+                            <!-- this should loop through 3 different professions and select the highest defined -->
+                            <div class="col-sm-12"><h2>The&nbsp;{% if profession_current is not empty %}{{ profession_current|title}}{% else %}Mystery{% endif %}</h2></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12"><h3>"{% if variables.personal_dooming is defined and variables.personal_dooming is not empty %}{{ variables.personal_dooming}}{% else %}"This one's fate is not known yet"{% endif %}"</h3> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- TAB #1.2 -->
+                <div class="row card">
+                    <div class="col-sm-12 card-content">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_ancestry}}</div>
+                                <div class="card-info-label">Ancestry</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_build_type}}</div>
+                                <div class="card-info-label">Build Type</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_season_of_birth}}</div>
+                                <div class="card-info-label">Season of Birth</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_age_group}}</div>
+                                <div class="card-info-label">Age group</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_complexion}}</div>
+                                <div class="card-info-label">Complexion</div>
+                            </div>     
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_social_class}}</div>
+                                <div class="card-info-label">Social Class</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_sex}}</div>
+                                <div class="card-info-label">Sex</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_eye_color}}</div>
+                                <div class="card-info-label">Eye Color</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_upbringing}}</div>
+                                <div class="card-info-label">Upbringing</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="">{{ variables.personal_height}} </div>
+                                <div class="card-info-label">Height</div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="">{{ variables.personal_weight}}</div>
+                                <div class="card-info-label">Weight</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_hair_color}}</div>
+                                <div class="card-info-label">Hair Color</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_place_of_birth}}</div>
+                                <div class="card-info-label">Place of Birth</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                {% if variables.personal_distinguishing_marks_1 is not empty %}
+                                <div class="">{{ variables.personal_distinguishing_marks_1}}</div>   
+                                <div class="card-info-label">Distinguishing Marks</div>
+                                {% endif %}
+                            </div>  
+                            <div class="col-sm-4">
+                                <div class="">{{ variables.personal_patron_deity}}</div>
+                                <div class="card-info-label">Patron Deity</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                {% if variables.personal_distinguishing_marks_2 is not empty %}
+                                <div class="">{{ variables.personal_distinguishing_marks_2}}</div>
+                                <div class="card-info-label">Distinguishing Marks</div>
+                                {% endif %}
+                            </div>    
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                {% if variables.personal_distinguishing_marks_3 is not empty %}
+                                <div class="">{{ variables.personal_distinguishing_marks_3}}</div>
+                                <div class="card-info-label">Distinguishing Marks</div>
+                                {% endif %} 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-3">
+                {% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} 
+            </div>
         </div>
-    </div>
-    <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
-    <div class="tab content2">
-        <!-- TAB #3 temporary fun and order and chaos concept -->
         <div class="row card">
             <div class="col-sm-12">
                 <div class="row">
