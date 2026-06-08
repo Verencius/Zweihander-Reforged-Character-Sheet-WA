@@ -1,0 +1,2969 @@
+Fields:
+
+  personal age group:
+    label: "personal age group"
+    type: string
+    value: ""
+
+  imageid:
+    type: integer
+    label: "imageid"
+    value: 0
+
+  personal distinguishing marks:
+    label: "personal distinguishing marks"
+    type: string
+    value: ""
+
+  personal place of birth:
+    label: "personal place of birth"
+    type: string
+    value: ""
+
+  personal upbringing:
+    label: "personal upbringing"
+    type: string
+    value: ""
+
+  personal goals:
+    label: "personal goals"
+    type: text
+    value: ""
+
+  personal gender:
+    label: "personal gender"
+    type: string
+    value: ""
+
+  personal ancestry:
+    label: "personal ancestry"
+    type: string
+    value: ""
+
+  personal height:
+    label: "personal height"
+    type: string
+    value: ""
+
+  personal weight:
+    label: "personal weight"
+    type: string
+    value: ""
+
+  personal build type:
+    label: "personal build type"
+    type: string
+    value: ""
+
+  personal complexion:
+    label: "personal complexion"
+    type: string
+    value: ""
+
+  personal hair color:
+    label: "personal hair color"
+    type: string
+    value: ""
+
+  personal eye color:
+    label: "personal eye color"
+    type: string
+    value: ""
+
+  personal season of birth:
+    label: "personal season of birth"
+    type: string
+    value: ""
+
+  personal social class:
+    label: "personal social class"
+    type: string
+    value: ""
+
+  personal brush with death:
+    label: "personal brush with death"
+    type: string
+    value: ""
+
+  personal pronoun:
+    label: "personal pronoun"
+    type: string
+    value: ""
+
+  personal patron deity:
+    label: "personal patron deity"
+    type: string
+    value: ""
+
+  alignment tragic flaw:
+    label: "alignment tragic flaw"
+    type: text
+    value: ""
+
+  alignment inner strength:
+    label: "alignment inner strength"
+    type: text
+    value: ""
+
+  alignment corruption:
+    label: "alignment corruption"
+    type: integer
+    value: 0
+
+  alignment permament corruption:
+    label: "alignment permanent corruption"
+    type: integer
+    value: 0
+
+  reward total points:
+    label: "reward total points"
+    type: integer
+    value: 0
+
+  reward reputation points:
+    label: "reward reputation points"
+    type: integer
+    value: 0
+
+  reward current points:
+    label: "reward current points"
+    type: integer
+    value: 0
+
+  injury name 1:
+    label: "injury name 1"
+    type: string
+    value: ""
+
+  injury description 1:
+    label: "injury description 1"
+    type: text
+    value: ""
+
+  injury name 2:
+    label: "injury name 2"
+    type: string
+    value: ""
+
+  injury description 2:
+    label: "injury description 2"
+    type: text
+    value: ""
+
+  injury name 3:
+    label: "injury name 3"
+    type: string
+    value: ""
+
+  injury description 3:
+    label: "injury description 3"
+    type: text
+    value: ""
+
+  injury name 4:
+    label: "injury name 4"
+    type: string
+    value: ""
+
+  injury description 4:
+    label: "injury description 4"
+    type: text
+    value: ""
+
+  injury name 5:
+    label: "injury name 5"
+    type: string
+    value: ""
+
+  injury description 5:
+    label: "injury description 5"
+    type: text
+    value: ""
+
+  Malignancies_and_Scars:
+    label: "Malignancies and Scars"
+    type: text
+    value: ""
+
+  attribute combat advance 1:
+    type: checkbox
+    value: false
+
+  attribute combat advance 2:
+    type: checkbox
+    value: false
+
+  attribute combat advance 3:
+    type: checkbox
+    value: false
+
+  attribute combat advance 4:
+    type: checkbox
+    value: false
+
+  attribute combat advance 5:
+    type: checkbox
+    value: false
+
+  attribute combat advance 6:
+    type: checkbox
+    value: false
+
+  attribute brawn advance 1:
+    type: checkbox
+    value: false
+
+  attribute brawn advance 2:
+    type: checkbox
+    value: false
+
+  attribute brawn advance 3:
+    type: checkbox
+    value: false
+
+  attribute brawn advance 4:
+    type: checkbox
+    value: false
+
+  attribute brawn advance 5:
+    type: checkbox
+    value: false
+
+  attribute brawn advance 6:
+    type: checkbox
+    value: false
+
+  attribute agility advance 1:
+    type: checkbox
+    value: false
+
+  attribute agility advance 2:
+    type: checkbox
+    value: false
+
+  attribute agility advance 3:
+    type: checkbox
+    value: false
+
+  attribute agility advance 4:
+    type: checkbox
+    value: false
+
+  attribute agility advance 5:
+    type: checkbox
+    value: false
+
+  attribute agility advance 6:
+    type: checkbox
+    value: false
+
+  attribute perception advance 1:
+    type: checkbox
+    value: false
+
+  attribute perception advance 2:
+    type: checkbox
+    value: false
+
+  attribute perception advance 3:
+    type: checkbox
+    value: false
+
+  attribute perception advance 4:
+    type: checkbox
+    value: false
+
+  attribute perception advance 5:
+    type: checkbox
+    value: false
+
+  attribute perception advance 6:
+    type: checkbox
+    value: false
+
+  attribute intelligence advance 1:
+    type: checkbox
+    value: false
+
+  attribute intelligence advance 2:
+    type: checkbox
+    value: false
+
+  attribute intelligence advance 3:
+    type: checkbox
+    value: false
+
+  attribute intelligence advance 4:
+    type: checkbox
+    value: false
+
+  attribute intelligence advance 5:
+    type: checkbox
+    value: false
+
+  attribute intelligence advance 6:
+    type: checkbox
+    value: false
+
+  attribute willpower advance 1:
+    type: checkbox
+    value: false
+
+  attribute combat base:
+    type: integer
+    value: 0
+
+  attribute willpower advance 2:
+    type: checkbox
+    value: false
+
+  attribute willpower advance 3:
+    type: checkbox
+    value: false
+
+  attribute combat bonus mod:
+    type: integer
+    value: 0
+
+  attribute willpower advance 4:
+    type: checkbox
+    value: false
+
+  attribute willpower advance 5:
+    type: checkbox
+    value: false
+
+  attribute brawn base:
+    type: integer
+    value: 0
+
+  attribute willpower advance 6:
+    type: checkbox
+    value: false
+
+  attribute fellowship advance 1:
+    type: checkbox
+    value: false
+
+  attribute brawn bonus mod:
+    type: integer
+    value: 0
+
+  attribute fellowship advance 2:
+    type: checkbox
+    value: false
+
+  attribute fellowship advance 3:
+    type: checkbox
+    value: false
+
+  attribute agility base:
+    type: integer
+    value: 0
+
+  attribute fellowship advance 4:
+    type: checkbox
+    value: false
+
+  attribute fellowship advance 5:
+    type: checkbox
+    value: false
+
+  attribute agility bonus mod:
+    type: integer
+    value: 0
+
+  attribute fellowship advance 6:
+    type: checkbox
+    value: false
+
+  attribute combat bonus final:
+    type: integer
+    value: 0
+
+  attribute perception base:
+    type: integer
+    value: 0
+
+  attribute brawn bonus final:
+    type: integer
+    value: 0
+
+  attribute intelligence:
+    type: integer
+    value: 0
+
+  attribute agility bonus final:
+    type: integer
+    value: 0
+
+  attribute intelligence bonus mod:
+    type: integer
+    value: 0
+
+  attribute perception bonus mod:
+    type: integer
+    value: 0
+
+  attribute willpower base:
+    type: integer
+    value: 0
+
+  attribute perception bonus final:
+    type: integer
+    value: 0
+
+  attribute willpower bonus mod:
+    type: integer
+    value: 0
+
+  attribute intelligence bonus final:
+    type: integer
+    value: 0
+
+  attribute fellowship base:
+    type: integer
+    value: 0
+
+  attribute fellowship bonus mod:
+    type: integer
+    value: 0
+
+  attribute willpower bonus final:
+    type: integer
+    value: 0
+
+  attribute fellowship bonus final:
+    type: integer
+    value: 0
+
+  skill combat blackpowder 20:
+    type: checkbox
+    value: false
+
+  skill combat blackpowder 30:
+    type: checkbox
+    value: false
+
+  skill combat melee 10:
+    type: checkbox
+    value: false
+
+  skill combat melee 20:
+    type: checkbox
+    value: false
+
+  skill combat melee 30:
+    type: checkbox
+    value: false
+
+  skill combat ranged 10:
+    type: checkbox
+    value: false
+
+  skill combat ranged 20:
+    type: checkbox
+    value: false
+
+  skill combat ranged 30:
+    type: checkbox
+    value: false
+
+  skill brawn athletics 10:
+    type: checkbox
+    value: false
+
+  skill brawn athletics 20:
+    type: checkbox
+    value: false
+
+  skill brawn athletics 30:
+    type: checkbox
+    value: false
+
+  skill brawn handling 10:
+    type: checkbox
+    value: false
+
+  skill brawn handling 20:
+    type: checkbox
+    value: false
+
+  skill brawn handling 30:
+    type: checkbox
+    value: false
+
+  skill brawn toughness 10:
+    type: checkbox
+    value: false
+
+  skill brawn toughness 20:
+    type: checkbox
+    value: false
+
+  skill brawn toughness 30:
+    type: checkbox
+    value: false
+
+  skill agility coordination 10:
+    type: checkbox
+    value: false
+
+  skill agility coordination 20:
+    type: checkbox
+    value: false
+
+  skill agility coordination 30:
+    type: checkbox
+    value: false
+
+  skill agility thievery 10:
+    type: checkbox
+    value: false
+
+  skill agility thievery 20:
+    type: checkbox
+    value: false
+
+  skill agility thievery 30:
+    type: checkbox
+    value: false
+
+  skill agility stealth 10:
+    type: checkbox
+    value: false
+
+  skill agility stealth 20:
+    type: checkbox
+    value: false
+
+  skill agility stealth 30:
+    type: checkbox
+    value: false
+
+  skill perception awareness 10:
+    type: checkbox
+    value: false
+
+  skill perception awareness 20:
+    type: checkbox
+    value: false
+
+  skill perception awareness 30:
+    type: checkbox
+    value: false
+
+  skill perception insight 10:
+    type: checkbox
+    value: false
+
+  skill perception insight 20:
+    type: checkbox
+    value: false
+
+  skill perception insight 30:
+    type: checkbox
+    value: false
+
+  skill perception survival 10:
+    type: checkbox
+    value: false
+
+  skill perception survival 20:
+    type: checkbox
+    value: false
+
+  skill perception survival 30:
+    type: checkbox
+    value: false
+
+  skill intelligence folklore 10:
+    type: checkbox
+    value: false
+
+  skill intelligence folklore 20:
+    type: checkbox
+    value: false
+
+  skill intelligence folklore 30:
+    type: checkbox
+    value: false
+
+  skill intelligence gamble 10:
+    type: checkbox
+    value: false
+
+  skill intelligence gamble 20:
+    type: checkbox
+    value: false
+
+  skill intelligence gamble 30:
+    type: checkbox
+    value: false
+
+  skill intelligence leechcraft 10:
+    type: checkbox
+    value: false
+
+  skill intelligence leechcraft 20:
+    type: checkbox
+    value: false
+
+  skill intelligence leechcraft 30:
+    type: checkbox
+    value: false
+
+  skill willpower occultism 10:
+    type: checkbox
+    value: false
+
+  skill willpower occultism 20:
+    type: checkbox
+    value: false
+
+  skill willpower occultism 30:
+    type: checkbox
+    value: false
+
+  skill willpower resolve 10:
+    type: checkbox
+    value: false
+
+  skill willpower resolve 20:
+    type: checkbox
+    value: false
+
+  skill willpower resolve 30:
+    type: checkbox
+    value: false
+
+  skill willpower craft 10:
+    type: checkbox
+    value: false
+
+  skill willpower craft 20:
+    type: checkbox
+    value: false
+
+  skill willpower craft 30:
+    type: checkbox
+    value: false
+
+  skill fellowship persuasion 10:
+    type: checkbox
+    value: false
+
+  skill fellowship persuasion 20:
+    type: checkbox
+    value: false
+
+  skill fellowship persuasion 30:
+    type: checkbox
+    value: false
+
+  skill fellowship disguise 10:
+    type: checkbox
+    value: false
+
+  skill fellowship disguise 20:
+    type: checkbox
+    value: false
+
+  skill fellowship disguise 30:
+    type: checkbox
+    value: false
+
+  skill fellowship guile 10:
+    type: checkbox
+    value: false
+
+  skill fellowship guile 20:
+    type: checkbox
+    value: false
+
+  skill fellowship guile 30:
+    type: checkbox
+    value: false
+
+  skill combat blackpowder 10:
+    type: checkbox
+    value: false
+
+  talent ancestral name 1:
+    type: string
+    value: ""
+
+  talent ancestral description 1:
+    type: text
+    value: ""
+
+  talent ancestral name 2:
+    type: string
+    value: ""
+
+  talent ancestral description 2:
+    type: text
+    value: ""
+
+  talent ancestral name 3:
+    type: string
+    value: ""
+
+  talent ancestral description 3:
+    type: text
+    value: ""
+
+  talent professional name 1:
+    type: string
+    value: ""
+
+  talent professional description 1:
+    type: text
+    value: ""
+
+  talent professional name 2:
+    type: string
+    value: ""
+
+  talent professional description 2:
+    type: text
+    value: ""
+
+  talent professional name 3:
+    type: string
+    value: ""
+
+  talent name 1:
+    type: string
+    value: ""
+
+  talent professional description 3:
+    type: text
+    value: ""
+
+  talent name 2:
+    type: string
+    value: ""
+
+  talent name 3:
+    type: string
+    value: ""
+
+  talent name 4:
+    type: string
+    value: ""
+
+  talent name 5:
+    type: string
+    value: ""
+
+  talent name 6:
+    type: string
+    value: ""
+
+  talent name 7:
+    type: string
+    value: ""
+
+  talent name 8:
+    type: string
+    value: ""
+
+  talent name 9:
+    type: string
+    value: ""
+
+  talent name 10:
+    type: string
+    value: ""
+
+  talent desc 1:
+    type: text
+    value: ""
+
+  talent desc 2:
+    type: text
+    value: ""
+
+  talent desc 3:
+    type: text
+    value: ""
+
+  talent desc 4:
+    type: text
+    value: ""
+
+  talent desc 5:
+    type: text
+    value: ""
+
+  talent desc 6:
+    type: text
+    value: ""
+
+  talent desc 7:
+    type: text
+    value: ""
+
+  talent desc 8:
+    type: text
+    value: ""
+
+  talent desc 9:
+    type: text
+    value: ""
+
+  talent desc 10:
+    type: text
+    value: ""
+
+  trait name 7:
+    type: string
+    value: ""
+
+  trait description 7:
+    type: text
+    value: ""
+
+  trait name 8:
+    type: string
+    value: ""
+
+  trait description 8:
+    type: text
+    value: ""
+
+  trait name 9:
+    type: string
+    value: ""
+
+  trait description 9:
+    type: text
+    value: ""
+
+  trait name 10:
+    type: string
+    value: ""
+
+  trait description 10:
+    type: text
+    value: ""
+
+  daemonic gift name 1:
+    type: string
+    value: ""
+
+  daemonic gift desc 1:
+    type: string
+    value: ""
+
+  daemonic gift 2:
+    type: string
+    value: ""
+
+  daemonic gift desc 2:
+    type: string
+    value: ""
+
+  daemonic gift 3:
+    type: string
+    value: ""
+
+  daemonic gift desc 3:
+    type: string
+    value: ""
+
+  daemonic gift 4:
+    type: string
+    value: ""
+
+  daemonic gift desc 4:
+    type: string
+    value: ""
+
+  daemonic gift 5:
+    type: string
+    value: ""
+
+  daemonic gift desc 5:
+    type: string
+    value: ""
+
+  shield is defensive:
+    type: checkbox
+    value: false
+
+  shield name:
+    type: string
+    value: ""
+
+  shield is ruined:
+    type: checkbox
+    value: false
+
+  armor is ruined:
+    type: checkbox
+    value: false
+
+  armor is natural:
+    type: checkbox
+    value: false
+
+  shield qualities:
+    type: string
+    value: ""
+
+  shield is protective:
+    type: checkbox
+    value: false
+
+  shield is makers mark:
+    type: checkbox
+    value: false
+
+  armor is makers mark:
+    type: checkbox
+    value: false
+
+  shield is castleforged:
+    type: checkbox
+    value: false
+
+  armor is castle forged:
+    type: checkbox
+    value: false
+
+  armor name:
+    type: string
+    value: ""
+
+  armor dth mod:
+    type: integer
+    value: 0
+
+  armor qualities:
+    type: text
+    value: ""
+
+  armor clothes:
+    type: string
+    value: ""
+
+  weapon name 1:
+    type: string
+    value: ""
+
+  weapon ammo 1:
+    type: integer
+    value: 0
+
+  weapon is defensive 1:
+    type: checkbox
+    value: false
+
+  weapon is ruined 1:
+    type: checkbox
+    value: false
+
+  weapon skill 1:
+    type: select
+    value: Melee
+    options:
+      - Melee
+      - Ranged
+      - Blackpowder
+
+  weapon ammo 2:
+    type: integer
+    value: 0
+
+  weapon is defensive 2:
+    type: checkbox
+    value: false
+
+  weapon is makers mark 1:
+    type: checkbox
+    value: false
+
+  weapon load 2:
+    type: text
+    value: ""
+
+  weapon ammo 3:
+    type: integer
+    value: 0
+
+  weapon is defensive 3:
+    type: checkbox
+    value: false
+
+  weapon is castle forged 1:
+    type: checkbox
+    value: false
+
+  weapon handling 2:
+    type: select
+    value: One-handed
+    options:
+      - One-handed
+      - Two-handed
+
+  weapon is ruined 2:
+    type: checkbox
+    value: false
+
+  weapon distance 1:
+    type: text
+    value: ""
+
+  weapon load 3:
+    type: text
+    value: ""
+
+  weapon is makers mark 2:
+    type: checkbox
+    value: false
+
+  weapon damage 1:
+    type: string
+    value: ""
+
+  weapon handling 3:
+    type: select
+    value: One-handed
+    options:
+      - One-handed
+      - Two-handed
+
+  weapon is castle forged 2:
+    type: checkbox
+    value: false
+
+  weapon qualities 1:
+    type: text
+    value: ""
+
+  weapon load 1:
+    type: text
+    value: ""
+
+  weapon is ruined 3:
+    type: checkbox
+    value: false
+
+  weapon handling 1:
+    type: select
+    value: One-handed
+    options:
+      - One-handed
+      - Two-handed
+
+  weapon is makers mark 3:
+    type: checkbox
+    value: false
+
+  weapon name 2:
+    type: string
+    value: ""
+
+  weapon is castle forged 3:
+    type: checkbox
+    value: false
+
+  weapon skill 2:
+    type: select
+    value: Melee
+    options:
+      - Melee
+      - Ranged
+      - Blackpowder
+
+  weapon is ruined 4:
+    type: checkbox
+    value: false
+
+  weapon is makers mark 4:
+    type: checkbox
+    value: false
+
+  weapon is castle forged 4:
+    type: checkbox
+    value: false
+
+  weapon distance 2:
+    type: text
+    value: ""
+
+  weapon damage 2:
+    type: integer
+    value: 0
+
+  weapon qualities 2:
+    type: text
+    value: ""
+
+  weapon name 3:
+    type: string
+    value: ""
+
+  weapon skill 3:
+    type: select
+    value: Melee
+    options:
+      - Melee
+      - Ranged
+      - Blackpowder
+
+  weapon distance 3:
+    type: text
+    value: ""
+
+  weapon damage 3:
+    type: integer
+    value: 0
+
+  weapon qualities 3:
+    type: text
+    value: ""
+
+  weapon name 4:
+    type: string
+    value: ""
+
+  weapon skill 4:
+    type: select
+    value: Melee
+    options:
+      - Melee
+      - Ranged
+      - Blackpowder
+
+  weapon damage 4:
+    type: integer
+    value: 0
+
+  weapon qualities 4:
+    type: text
+    value: ""
+
+  weapon ammo 4:
+    type: integer
+    value: 0
+
+  weapon distance 4:
+    type: text
+    value: ""
+
+  weapon load 4:
+    type: text
+    value: ""
+
+  weapon handling 4:
+    type: select
+    value: One-handed
+    options:
+      - One-handed
+      - Two-handed
+
+  language 1:
+    type: string
+    value: ""
+
+  language 2:
+    type: string
+    value: ""
+
+  language 3:
+    type: string
+    value: ""
+
+  language 4:
+    type: string
+    value: ""
+
+  language 5:
+    type: string
+    value: ""
+
+  language 6:
+    type: string
+    value: ""
+
+  language 7:
+    type: string
+    value: ""
+
+  language 8:
+    type: string
+    value: ""
+
+  supplies tool name 1:
+    type: string
+    value: ""
+
+  supplies name 1:
+    type: string
+    value: ""
+
+  supplies rating 1:
+    type: integer
+    value: 0
+
+  supplies name 2:
+    type: string
+    value: ""
+
+  supplies tool name 2:
+    type: string
+    value: ""
+
+  supplies rating 2:
+    type: integer
+    value: 0
+
+  supplies name 3:
+    type: string
+    value: ""
+
+  supplies tool name 3:
+    type: string
+    value: ""
+
+  supplies rating 3:
+    type: integer
+    value: 0
+
+  supplies name 4:
+    type: string
+    value: ""
+
+  supplies rating 4:
+    type: integer
+    value: 0
+
+  supplies name 5:
+    type: string
+    value: ""
+
+  supplies rating 5:
+    type: integer
+    value: 0
+
+  supplies name 6:
+    type: string
+    value: ""
+
+  supplies tool name 5:
+    type: string
+    value: ""
+
+  supplies rating 6:
+    type: integer
+    value: 0
+
+  supplies tool name 6:
+    type: string
+    value: ""
+
+  supplies tool name 4:
+    type: string
+    value: ""
+
+  small_object_memento:
+    type: string
+    value: ""
+
+  small_objects_2:
+    type: string
+    value: ""
+
+  small_objects_3:
+    type: string
+    value: ""
+
+  small_objects_4:
+    type: string
+    value: ""
+
+  small_objects_5:
+    type: string
+    value: ""
+
+  small_objects_6:
+    type: string
+    value: ""
+
+  small_objects_7:
+    type: string
+    value: ""
+
+  small_objects_8:
+    type: string
+    value: ""
+
+  small_objects_9:
+    type: string
+    value: ""
+
+  small_object_10:
+    type: string
+    value: ""
+
+  wealth property:
+    type: text
+    value: ""
+
+  wealth trinkets:
+    type: string
+    value: ""
+
+  Wealth silver:
+    type: integer
+    value: 0
+
+  magic name 1:
+    type: string
+    value: ""
+
+  magic material 1:
+    type: string
+    value: ""
+
+  magic crit fail 1:
+    type: text
+    value: ""
+
+  magic principle 1:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 2:
+    type: string
+    value: ""
+
+  magic material 2:
+    type: string
+    value: ""
+
+  magic crit fail 2:
+    type: text
+    value: ""
+
+  magic principle 2:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 3:
+    type: string
+    value: ""
+
+  magic material 3:
+    type: string
+    value: ""
+
+  magic crit fail 3:
+    type: text
+    value: ""
+
+  magic principle 3:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 4:
+    type: string
+    value: ""
+
+  magic material 4:
+    type: string
+    value: ""
+
+  magic crit fail 4:
+    type: text
+    value: ""
+
+  magic principle 4:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 5:
+    type: string
+    value: ""
+
+  magic material 5:
+    type: string
+    value: ""
+
+  magic crit fail 5:
+    type: text
+    value: ""
+
+  magic principle 5:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 6:
+    type: string
+    value: ""
+
+  magic material 6:
+    type: string
+    value: ""
+
+  magic crit fail 6:
+    type: text
+    value: ""
+
+  magic principle 6:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 7:
+    type: string
+    value: ""
+
+  magic material 7:
+    type: string
+    value: ""
+
+  magic crit fail 7:
+    type: text
+    value: ""
+
+  magic principle 7:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 8:
+    type: string
+    value: ""
+
+  magic material 8:
+    type: string
+    value: ""
+
+  magic crit fail 8:
+    type: text
+    value: ""
+
+  magic principle 8:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 9:
+    type: string
+    value: ""
+
+  magic material 9:
+    type: string
+    value: ""
+
+  magic crit fail 9:
+    type: text
+    value: ""
+
+  magic principle 9:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 10:
+    type: string
+    value: ""
+
+  magic material 10:
+    type: string
+    value: ""
+
+  magic crit fail 10:
+    type: text
+    value: ""
+
+  magic principle 10:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 11:
+    type: string
+    value: ""
+
+  magic crit fail 11:
+    type: text
+    value: ""
+
+  magic principle 11:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 12:
+    type: string
+    value: ""
+
+  magic crit fail 12:
+    type: text
+    value: ""
+
+  magic principle 12:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 13:
+    type: string
+    value: ""
+
+  magic crit fail 13:
+    type: text
+    value: ""
+
+  magic principle 13:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 14:
+    type: string
+    value: ""
+
+  magic crit fail 14:
+    type: text
+    value: ""
+
+  magic principle 14:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 15:
+    type: string
+    value: ""
+
+  magic crit fail 15:
+    type: text
+    value: ""
+
+  magic principle 15:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 16:
+    type: string
+    value: ""
+
+  magic crit fail 16:
+    type: text
+    value: ""
+
+  magic principle 16:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 17:
+    type: string
+    value: ""
+
+  magic crit fail 17:
+    type: text
+    value: ""
+
+  magic principle 17:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 18:
+    type: string
+    value: ""
+
+  magic crit fail 18:
+    type: text
+    value: ""
+
+  magic principle 18:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 19:
+    type: string
+    value: ""
+
+  magic crit fail 19:
+    type: text
+    value: ""
+
+  magic principle 19:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic name 20:
+    type: string
+    value: ""
+
+  magic crit fail 20:
+    type: text
+    value: ""
+
+  magic principle 20:
+    type: select
+    value: Petty Spell
+    options:
+      - Petty Spell
+      - Lesser Spell
+      - Greater Spell
+
+  magic distance 1:
+    type: text
+    value: ""
+
+  magic distance 2:
+    type: text
+    value: ""
+
+  magic distance 3:
+    type: text
+    value: ""
+
+  magic distance 4:
+    type: text
+    value: ""
+
+  magic distance 5:
+    type: text
+    value: ""
+
+  magic distance 6:
+    type: text
+    value: ""
+
+  magic distance 7:
+    type: text
+    value: ""
+
+  magic distance 8:
+    type: text
+    value: ""
+
+  magic distance 9:
+    type: text
+    value: ""
+
+  magic distance 10:
+    type: text
+    value: ""
+
+  magic distance 11:
+    type: text
+    value: ""
+
+  magic distance 12:
+    type: text
+    value: ""
+
+  magic distance 13:
+    type: text
+    value: ""
+
+  magic distance 14:
+    type: text
+    value: ""
+
+  magic distance 15:
+    type: text
+    value: ""
+
+  magic distance 16:
+    type: text
+    value: ""
+
+  magic distance 17:
+    type: text
+    value: ""
+
+  magic distance 18:
+    type: text
+    value: ""
+
+  magic distance 19:
+    type: text
+    value: ""
+
+  magic distance 20:
+    type: text
+    value: ""
+
+  magic duration 1:
+    type: text
+    value: ""
+
+  magic duration 2:
+    type: text
+    value: ""
+
+  magic duration 3:
+    type: text
+    value: ""
+
+  magic duration 4:
+    type: text
+    value: ""
+
+  magic duration 5:
+    type: text
+    value: ""
+
+  magic duration 6:
+    type: text
+    value: ""
+
+  magic duration 7:
+    type: text
+    value: ""
+
+  magic duration 8:
+    type: text
+    value: ""
+
+  magic duration 9:
+    type: text
+    value: ""
+
+  magic duration 10:
+    type: text
+    value: ""
+
+  magic duration 11:
+    type: text
+    value: ""
+
+  magic duration 12:
+    type: text
+    value: ""
+
+  magic duration 13:
+    type: text
+    value: ""
+
+  magic duration 14:
+    type: text
+    value: ""
+
+  magic duration 15:
+    type: text
+    value: ""
+
+  magic duration 16:
+    type: text
+    value: ""
+
+  magic duration 17:
+    type: text
+    value: ""
+
+  magic duration 18:
+    type: text
+    value: ""
+
+  magic duration 19:
+    type: text
+    value: ""
+
+  magic duration 20:
+    type: text
+    value: ""
+
+  magic effect 1:
+    type: text
+    value: ""
+
+  magic effect 2:
+    type: text
+    value: ""
+
+  magic effect 3:
+    type: text
+    value: ""
+
+  magic effect 4:
+    type: text
+    value: ""
+
+  magic effect 5:
+    type: text
+    value: ""
+
+  magic effect 6:
+    type: text
+    value: ""
+
+  magic effect 8:
+    type: text
+    value: ""
+
+  magic effect 9:
+    type: text
+    value: ""
+
+  magic effect 10:
+    type: text
+    value: ""
+
+  magic effect 11:
+    type: text
+    value: ""
+
+  magic effect 12:
+    type: text
+    value: ""
+
+  magic effect 13:
+    type: text
+    value: ""
+
+  magic effect 14:
+    type: text
+    value: ""
+
+  magic effect 15:
+    type: text
+    value: ""
+
+  magic effect 16:
+    type: text
+    value: ""
+
+  magic effect 17:
+    type: text
+    value: ""
+
+  magic effect 18:
+    type: text
+    value: ""
+
+  magic effect 19:
+    type: text
+    value: ""
+
+  magic effect 20:
+    type: text
+    value: ""
+
+  magic crit success 1:
+    type: text
+    value: ""
+
+  magic crit success 2:
+    type: text
+    value: ""
+
+  magic crit success 3:
+    type: text
+    value: ""
+
+  magic crit success 4:
+    type: text
+    value: ""
+
+  magic crit success 5:
+    type: text
+    value: ""
+
+  magic crit success 6:
+    type: text
+    value: ""
+
+  magic crit success 7:
+    type: text
+    value: ""
+
+  magic crit success 8:
+    type: text
+    value: ""
+
+  magic crit success 9:
+    type: text
+    value: ""
+
+  magic crit success 10:
+    type: text
+    value: ""
+
+  magic crit success 11:
+    type: text
+    value: ""
+
+  magic crit success 12:
+    type: text
+    value: ""
+
+  magic crit success 13:
+    type: text
+    value: ""
+
+  magic crit success 14:
+    type: text
+    value: ""
+
+  magic cirt success 15:
+    type: text
+    value: ""
+
+  magic crit success 16:
+    type: text
+    value: ""
+
+  magic crit success 17:
+    type: text
+    value: ""
+
+  magic crit success 18:
+    type: text
+    value: ""
+
+  magic crit success 19:
+    type: text
+    value: ""
+
+  magic crit success 20:
+    type: text
+    value: ""
+
+  magic effect 7:
+    type: text
+    value: ""
+
+  magic wellspring 1:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 2:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 3:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 4:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 5:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 6:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 7:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 8:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 9:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 10:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 11:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 12:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 13:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 15:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 16:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 17:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 18:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 19:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 20:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  magic wellspring 14:
+    type: select
+    value: Folk Magic
+    options:
+      - Folk Magic
+      - Arcane Magic
+      - Diving Magic
+      - Chaos Magic
+
+  ritual name 1:
+    type: text
+    value: ""
+
+  ritual condition 1:
+    type: string
+    value: ""
+
+  ritual casting time 1:
+    type: text
+    value: ""
+
+  ritual condition 2:
+    type: string
+    value: ""
+
+  ritual materials 1:
+    type: text
+    value: ""
+
+  ritual condition 3:
+    type: string
+    value: ""
+
+  ritual condition 4:
+    type: string
+    value: ""
+
+  ritual condition 5:
+    type: string
+    value: ""
+
+  ritual duration 1:
+    type: string
+    value: ""
+
+  ritual condition 6:
+    type: string
+    value: ""
+
+  ritual crit success 1:
+    type: text
+    value: ""
+
+  ritual condition 7:
+    type: string
+    value: ""
+
+  ritual effect 1:
+    type: text
+    value: ""
+
+  ritual condition 8:
+    type: string
+    value: ""
+
+  ritual name 2:
+    type: text
+    value: ""
+
+  ritual condition 9:
+    type: string
+    value: ""
+
+  ritual casting time 2:
+    type: text
+    value: ""
+
+  ritual condition 10:
+    type: string
+    value: ""
+
+  ritual materials 2:
+    type: text
+    value: ""
+
+  ritual duration 2:
+    type: string
+    value: ""
+
+  ritual crit success 2:
+    type: text
+    value: ""
+
+  ritual effect 2:
+    type: text
+    value: ""
+
+  ritual name 3:
+    type: text
+    value: ""
+
+  ritual casting time 3:
+    type: text
+    value: ""
+
+  ritual materials 3:
+    type: text
+    value: ""
+
+  ritual duration 3:
+    type: string
+    value: ""
+
+  ritual crit success 3:
+    type: text
+    value: ""
+
+  ritual effect 3:
+    type: text
+    value: ""
+
+  ritual name 4:
+    type: text
+    value: ""
+
+  ritual casting time 4:
+    type: text
+    value: ""
+
+  ritual materials 4:
+    type: text
+    value: ""
+
+  ritual duration 4:
+    type: string
+    value: ""
+
+  ritual crit success 4:
+    type: text
+    value: ""
+
+  ritual effect 4:
+    type: text
+    value: ""
+
+  ritual name 5:
+    type: text
+    value: ""
+
+  ritual casting time 5:
+    type: text
+    value: ""
+
+  ritual materials 5:
+    type: text
+    value: ""
+
+  ritual duration 5:
+    type: string
+    value: ""
+
+  ritual crit success 5:
+    type: text
+    value: ""
+
+  ritual effect 5:
+    type: text
+    value: ""
+
+  ritual name 6:
+    type: text
+    value: ""
+
+  ritual casting time 6:
+    type: text
+    value: ""
+
+  ritual materials 6:
+    type: text
+    value: ""
+
+  ritual duration 6:
+    type: string
+    value: ""
+
+  ritual crit success 6:
+    type: text
+    value: ""
+
+  ritual effect 6:
+    type: text
+    value: ""
+
+  ritual name 7:
+    type: text
+    value: ""
+
+  ritual casting time 7:
+    type: text
+    value: ""
+
+  ritual materials 7:
+    type: text
+    value: ""
+
+  ritual duration 7:
+    type: string
+    value: ""
+
+  ritual crit success 7:
+    type: text
+    value: ""
+
+  ritual effect 7:
+    type: text
+    value: ""
+
+  ritual name 8:
+    type: text
+    value: ""
+
+  ritual casting time 8:
+    type: text
+    value: ""
+
+  ritual materials 8:
+    type: text
+    value: ""
+
+  ritual duration 8:
+    type: string
+    value: ""
+
+  ritual crit success 8:
+    type: text
+    value: ""
+
+  ritual effect 8:
+    type: text
+    value: ""
+
+  ritual name 9:
+    type: text
+    value: ""
+
+  ritual casting time 9:
+    type: text
+    value: ""
+
+  ritual materials 9:
+    type: text
+    value: ""
+
+  ritual duration 9:
+    type: string
+    value: ""
+
+  ritual crit success 9:
+    type: text
+    value: ""
+
+  ritual effect 9:
+    type: text
+    value: ""
+
+  ritual name 10:
+    type: text
+    value: ""
+
+  ritual casting time 10:
+    type: text
+    value: ""
+
+  ritual materials 10:
+    type: text
+    value: ""
+
+  ritual duration 10:
+    type: string
+    value: ""
+
+  ritual crit success 10:
+    type: text
+    value: ""
+
+  ritual effect 10:
+    type: text
+    value: ""
+
+  ritual crit fail 1:
+    type: text
+    value: ""
+
+  ritual crit fail 2:
+    type: text
+    value: ""
+
+  ritual crit fail 3:
+    type: text
+    value: ""
+
+  ritual crit fail 4:
+    type: text
+    value: ""
+
+  ritual crit fail 5:
+    type: text
+    value: ""
+
+  ritual crit fail 6:
+    type: text
+    value: ""
+
+  ritual crit fail 7:
+    type: text
+    value: ""
+
+  ritual crit fail 8:
+    type: text
+    value: ""
+
+  ritual crit fail 9:
+    type: text
+    value: ""
+
+  ritual crit fail 10:
+    type: text
+    value: ""
+
+  profession basic name:
+    type: string
+    value: ""
+
+  profession basic skill rank 1:
+    type: string
+    value: ""
+
+  profession basic skill rank checkbox 1:
+    type: checkbox
+    value: false
+
+  profession basic skill rank 2:
+    type: string
+    value: ""
+
+  profession basic skill rank checkbox 2:
+    type: checkbox
+    value: false
+
+  profession basic skill rank 3:
+    type: string
+    value: ""
+
+  profession basic skill rank checkbox 3:
+    type: checkbox
+    value: false
+
+  profession basic skill rank 4:
+    type: string
+    value: ""
+
+  profession basic skill rank checkbox 4:
+    type: checkbox
+    value: false
+
+  profession basic skill rank 5:
+    type: string
+    value: ""
+
+  profession basic skill rank checkbox 5:
+    type: checkbox
+    value: false
+
+  profession basic skill rank 6:
+    type: string
+    value: ""
+
+  profession basic skill rank checkbox 6:
+    type: checkbox
+    value: false
+
+  profession basic professional talent:
+    type: string
+    value: ""
+
+  profession basic professional talent checkbox:
+    type: checkbox
+    value: false
+
+  profession basic attribute modifier 1:
+    type: string
+    value: ""
+
+  profession basic attribute modifier checkbox 1:
+    type: checkbox
+    value: false
+
+  profession basic attribute modifier 2:
+    type: string
+    value: ""
+
+  profession basic attribute modifier checkbox 2:
+    type: checkbox
+    value: false
+
+  profession basic attribute modifier 3:
+    type: string
+    value: ""
+
+  profession basic attribute modifier checkbox 3:
+    type: checkbox
+    value: false
+
+  profession basic attribute modifier 4:
+    type: string
+    value: ""
+
+  profession basic attribute modifier checkbox 4:
+    type: checkbox
+    value: false
+
+  profession basic attribute modifier 5:
+    type: string
+    value: ""
+
+  profession basic attribute modifier checkbox 5:
+    type: checkbox
+    value: false
+
+  profession basic attribute modifier 6:
+    type: string
+    value: ""
+
+  profession basic attribute modifier checkbox 6:
+    type: checkbox
+    value: false
+
+  profession basic general talent 1:
+    type: string
+    value: ""
+
+  profession basic general talent checkbox 1:
+    type: checkbox
+    value: false
+
+  profession basic general talent 2:
+    type: string
+    value: ""
+
+  profession basic general talent checkbox 2:
+    type: checkbox
+    value: false
+
+  profession basic general talent checkbox 3:
+    type: checkbox
+    value: false
+
+  profession basic general talent 3:
+    type: string
+    value: ""
+
+  profession basic professional attribute:
+    type: checkbox
+    value: false
+
+  profession basic professional attribute checkbox:
+    type: checkbox
+    value: false
+
+  profession basic ancestral talent checkbox:
+    type: checkbox
+    value: false
+
+  profession intermediate name:
+    type: string
+    value: ""
+
+  profession intermediate skill rank 1:
+    type: string
+    value: ""
+
+  profession intermediate skill rank checkbox 1:
+    type: checkbox
+    value: false
+
+  profession intermediate skill rank 2:
+    type: string
+    value: ""
+
+  profession intermediate skill rank checkbox 2:
+    type: checkbox
+    value: false
+
+  profession intermediate skill rank 3:
+    type: string
+    value: ""
+
+  profession intermediate skill rank checkbox 3:
+    type: checkbox
+    value: false
+
+  profession intermediate skill rank 4:
+    type: string
+    value: ""
+
+  profession intermediate skill rank checkbox 4:
+    type: checkbox
+    value: false
+
+  profession intermediate skill rank 5:
+    type: string
+    value: ""
+
+  profession intermediate skill rank checkbox 5:
+    type: checkbox
+    value: false
+
+  profession intermediate skill rank 6:
+    type: string
+    value: ""
+
+  profession intermediate skill rank checkbox 6:
+    type: checkbox
+    value: false
+
+  profession intermediate professional attribute:
+    type: string
+    value: ""
+
+  profession intermediate professional attribute checkbox 7:
+    type: checkbox
+    value: false
+
+  profession intermediate bonus advance 5:
+    type: string
+    value: ""
+
+  profession intermediate bonus advance checkbox 5:
+    type: checkbox
+    value: false
+
+  profession intermediate bonus advance 6:
+    type: string
+    value: ""
+
+  profession intermediate bonus advance checkbox 6:
+    type: checkbox
+    value: false
+
+  profession intermediate professional talent:
+    type: string
+    value: ""
+
+  profession intermediate professional talent checkbox:
+    type: checkbox
+    value: false
+
+  profession intermediate bonus advance 1:
+    type: string
+    value: ""
+
+  profession intermediate bonus advance checkbox 1:
+    type: checkbox
+    value: false
+
+  profession intermediate bonus advance 2:
+    type: string
+    value: ""
+
+  profession intermediate bonus advance checkbox 2:
+    type: checkbox
+    value: false
+
+  profession intermediate bonus advance 3:
+    type: string
+    value: ""
+
+  profession intermediate bonus advance checkbox 3:
+    type: checkbox
+    value: false
+
+  profession intermediate bonus advance 4:
+    type: string
+    value: ""
+
+  profession intermediate bonus advance checkbox 4:
+    type: checkbox
+    value: false
+
+  profession intermediate general talent 1:
+    type: string
+    value: ""
+
+  profession intermediate general talent checkbox 1:
+    type: checkbox
+    value: false
+
+  profession intermediate general talent 2:
+    type: string
+    value: ""
+
+  profession intermediate general talent checkbox 2:
+    type: checkbox
+    value: false
+
+  profession intermediate general talent checkbox 3:
+    type: checkbox
+    value: false
+
+  profession intermediate ancestral talent checkbox:
+    type: checkbox
+    value: false
+
+  profession advanced name:
+    type: string
+    value: ""
+
+  profession advanced skill rank 1:
+    type: string
+    value: ""
+
+  profession advanced skill rank checkbox 1:
+    type: checkbox
+    value: false
+
+  profession advanced skill rank 2:
+    type: string
+    value: ""
+
+  profession advanced skill rank checkbox 2:
+    type: checkbox
+    value: false
+
+  profession advanced skill rank 3:
+    type: string
+    value: ""
+
+  profession advanced skill rank checkbox 3:
+    type: checkbox
+    value: false
+
+  profession advanced skill rank 4:
+    type: string
+    value: ""
+
+  profession advanced skill rank checkbox 4:
+    type: checkbox
+    value: false
+
+  profession advanced skill rank 5:
+    type: string
+    value: ""
+
+  profession advanced skill rank checkbox 5:
+    type: checkbox
+    value: false
+
+  profession advanced skill rank 6:
+    type: string
+    value: ""
+
+  profession advanced skill rank checkbox 6:
+    type: checkbox
+    value: false
+
+  profession advanced professional talent:
+    type: string
+    value: ""
+
+  profession advanced profession talent checkbox:
+    type: checkbox
+    value: false
+
+  profession advanced bonus advance 1:
+    type: string
+    value: ""
+
+  profession advanced bonus advance checkbox 1:
+    type: checkbox
+    value: false
+
+  profession advanced bonus advance 2:
+    type: string
+    value: ""
+
+  profession advanced bonus advance checkbox 2:
+    type: checkbox
+    value: false
+
+  profession advanced bonus advance 3:
+    type: string
+    value: ""
+
+  profession advanced general talent 1:
+    type: string
+    value: ""
+
+  profession advanced general talent checkbox 1:
+    type: checkbox
+    value: false
+
+  profession advanced general talent 2:
+    type: string
+    value: ""
+
+  profession advanced general talent checkbox 2:
+    type: checkbox
+    value: false
+
+  profession advanced general talent checkbox 3:
+    type: checkbox
+    value: false
+
+  profession advanced bonus advance checkbox 3:
+    type: checkbox
+    value: false
+
+  profession advanced bonus advance 4:
+    type: string
+    value: ""
+
+  profession advanced bonus advance checkbox 4:
+    type: checkbox
+    value: false
+
+  profession advanced general talent 3:
+    type: string
+    value: ""
+
+  profession advanced ancestral talent checkbox:
+    type: checkbox
+    value: false
+
+  option toggle magic:
+    type: checkbox
+    value: false
+
+  option toggle rituals:
+    type: checkbox
+    value: false
+
+  initiative base:
+    type: integer
+    value: 0
+
+  peril condition track:
+    type: select
+    value: FINE
+    options:
+      - FINE
+      - IMPERILED
+      - -5% TO SKILL TESTS
+      - -10% TO SKILL TESTS
+      - -15% TO SKILL TESTS
+      - EXHAUSTED!
+
+  damage condition track:
+    type: select
+    value: ALIVE
+    options:
+      - ALIVE
+      - LIGHTLY WOUNDED
+      - MODERATELY WOUNDED
+      - SERIOUSLY WOUNDED
+      - GRIEVOUSLY WOUNDED
+      - DYING!
+
+  action points:
+    type: integer
+    value: 0
+
+  peril threshold base:
+    type: integer
+    value: 0
+
+  damage threshold:
+    type: integer
+    value: 0
+
+  peril threshold 6:
+    type: integer
+    value: 0
+
+  peril threshold 12:
+    type: integer
+    value: 0
+
+  peril threshold 18:
+    type: integer
+    value: 0
+
+
+  unique advances:
+    type: text
+    value: ""

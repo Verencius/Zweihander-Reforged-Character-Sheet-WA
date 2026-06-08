@@ -1,0 +1,3700 @@
+fields:
+
+  personal age group:
+    label: "personal age group"
+    input: string
+
+  imageid:
+    input: integer
+    label: "imageid"
+
+  personal distinguishing marks:
+    label: "personal distinguishing marks"
+    input: string
+
+  personal place of birth:
+    label: "personal place of birth"
+    input: string
+
+  personal upbringing:
+    label: "personal upbringing"
+    input: string
+
+  personal goals:
+    label: "personal goals"
+    input: text
+
+  personal gender:
+    label: "personal gender"
+    input: string
+
+  personal ancestry:
+    label: "personal ancestry"
+    input: string
+
+
+  personal height:
+    label: "personal height"
+    input: string
+
+  personal weight:
+    label: "personal weight"
+    input: string
+
+  personal build input:
+    label: "personal build input"
+    input: string
+
+  personal complexion:
+    label: "personal complexion"
+    input: string
+
+  personal hair color:
+    label: "personal hair color"
+    input: string
+
+  personal eye color:
+    label: "personal eye color"
+    input: string
+
+  personal season of birth:
+    label: "personal season of birth"
+    input: string
+
+  personal social class:
+    label: "personal social class"
+    input: string
+
+  personal brush with death:
+    label: "personal brush with death"
+    input: string
+
+  personal pronoun:
+    label: "personal pronoun"
+    input: string
+
+  personal patron deity:
+    label: "personal patron deity"
+    input: string
+
+  alignment tragic flaw:
+    label: "alignment tragic flaw"
+    input: text
+
+  alignment inner strength:
+    label: "alignment inner strength"
+    input: text
+
+  alignment corruption:
+    label: "alignment corruption"
+    input: integer
+
+  alignment permanent corruption:
+    label: "alignment permanent corruption"
+    input: integer
+
+  reward total points:
+    label: "reward total points"
+    input: integer
+
+  reward reputation points:
+    label: "reward reputation points"
+    input: integer
+
+  reward current points:
+    label: "reward current points"
+    input: integer
+
+  injury name 1:
+    label: "injury name 1"
+    input: string
+
+  injury description 1:
+    label: "injury description 1"
+    input: text
+
+
+  injury name 2:
+    label: "injury name 2"
+    input: string
+
+
+  injury description 2:
+    label: "injury description 2"
+    input: text
+
+
+  injury name 3:
+    label: "injury name 3"
+    input: string
+
+
+  injury description 3:
+    label: "injury description 3"
+    input: text
+
+
+  injury name 4:
+    label: "injury name 4"
+    input: string
+
+
+  injury description 4:
+    label: "injury description 4"
+    input: text
+
+
+  injury name 5:
+    label: "injury name 5"
+    input: string
+
+
+  injury description 5:
+    label: "injury description 5"
+    input: text
+
+
+  Malignancies and Scars:
+    label: "Malignancies and Scars"
+    input: text
+
+
+  attribute brawn:
+    label: "attribute brawn"
+    input: integer
+
+
+  attribute agility:
+    label: "attribute agility"
+    input: integer
+
+
+  attribute perception:
+    label: "attribute perception"
+    input: integer
+
+
+  attribute intelligence:
+    label: "attribute intelligence"
+    input: integer
+
+
+  attribute willpower:
+    label: "attribute willpower"
+    input: integer
+
+
+  attribute fellowship:
+    label: "attribute fellowship"
+    input: integer
+
+
+  attribute combat:
+    label: "attribute combat"
+    input: integer
+
+
+  daemonic gift 1:
+    label: "daemonic gift 1"
+    input: string
+
+
+  daemonic gift desc 1:
+    label: "daemonic gift desc 1"
+    input: string
+
+
+  daemonic gift 2:
+    label: "daemonic gift 2"
+    input: string
+
+
+  daemonic gift desc 2:
+    label: "daemonic gift desc 2"
+    input: string
+
+
+  daemonic gift 3:
+    label: "daemonic gift 3"
+    input: string
+
+
+  daemonic gift desc 3:
+    label: "daemonic gift desc 3"
+    input: string
+
+
+  daemonic gift 4:
+    label: "daemonic gift 4"
+    input: string
+
+
+  daemonic gift desc 4:
+    label: "daemonic gift desc 4"
+    input: string
+
+
+  daemonic gift 5:
+    label: "daemonic gift 5"
+    input: string
+
+
+  daemonic gift desc 5:
+    label: "daemonic gift desc 5"
+    input: string
+
+
+  shield is defensive:
+    label: "shield is defensive"
+    input: checkbox
+
+
+  shield name:
+    label: "shield name"
+    input: string
+
+
+  shield is ruined:
+    label: "shield is ruined"
+    input: checkbox
+
+
+  armor is ruined:
+    label: "armor is ruined" 
+    input: checkbox
+
+
+  armor is natural:
+    label: "armor is natural"
+    input: checkbox
+
+
+  shield qualities:
+    label: "shield qualities"
+    input: string
+
+
+  shield is protective:
+    label: "shield is protective"
+    input: checkbox
+
+
+  shield is makersmark:
+    label: "shield is makersmark"
+    input: checkbox
+
+
+  armor is makersmark:
+    label: "armor is makersmark"
+    input: checkbox
+
+
+  shield is castleforged:
+    label: "shield is castleforged"
+    input: checkbox
+
+
+  armor is castleforged:
+    label: "armor is castleforged"
+    input: checkbox
+
+
+  armor name:
+    label: "armor name"
+    input: string
+
+
+  armor dth mod:
+    label: "armor dth mod"
+    input: integer
+
+
+  armor qualities:
+    label: "armor qualities"
+    input: text
+
+
+  armor clothes:
+    label: "armor clothes"
+    input: string
+
+
+  weapon name 1:
+    label: "weapon name 1"
+    input: string
+
+
+  weapon ammo 1:
+    label: "weapon ammo 1"
+    input: integer
+
+
+  weapon is defensive 1:
+    label: "weapon is defensive 1"
+    input: checkbox
+
+
+  weapon is ruined 1:
+    label: "weapon is ruined 1"
+    input: checkbox
+
+
+  weapon skill 1:
+    label: "weapon skill 1"
+    input: select
+
+    options:
+      Melee: Melee
+      Ranged: Ranged
+      Blackpowder: Blackpowder
+
+  weapon ammo 2:
+    label: "weapon ammo 2"
+    input: integer
+
+
+  weapon is defensive 2:
+    label: "weapon is defensive 2"
+    input: checkbox
+
+
+  weapon is makersmark 1:
+    label: "weapon is makersmark 1"
+    input: checkbox
+
+
+  weapon load 2:
+    label: "weapon load 2"
+    input: text
+
+
+  weapon ammo 3:
+    label: "weapon ammo 3"
+    input: integer
+
+
+  weapon is defensive 3:
+    label: "weapon is defensive 3"
+    input: checkbox
+
+
+  weapon is defensive 4:
+    label: "weapon is defensive 4"
+    input: checkbox
+
+
+  weapon is castleforged 1:
+    label: "weapon is castleforged 1"
+    input: checkbox
+
+
+  weapon handling 2:
+    label: "weapon handling 2"
+    input: select
+
+    options:
+      None: None
+      One-handed: One-handed
+      Two-handed: Two-handed
+
+  weapon is ruined 2:
+    label: "weapon is ruined 2"
+    input: checkbox
+
+
+  weapon distance 1:
+    label: "weapon distance 1"
+    input: text
+
+
+  weapon load 3:
+    label: "weapon load 3"
+    input: text
+
+
+  weapon is makersmark 2:
+    label: "weapon is makersmark 2"
+    input: checkbox
+
+
+  weapon damage 1:
+    label: "weapon damage 1"
+    input: string
+
+
+  weapon handling 3:
+    label: "weapon handling 3"
+    input: select
+
+    options:
+      None: None
+      One-handed: One-handed
+      Two-handed: Two-handed
+
+  weapon is castleforged 2:
+    label: "weapon is castleforged 2"
+    input: checkbox
+
+
+  weapon qualities 1:
+    label: "weapon qualities 1"
+    input: text
+
+
+  weapon load 1:
+    label: "weapon load 1"
+    input: text
+
+
+  weapon is ruined 3:
+    label: "weapon is ruined 3"
+    input: checkbox
+
+
+  weapon handling 1:
+    label: "weapon handling 1"
+    input: select
+
+    options:
+      None: None
+      One-handed: One-handed
+      Two-handed: Two-handed
+
+  weapon is makersmark 3:
+    label: "weapon is makersmark 3"
+    input: checkbox
+
+
+  weapon name 2:
+    label: "weapon name 2"
+    input: string
+
+
+  weapon is castleforged 3:
+    label: "weapon is castleforged 3"
+    input: checkbox
+
+
+  weapon skill 2:
+    label: "weapon skill 2"
+    input: select
+
+    options:
+      Melee: Melee
+      Ranged: Ranged
+      Blackpowder: Blackpowder
+
+  weapon is ruined 4:
+    label: "weapon is ruined 4"
+    input: checkbox
+
+
+  weapon is makersmark 4:
+    label: "weapon is makersmark 4"
+    input: checkbox
+
+
+  weapon is castleforged 4:
+    label: "weapon is castleforged 4"
+    input: checkbox
+
+
+  weapon distance 2:
+    label: "weapon distance 2"
+    input: text
+
+
+  weapon damage 2:
+    label: "weapon damage 2"
+    input: integer
+
+
+  weapon qualities 2:
+    label: "weapon qualities 2"
+    input: text
+
+
+  weapon name 3:
+    label: "weapon name 3"
+    input: string
+
+
+  weapon skill 3:
+    label: "weapon skill 3"
+    input: select
+
+    options:
+      Melee: Melee
+      Ranged: Ranged
+      Blackpowder: Blackpowder
+
+  weapon distance 3:
+    label: "weapon distance 3"
+    input: text
+
+
+  weapon damage 3:
+    label: "weapon damage 3"
+    input: integer
+
+
+  weapon qualities 3:
+    label: "weapon qualities 3"
+    input: text
+
+
+  weapon name 4:
+    label: "weapon name 4"
+    input: string
+
+
+  weapon skill 4:
+    label: "weapon skill 4"
+    input: select
+
+    options:
+      Melee: Melee
+      Ranged: Ranged
+      Blackpowder: Blackpowder
+
+  weapon damage 4:
+    label: "weapon damage 4"
+    input: integer
+
+
+  weapon qualities 4:
+    label: "weapon qualities 4"
+    input: text
+
+
+  weapon ammo 4:
+    label: "weapon ammo 4"
+    input: integer
+
+
+  weapon distance 4:
+    label: "weapon distance 4"
+    input: text
+
+
+  weapon load 4:
+    label: "weapon load 4"
+    input: text
+
+
+  weapon handling 4:
+    label: "weapon handling 4"
+    input: select
+
+    options:
+      None: None
+      One-handed: One-handed
+      Two-handed: Two-handed
+
+  language 1:
+    label: "language 1"
+    input: string
+
+
+  language 2:
+    label: "language 2"
+    input: string
+
+
+  language 3:
+    label: "language 3"
+    input: string
+
+
+  language 4:
+    label: "language 4"
+    input: string
+
+
+  language 5:
+    label: "language 5"
+    input: string
+
+
+  language 6:
+    label: "language 6"
+    input: string
+
+
+  language 7:
+    label: "language 7"
+    input: string
+
+
+  language 8:
+    label: "language 8"
+    input: string
+
+
+  supplies tool name 1:
+    label: "supplies tool name 1"
+    input: string
+
+
+  supplies name 1:
+    label: "supplies name 1"
+    input: string
+
+
+  supplies rating 1:
+    label: "supplies rating 1"
+    input: integer
+
+
+  supplies name 2:
+    label: "supplies name 2"
+    input: string
+
+
+  supplies tool name 2:
+    label: "supplies tool name 2"
+    input: string
+
+
+  supplies rating 2:
+    label: "supplies rating 2"
+    input: integer
+
+
+  supplies name 3:
+    label: "supplies name 3"
+    input: string
+
+
+  supplies tool name 3:
+    label: "supplies tool name 3"
+    input: string
+
+
+  supplies rating 3:
+    label: "supplies rating 3"
+    input: integer
+
+
+  supplies name 4:
+    label: "supplies name 4"
+    input: string
+
+
+  supplies rating 4:
+    label: "supplies rating 4"
+    input: integer
+
+
+  supplies name 5:
+    label: "supplies name 5"
+    input: string
+
+
+  supplies rating 5:
+    label: "supplies rating 5"
+    input: integer
+
+
+  supplies name 6:
+    label: "supplies name 6"
+    input: string
+
+
+  supplies tool name 5:
+    label: "supplies tool name 5"
+    input: string
+
+
+  supplies rating 6:
+    label: "supplies rating 6"
+    input: integer
+
+
+  supplies tool name 6:
+    label: "supplies tool name 6"
+    input: string
+
+
+  supplies tool name 4:
+    label: "supplies tool name 4"
+    input: string
+
+
+  small object memento:
+    label: "small object memento"
+    input: string
+
+
+  small object 2:
+    label: "small object 2"
+    input: string
+
+
+  small object 3:
+    label: "small object 3"
+    input: string
+
+
+  small object 4:
+    label: "small object 4"
+    input: string
+
+
+  small object 5:
+    label: "small object 5"
+    input: string
+
+
+  small object 6:
+    label: "small object 6"
+    input: string
+
+
+  small object 7:
+    label: "small object 7"
+    input: string
+
+
+  small object 8:
+    label: "small object 8"
+    input: string
+
+
+  small object 9:
+    label: "small object 9"
+    input: string
+
+
+  small object 10:
+    label: "small object 10"
+    input: string
+
+
+  wealth property:
+    label: "wealth property"
+    input: text
+
+
+  wealth trinkets:
+    label: "wealth trinkets"
+    input: string
+
+
+  Wealth silver:
+    label: "Wealth silver"
+    input: integer
+
+
+  magic name 1:
+    label: "magic name 1"
+    input: string
+
+
+  magic material 1:
+    label: "magic material 1"
+    input: string
+
+
+  magic crit fail 1:
+    label: "magic crit fail 1"
+    input: text
+
+
+  magic principle 1:
+    label: "magic principle 1"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 2:
+    label: "magic name 2"
+    input: string
+
+
+  magic material 2:
+    label: "magic material 2"
+    input: string
+
+
+  magic crit fail 2:
+    label: "magic crit fail 2"
+    input: text
+
+
+  magic principle 2:
+    label: "magic principle 2"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 3:
+    label: "magic name 3"
+    input: string
+
+
+  magic material 3:
+    label: "magic material 3"
+    input: string
+
+
+  magic crit fail 3:
+    label: "magic crit fail 3"
+    input: text
+
+
+  magic principle 3:
+    label: "magic principle 3"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 4:
+    label: "magic name 4"
+    input: string
+
+
+  magic material 4:
+    label: "magic material 4"
+    input: string
+
+
+  magic crit fail 4:
+    label: "magic crit fail 4"
+    input: text
+
+
+  magic principle 4:
+    label: "magic principle 4"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 5:
+    label: "magic name 5"
+    input: string
+
+
+  magic material 5:
+    label: "magic material 5"
+    input: string
+
+
+  magic crit fail 5:
+    label: "magic crit fail 5"
+    input: text
+
+
+  magic principle 5:
+    label: "magic principle 5"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 6:
+    label: "magic name 6"
+    input: string
+
+
+  magic material 6:
+    label: "magic material 6"
+    input: string
+
+
+  magic crit fail 6:
+    label: "magic crit fail 6"
+    input: text
+
+
+  magic principle 6:
+    label: "magic principle 6"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 7:
+    label: "magic name 7"
+    input: string
+
+
+  magic material 7:
+    label: "magic material 7"
+    input: string
+
+
+  magic crit fail 7:
+    label: "magic crit fail 7"
+    input: text
+
+
+  magic principle 7:
+    label: "magic principle 7"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 8:
+    label: "magic name 8"
+    input: string
+
+
+  magic material 8:
+    label: "magic material 8"
+    input: string
+
+
+  magic crit fail 8:
+    label: "magic crit fail 8"
+    input: text
+
+
+  magic principle 8:
+    label: "magic principle 8"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 9:
+    label: "magic name 9"
+    input: string
+
+
+  magic material 9:
+    label: "magic material 9"
+    input: string
+
+
+  magic crit fail 9:
+    label: "magic crit fail 9"
+    input: text
+
+
+  magic principle 9:
+    label: "magic principle 9"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 10:
+    label: "magic name 10"
+    input: string
+
+
+  magic material 10:
+    label: "magic material 10"
+    input: string
+
+
+  magic crit fail 10:
+    label: "magic crit fail 10"
+    input: text
+
+
+  magic principle 10:
+    label: "magic principle 10"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic name 11:
+    label: "magic name 11"
+    input: string
+
+
+  magic crit fail 11:
+    label: "magic crit fail 11"
+    input: text
+
+
+  magic principle 11:
+    label: "magic principle 11"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 11:
+    label: "magic material 11"
+    input: string
+
+
+  magic name 12:
+    label: "magic name 12"
+    input: string
+
+
+  magic crit fail 12:
+    label: "magic crit fail 12"
+    input: text
+
+
+  magic principle 12:
+    label: "magic principle 12"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 12:
+    label: "magic material 12"
+    input: string  
+
+
+  magic name 13:
+    label: "magic name 13"
+    input: string
+
+
+  magic crit fail 13:
+    label: "magic crit fail 13"
+    input: text
+
+
+  magic principle 13:
+    label: "magic principle 13"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 13:
+    label: "magic material 13"
+    input: string
+
+
+  magic name 14:
+    label: "magic name 14"
+    input: string
+
+
+  magic crit fail 14:
+    label: "magic crit fail 14"
+    input: text
+
+
+  magic principle 14:
+    label: "magic principle 14"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 14:
+    label: "magic material 14"
+    input: string
+
+
+  magic name 15:
+    label: "magic name 15"
+    input: string
+
+
+  magic crit fail 15:
+    label: "magic crit fail 15"
+    input: text
+
+
+  magic principle 15:
+    label: "magic principle 15"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+  
+  magic material 15:
+    label: "magic material 15"
+    input: string
+
+
+  magic name 16:
+    label: "magic name 16"
+    input: string
+
+
+  magic crit fail 16:
+    label: "magic crit fail 16"
+    input: text
+
+
+  magic principle 16:
+    label: "magic principle 16"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 16:
+    label: "magic material 16"
+    input: string
+
+
+  magic name 17:
+    label: "magic name 17"
+    input: string
+
+
+  magic crit fail 17:
+    label: "magic crit fail 17"
+    input: text
+
+
+  magic principle 17:
+    label: "magic principle 17"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 17:
+    label: "magic material 17"
+    input: string
+
+
+  magic name 18:
+    label: "magic name 18"
+    input: string
+
+
+  magic crit fail 18:
+    label: "magic crit fail 18"
+    input: text
+
+
+  magic principle 18:
+    label: "magic principle 18"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 18:
+    label: "magic material 18"
+    input: string
+
+
+  magic name 19:
+    label: "magic name 19"
+    input: string
+
+
+  magic crit fail 19:
+    label: "magic crit fail 19"
+    input: text
+
+
+  magic principle 19:
+    label: "magic principle 19"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+    
+  magic material 19:
+    label: "magic material 19"
+    input: string
+
+
+  magic name 20:
+    label: "magic name 20"
+    input: string
+
+
+  magic crit fail 20:
+    label: "magic crit fail 20"
+    input: text
+
+
+  magic principle 20:
+    label: "magic principle 20"
+    input: select
+
+    options:
+      None: None
+      Petty: Petty Spell
+      Lesser: Lesser Spell
+      Greater: Greater Spell
+
+  magic material 20:
+    label: "magic material 20"
+    input: string
+
+
+  magic distance 1:
+    label: "magic distance 1"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 2:
+    label: "magic distance 2"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 3:
+    label: "magic distance 3"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 4:
+    label: "magic distance 4"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 5:
+    label: "magic distance 5"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 6:
+    label: "magic distance 6"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 7:
+    label: "magic distance 7"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 8:
+    label: "magic distance 8"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 9:
+    label: "magic distance 9"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 10:
+    label: "magic distance 10"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 11:
+    label: "magic distance 11"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 12:
+    label: "magic distance 12"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 13:
+    label: "magic distance 13"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 14:
+    label: "magic distance 14"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 15:
+    label: "magic distance 15"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 16:
+    label: "magic distance 16"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 17:
+    label: "magic distance 17"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 18:
+    label: "magic distance 18"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 19:
+    label: "magic distance 19"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic distance 20:
+    label: "magic distance 20"
+    input: select
+
+    options:
+      Self: Self
+      Close: Close
+      CloseNear: Close/Near
+      CloseNearFar: Close/Near/Far
+
+  magic duration 1:
+    label: "magic duration 1"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 2:
+    label: "magic duration 2"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 3:
+    label: "magic duration 3"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 4:
+    label: "magic duration 4"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 5:
+    label: "magic duration 5"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 6:
+    label: "magic duration 6"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 7:
+    label: "magic duration 7"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 8:
+    label: "magic duration 8"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 9:
+    label: "magic duration 9"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 10:
+    label: "magic duration 10"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 11:
+    label: "magic duration 11"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 12:
+    label: "magic duration 12"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 13:
+    label: "magic duration 13"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 14:
+    label: "magic duration 14"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 15:
+    label: "magic duration 15"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 16:
+    label: "magic duration 16"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 17:
+    label: "magic duration 17"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 18:
+    label: "magic duration 18"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 19:
+    label: "magic duration 19"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic duration 20:
+    label: "magic duration 20"
+    input: select
+
+    options:
+      Focus: Focus
+      Instant: Instantaneous
+      Forever: Forever
+      Special: Special
+
+  magic effect 1:
+    label: "magic effect 1"
+    input: text
+
+
+  magic effect 2:
+    label: "magic effect 2"
+    input: text
+
+
+  magic effect 3:
+    label: "magic effect 3"
+    input: text
+
+
+  magic effect 4:
+    label: "magic effect 4"
+    input: text
+
+
+  magic effect 5:
+    label: "magic effect 5"
+    input: text
+
+
+  magic effect 6:
+    label: "magic effect 6"
+    input: text
+
+
+  magic effect 8:
+    label: "magic effect 8"
+    input: text
+
+
+  magic effect 9:
+    label: "magic effect 9"
+    input: text
+
+
+  magic effect 10:
+    label: "magic effect 10"
+    input: text
+
+
+  magic effect 11:
+    label: "magic effect 11"
+    input: text
+
+
+  magic effect 12:
+    label: "magic effect 12"
+    input: text
+
+
+  magic effect 13:
+    label: "magic effect 13"
+    input: text
+
+
+  magic effect 14:
+    label: "magic effect 14"
+    input: text
+
+
+  magic effect 15:
+    label: "magic effect 15"
+    input: text
+
+
+  magic effect 16:
+    label: "magic effect 16"
+    input: text
+
+
+  magic effect 17:
+    label: "magic effect 17"
+    input: text
+
+
+  magic effect 18:
+    label: "magic effect 18"
+    input: text
+
+
+  magic effect 19:
+    label: "magic effect 19"
+    input: text
+
+
+  magic effect 20:
+    label: "magic effect 20"
+    input: text
+
+
+  magic crit success 1:
+    label: "magic crit success 1"
+    input: text
+
+
+  magic crit success 2:
+    label: "magic crit success 2"
+    input: text
+
+
+  magic crit success 3:
+    label: "magic crit success 3"
+    input: text
+
+
+  magic crit success 4:
+    label: "magic crit success 4"
+    input: text
+
+
+  magic crit success 5:
+    label: "magic crit success 5"
+    input: text
+
+
+  magic crit success 6:
+    label: "magic crit success 6"
+    input: text
+
+
+  magic crit success 7:
+    label: "magic crit success 7"
+    input: text
+
+
+  magic crit success 8:
+    label: "magic crit success 8"
+    input: text
+
+
+  magic crit success 9:
+    label: "magic crit success 9"
+    input: text
+
+
+  magic crit success 10:
+    label: "magic crit success 10"
+    input: text
+
+
+  magic crit success 11:
+    label: "magic crit success 11"
+    input: text
+
+
+  magic crit success 12:
+    label: "magic crit success 12"
+    input: text
+
+
+  magic crit success 13:
+    label: "magic crit success 13"
+    input: text
+
+
+  magic crit success 14:
+    label: "magic crit success 14"
+    input: text
+
+
+  magic crit success 15:
+    label: "magic crit success 15"
+    input: text
+
+
+  magic crit success 16:
+    label: "magic crit success 16"
+    input: text
+
+
+  magic crit success 17:
+    label: "magic crit success 17"
+    input: text
+
+
+  magic crit success 18:
+    label: "magic crit success 18"
+    input: text
+
+
+  magic crit success 19:
+    label: "magic crit success 19"
+    input: text
+
+
+  magic crit success 20:
+    label: "magic crit success 20"
+    input: text
+
+
+  magic effect 7:
+    label: "magic effect 7"
+    input: text
+
+
+  magic wellspring 1:
+    label: "magic wellspring 1"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+
+  magic wellspring 2:
+    label: "magic wellspring 2"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+
+  magic wellspring 3:
+    label: "magic wellspring 3"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+
+  magic wellspring 4:
+    label: "magic wellspring 4"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+
+  magic wellspring 5:
+    label: "magic wellspring 5"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+
+  magic wellspring 6:
+    label: "magic wellspring 6"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+
+  magic wellspring 7:
+    label: "magic wellspring 7"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+
+  magic wellspring 8:
+    label: "magic wellspring 8"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 9:
+    label: "magic wellspring 9"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 10:
+    label: "magic wellspring 10"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 11:
+    label: "magic wellspring 11"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 12:
+    label: "magic wellspring 12"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 13:
+    label: "magic wellspring 13"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 15:
+    label: "magic wellspring 15"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 16:
+    label: "magic wellspring 16"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 17:
+    label: "magic wellspring 17"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 18:
+    label: "magic wellspring 18"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 19:
+    label: "magic wellspring 19"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 20:
+    label: "magic wellspring 20"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 14:
+    label: "magic wellspring 14"
+    input: select
+
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  ritual name 1:
+    label: "ritual name 1"
+    input: text
+
+
+  ritual condition 1:
+    label: "ritual condition 1"
+    input: string
+
+
+  ritual casting time 1:
+    label: "ritual casting time 1"
+    input: text
+
+
+  ritual condition 2:
+    label: "ritual condition 2"
+    input: string
+
+
+  ritual materials 1:
+    label: "ritual materials 1"
+    input: text
+
+
+  ritual condition 3:
+    label: "ritual condition 3"
+    input: string
+
+
+  ritual condition 4:
+    label: "ritual condition 4"
+    input: string
+
+
+  ritual condition 5:
+    label: "ritual condition 5"
+    input: string
+
+
+  ritual duration 1:
+    label: "ritual duration 1"
+    input: string
+
+
+  ritual condition 6:
+    label: "ritual condition 6"
+    input: string
+
+
+  ritual crit success 1:
+    label: "ritual crit success 1"
+    input: text
+
+
+  ritual condition 7:
+    label: "ritual condition 7"
+    input: string
+
+
+  ritual effect 1:
+    label: "ritual effect 1"
+    input: text
+
+
+  ritual condition 8:
+    label: "ritual condition 8"
+    input: string
+
+
+  ritual name 2:
+    label: "ritual name 2"
+    input: text
+
+
+  ritual condition 9:
+    label: "ritual condition 9"
+    input: string
+
+
+  ritual casting time 2:
+    label: "ritual casting time 2"
+    input: text
+
+
+  ritual condition 10:
+    label: "ritual condition 10"
+    input: string
+
+
+  ritual materials 2:
+    label: "ritual materials 2"
+    input: text
+
+
+  ritual duration 2:
+    label: "ritual duration 2"
+    input: string
+
+
+  ritual crit success 2:
+    label: "ritual crit success 2"
+    input: text
+
+
+  ritual effect 2:
+    label: "ritual effect 2"
+    input: text
+
+
+  ritual name 3:
+    label: "ritual name 3"
+    input: text
+
+
+  ritual casting time 3:
+    label: "ritual casting time 3"
+    input: text
+
+
+  ritual materials 3:
+    label: "ritual materials 3"
+    input: text
+
+
+  ritual duration 3:
+    label: "ritual duration 3"
+    input: string
+
+
+  ritual crit success 3:
+    label: "ritual crit success 3"
+    input: text
+
+
+  ritual effect 3:
+    label: "ritual effect 3"
+    input: text
+
+
+  ritual name 4:
+    label: "ritual name 4"
+    input: text
+
+
+  ritual casting time 4:
+    label: "ritual casting time 4"
+    input: text
+
+
+  ritual materials 4:
+    label: "ritual materials 4"
+    input: text
+
+
+  ritual duration 4:
+    label: "ritual duration 4"
+    input: string
+
+
+  ritual crit success 4:
+    label: "ritual crit success 4"
+    input: text
+
+
+  ritual effect 4:
+    label: "ritual effect 4"
+    input: text
+
+
+  ritual name 5:
+    label: "ritual name 5"
+    input: text
+
+
+  ritual casting time 5:
+    label: "ritual casting time 5"
+    input: text
+
+
+  ritual materials 5:
+    label: "ritual materials 5"
+    input: text
+
+
+  ritual duration 5:
+    label: "ritual duration 5"
+    input: string
+
+
+  ritual crit success 5:
+    label: "ritual crit success 5"
+    input: text
+
+
+  ritual effect 5:
+    label: "ritual effect 5"
+    input: text
+
+
+  ritual name 6:
+    label: "ritual name 6"
+    input: text
+
+
+  ritual casting time 6:
+    label: "ritual casting time 6"
+    input: text
+
+
+  ritual materials 6:
+    label: "ritual materials 6"
+    input: text
+
+
+  ritual duration 6:
+    label: "ritual duration 6"
+    input: string
+
+
+  ritual crit success 6:
+    label: "ritual crit success 6"
+    input: text
+
+
+  ritual effect 6:
+    label: "ritual effect 6"
+    input: text
+
+
+  ritual name 7:
+    label: "ritual name 7"
+    input: text
+
+
+  ritual casting time 7:
+    label: "ritual casting time 7"
+    input: text
+
+
+  ritual materials 7:
+    label: "ritual materials 7"
+    input: text
+
+
+  ritual duration 7:
+    label: "ritual duration 7"
+    input: string
+
+
+  ritual crit success 7:
+    label: "ritual crit success 7"
+    input: text
+
+
+  ritual effect 7:
+    label: "ritual effect 7"
+    input: text
+
+
+  ritual name 8:
+    label: "ritual name 8"
+    input: text
+
+
+  ritual casting time 8:
+    label: "ritual casting time 8"
+    input: text
+
+
+  ritual materials 8:
+    label: "ritual materials 8"
+    input: text
+
+
+  ritual duration 8:
+    label: "ritual duration 8"
+    input: string
+
+
+  ritual crit success 8:
+    label: "ritual crit success 8"
+    input: text
+
+
+  ritual effect 8:
+    label: "ritual effect 8"
+    input: text
+
+
+  ritual name 9:
+    label: "ritual name 9"
+    input: text
+
+
+  ritual casting time 9:
+    label: "ritual casting time 9"
+    input: text
+
+
+  ritual materials 9:
+    label: "ritual materials 9"
+    input: text
+
+
+  ritual duration 9:
+    label: "ritual duration 9"
+    input: string
+
+
+  ritual crit success 9:
+    label: "ritual crit success 9"
+    input: text
+
+
+  ritual effect 9:
+    label: "ritual effect 9"
+    input: text
+
+
+  ritual name 10:
+    label: "ritual name 10"
+    input: text
+
+
+  ritual casting time 10:
+    label: "ritual casting time 10"
+    input: text
+
+
+  ritual materials 10:
+    label: "ritual materials 10"
+    input: text
+
+
+  ritual duration 10:
+    label: "ritual duration 10"
+    input: string
+
+
+  ritual crit success 10:
+    label: "ritual crit success 10"
+    input: text
+
+
+  ritual effect 10:
+    label: "ritual effect 10"
+    input: text
+
+
+  ritual crit fail 1:
+    label: "ritual crit fail 1"
+    input: text
+
+
+  ritual crit fail 2:
+    label: "ritual crit fail 2"
+    input: text
+
+
+  ritual crit fail 3:
+    label: "ritual crit fail 3"
+    input: text
+
+
+  ritual crit fail 4:
+    label: "ritual crit fail 4"
+    input: text
+
+
+  ritual crit fail 5:
+    label: "ritual crit fail 5"
+    input: text
+
+
+  ritual crit fail 6:
+    label: "ritual crit fail 6"
+    input: text
+
+
+  ritual crit fail 7:
+    label: "ritual crit fail 7"
+    input: text
+
+
+  ritual crit fail 8:
+    label: "ritual crit fail 8"
+    input: text
+
+
+  ritual crit fail 9:
+    label: "ritual crit fail 9"
+    input: text
+
+
+  ritual crit fail 10:
+    label: "ritual crit fail 10"
+    input: text
+
+
+  profession basic name:
+    label: "profession basic name"
+    input: string
+
+
+  profession basic skill 1:
+    label: "profession basic skill 1"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+
+  profession basic skill 1 checkbox:
+    label: "profession basic skill 1 checkbox"
+    input: checkbox
+
+
+  profession basic skill 2:
+    label: "profession basic skill 2"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession basic skill 2 checkbox:
+    label: "profession basic skill 2 checkbox"
+    input: checkbox
+
+
+  profession basic skill 3:
+    label: "profession basic skill 3"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession basic skill 3 checkbox:
+    label: "profession basic skill 3 checkbox"
+    input: checkbox
+
+
+  profession basic skill 4:
+    label: "profession basic skill 4"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession basic skill 4 checkbox:
+    label: "profession basic skill 4 checkbox"
+    input: checkbox
+
+
+  profession basic skill 5:
+    label: "profession basic skill 5"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession basic skill 5 checkbox:
+    label: "profession basic skill 5 checkbox"
+    input: checkbox
+
+
+  profession basic skill 6:
+    label: "profession basic skill 6"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession basic skill 6 checkbox:
+    label: "profession basic skill 6 checkbox"
+    input: checkbox
+
+  profession basic profession talent:
+    label: "profession basic profession talent"
+    input: string
+
+  profession basic profession talent checkbox:
+    label: "profession basic profession talent checkbox"
+    input: checkbox
+
+
+  profession basic professional talent desc:
+    label: "profession basic professional talent desc"
+    input: text
+
+
+  profession basic bonus 1:
+    label: "profession basic bonus 1"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession basic bonus 1 checkbox:
+    label: "profession basic bonus 1 checkbox"
+    input: checkbox
+
+
+  profession basic bonus 2:
+    label: "profession basic bonus 2"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession basic bonus 2 checkbox:
+    label: "profession basic bonus 2 checkbox"
+    input: checkbox
+
+
+  profession basic bonus 3:
+    label: "profession basic bonus 3"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession basic bonus 3 checkbox:
+    label: "profession basic bonus 3 checkbox"
+    input: checkbox
+
+
+  profession basic bonus 4:
+    label: "profession basic bonus 4"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession basic bonus 4 checkbox:
+    label: "profession basic bonus 4 checkbox"
+    input: checkbox
+
+
+  profession basic bonus 5:
+    label: "profession basic bonus 5"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession basic bonus 5 checkbox:
+    label: "profession basic bonus 5 checkbox"
+    input: checkbox
+
+
+  profession basic bonus 6:
+    label: "profession basic bonus 6"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession basic bonus 6 checkbox:
+    label: "profession basic bonus 6 checkbox"
+    input: checkbox
+
+
+  profession basic talent 1:
+    label: "profession basic talent 1"
+    input: string
+
+
+  profession basic talent 1 desc:
+    label: "profession basic talent 1 desc"
+    input: text
+
+
+  profession basic talent 1 checkbox:
+    label: "profession basic talent 1 checkbox"
+    input: checkbox
+
+
+  profession basic talent 2:
+    label: "profession basic talent 2"
+    input: string
+
+
+  profession basic talent 2 desc:
+    label: "profession basic talent 2 desc"
+    input: text
+
+
+  profession basic talent 2 checkbox:
+    label: "profession basic talent 2 checkbox"
+    input: checkbox
+
+
+  profession basic talent 3 checkbox:
+    label: "profession basic talent 3 checkbox"
+    input: checkbox
+
+
+  profession basic talent 3:
+    label: "profession basic talent 3"
+    input: string
+
+
+  profession basic talent 3 desc:
+    label: "profession basic talent 3 desc"
+    input: text
+
+
+  profession basic attribute:
+    label: "profession basic attribute"
+    input: select
+    options:
+      None: None
+      Agility: Agility +5%
+      Brawn: Brawn +5%
+      Combat: Combat +5%
+      Fellowship: Fellowship +5%
+      Intelligence: Intelligence +5%
+      Perception: Perception +5%
+      Willpower: Willpower +5%
+
+  profession basic attribute checkbox:
+    label: "profession basic attribute checkbox"
+    input: checkbox
+
+
+  profession basic ancestral talent checkbox:
+    label: "profession basic ancestral talent checkbox"
+    input: checkbox
+
+
+  profession intermediate name:
+    label: "profession intermediate name"
+    input: string
+
+
+  profession intermediate skill 1:
+    label: "profession intermediate skill 1"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession intermediate skill 1 checkbox:
+    label: "profession intermediate skill 1 checkbox"
+    input: checkbox
+
+
+  profession intermediate skill 2:
+    label: "profession intermediate skill 2"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession intermediate skill 2 checkbox:
+    label: "profession intermediate skill 2 checkbox"
+    input: checkbox
+
+
+  profession intermediate skill 3:
+    label: "profession intermediate skill 3"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession intermediate skill 3 checkbox:
+    label: "profession intermediate skill 3 checkbox"
+    input: checkbox
+
+
+  profession intermediate skill 4:
+    label: "profession intermediate skill 4"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession intermediate skill 4 checkbox:
+    label: "profession intermediate skill 4 checkbox"
+    input: checkbox
+
+
+  profession intermediate skill 5:
+    label: "profession intermediate skill 5"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession intermediate skill 5 checkbox:
+    label: "profession intermediate skill 5 checkbox"
+    input: checkbox
+
+
+  profession intermediate skill 6:
+    label: "profession intermediate skill 6"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession intermediate skill 6 checkbox:
+    label: "profession intermediate skill 6 checkbox"
+    input: checkbox
+
+
+  profession intermediate attribute:
+    label: "profession intermediate attribute"
+    input: select
+    options:
+      None: None
+      Agility: Agility +5%
+      Brawn: Brawn +5%
+      Combat: Combat +5%
+      Fellowship: Fellowship +5%
+      Intelligence: Intelligence +5%
+      Perception: Perception +5%
+      Willpower: Willpower +5%
+
+  profession intermediate attribute checkbox:
+    label: "profession intermediate attribute checkbox"
+    input: checkbox
+
+
+  profession intermediate profession talent:
+    label: "profession intermediate profession talent"
+    input: string
+
+
+  profession intermediate profession talent checkbox:
+    label: "profession intermediate profession talent checkbox"
+    input: checkbox
+
+
+  profession intermediate profession talent desc:
+    label: "profession intermediate profession talent desc"
+    input: text
+
+
+  profession intermediate bonus 1:
+    label: "profession intermediate bonus 1"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession intermediate bonus 1 checkbox:
+    label: "profession intermediate bonus 1 checkbox"
+    input: checkbox
+
+
+  profession intermediate bonus 2:
+    label: "profession intermediate bonus 2"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession intermediate bonus 2 checkbox:
+    label: "profession intermediate bonus 2 checkbox"
+    input: checkbox
+
+
+  profession intermediate bonus 3:
+    label: "profession intermediate bonus 3"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession intermediate bonus 3 checkbox:
+    label: "profession intermediate bonus 3 checkbox"
+    input: checkbox
+
+
+  profession intermediate bonus 4:
+    label: "profession intermediate bonus 4"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession intermediate bonus 4 checkbox:
+    label: "profession intermediate bonus 4 checkbox"
+    input: checkbox
+
+
+  profession intermediate bonus 5:
+    label: "profession intermediate bonus 5"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession intermediate bonus 5 checkbox:
+    label: "profession intermediate bonus 5 checkbox"
+    input: checkbox
+
+
+  profession intermediate bonus 6:
+    label: "profession intermediate bonus 6"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession intermediate bonus 6 checkbox:
+    label: "profession intermediate bonus 6 checkbox"
+    input: checkbox
+
+
+  profession intermediate talent 1:
+    label: "profession intermediate talent 1"
+    input: string
+
+
+  profession intermediate talent 1 desc:
+    label: "profession intermediate talent 1 desc"
+    input: text
+
+
+  profession intermediate talent 1 checkbox:
+    label: "profession intermediate talent 1 checkbox"
+    input: checkbox
+
+
+  profession intermediate talent 2:
+    label: "profession intermediate talent 2"
+    input: string
+
+
+  profession intermediate talent 2 desc:
+    label: "profession intermediate talent 2 desc"
+    input: text  
+
+
+  profession intermediate talent 2 checkbox:
+    label: "profession intermediate talent 2 checkbox"
+    input: checkbox
+
+
+  profession intermediate talent 3 checkbox:
+    label: "profession intermediate talent 3 checkbox"
+    input: checkbox
+
+
+  profession intermediate ancestral talent checkbox:
+    label: "profession intermediate ancestral talent checkbox"
+    input: checkbox
+
+
+  profession advanced name:
+    label: "profession advanced name"
+    input: string
+
+
+  profession advanced skill 1:
+    label: "profession advanced skill 1"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession advanced skill 1 checkbox:
+    label: "profession advanced skill 1 checkbox"
+    input: checkbox
+
+
+  profession advanced skill 2:
+    label: "profession advanced skill 2"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession advanced skill 2 checkbox:
+    label: "profession advanced skill 2 checkbox"
+    input: checkbox
+
+
+  profession advanced skill 3:
+    label: "profession advanced skill 3"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession advanced skill 3 checkbox:
+    label: "profession advanced skill 3 checkbox"
+    input: checkbox
+
+
+  profession advanced skill 4:
+    label: "profession advanced skill 4"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession advanced skill 4 checkbox:
+    label: "profession advanced skill 4 checkbox"
+    input: checkbox
+
+
+  profession advanced skill 5:
+    label: "profession advanced skill 5"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession advanced skill 5 checkbox:
+    label: "profession advanced skill 5 checkbox"
+    input: checkbox
+
+
+  profession advanced skill 6:
+    label: "profession advanced skill 6"
+    input: select
+    options:
+      None: None
+      Athletics: Athletics
+      Awareness: Awareness
+      Blackpowder: Blackpowder
+      Coordination: Coordination
+      Craft: Craft
+      Disguise: Disguise
+      Folklore: Folklore
+      Gamble: Gamble
+      Guile: Guile
+      Handling: Handling
+      Insight: Insight
+      Leechcraft: Leechcraft
+      Melee: Melee
+      Occultism: Occultism
+      Persuasion: Persuasion
+      Ranged: Ranged
+      Resolve: Resolve
+      Stealth: Stealth
+      Survival: Survival
+      Thievery: Thievery
+      Toughness: Toughness
+
+  profession advanced skill 6 checkbox:
+    label: "profession advanced skill 6 checkbox"
+    input: checkbox
+
+
+  profession advanced profession talent:
+    label: "profession advanced profession talent"
+    input: string
+
+
+  profession advanced profession talent desc:
+    label: "profession advanced profession talent desc"
+    input: text
+
+
+  profession advanced profession talent checkbox:
+    label: "profession advanced profession talent checkbox"
+    input: checkbox
+
+
+  profession advanced bonus 1:
+    label: "profession advanced bonus 1"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession advanced bonus 1 checkbox:
+    label: "profession advanced bonus 1 checkbox"
+    input: checkbox
+
+
+  profession advanced bonus 2:
+    label: "profession advanced bonus 2"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession advanced bonus 2 checkbox:
+    label: "profession advanced bonus 2 checkbox"
+    input: checkbox
+
+
+  profession advanced bonus 3:
+    label: "profession advanced bonus 3"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession advanced bonus 3 checkbox:
+    label: "profession advanced bonus 3 checkbox"
+    input: checkbox
+
+  
+  profession advanced bonus 4:
+    label: "profession advanced bonus 4"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession advanced bonus 4 checkbox:
+    label: "profession advanced bonus 4 checkbox"
+    input: checkbox
+
+
+  profession advanced bonus 5:
+    label: "profession advanced bonus 5"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession advanced bonus 5 checkbox:
+    label: "profession advanced bonus 5 checkbox"
+    input: checkbox
+
+  profession advanced bonus 6:
+    label: "profession advanced bonus 6"
+    input: select
+    options:
+      None: None
+      Agility: +1 [AB]
+      Brawn: +1 [BB]
+      Combat: +1 [CB]
+      Fellowship: +1 [FB]
+      Intelligence: +1 [IB]
+      Perception: +1 [PB]
+      Willpower: +1 [WB]
+
+  profession advanced bonus 6 checkbox:
+    label: "profession advanced bonus 6 checkbox"
+    input: checkbox
+
+  profession advanced talent 1:
+    label: "profession advanced talent 1"
+    input: string
+
+  profession advanced talent 1 desc:
+    label: "profession advanced talent 1 desc"
+    input: text
+
+
+  profession advanced talent 1 checkbox:
+    label: "profession advanced talent 1 checkbox"
+    input: checkbox
+
+
+  profession advanced talent 2:
+    label: "profession advanced talent 2"
+    input: string
+
+
+  profession advanced talent 2 desc:
+    label: "profession advanced talent 2 desc"
+    input: text
+
+
+  profession advanced talent 2 checkbox:
+    label: "profession advanced talent 2 checkbox"
+    input: checkbox
+
+
+  profession advanced talent 3:
+    label: "profession advanced talent 3"
+    input: string
+
+
+  profession advanced talent 3 checkbox:
+    label: "profession advanced talent 3 checkbox"
+    input: checkbox
+
+
+  profession advanced talent 3 desc:
+    label: "profession advanced talent 3 desc"
+    input: text
+
+
+  profession advanced ancestral talent:
+    label: "profession advanced ancestral talent"
+    input: string
+
+  profession advanced ancestral talent desc:
+    label: "profession advanced ancestral talent desc"
+    input: text
+
+  profession advanced ancestral talent checkbox:
+    label: "profession advanced ancestral talent checkbox"
+    input: checkbox
+
+  option toggle magic:
+    label: "option toggle magic"
+    input: checkbox
+
+  option toggle rituals:
+    label: "option toggle rituals"
+    input: checkbox
+
+  initiative base:
+    label: "initiative base"
+    input: integer
+
+  peril condition track:
+    label: "peril condition track"
+    input: select
+    options:
+      fine: FINE
+      imperiled: IMPERILED
+      minus5: -5% TO SKILL TESTS
+      minus10: -10% TO SKILL TESTS
+      minus15: -15% TO SKILL TESTS
+      exhausted: EXHAUSTED!
+
+  damage condition track:
+    label: "damage condition track"
+    input: select
+    options:
+      alive: ALIVE
+      lightly: LIGHTLY WOUNDED
+      moderately: MODERATELY WOUNDED
+      seriously: SERIOUSLY WOUNDED
+      grievously: GRIEVOUSLY WOUNDED
+      dying: DYING!
+
+  action points:
+    label: "action points"
+    input: integer
+
+  peril threshold base:
+    label: "peril threshold base"
+    input: integer
+
+  damage threshold:
+    label: "damage threshold"
+    input: integer
+
+
+  peril threshold 6:
+    label: "peril threshold 6"
+    input: integer
+
+
+  peril threshold 12:
+    label: "peril threshold 12"
+    input: integer
+
+  peril threshold 18:
+    label: "peril threshold 18"
+    input: integer
+
+
+  unique advances:
+    label: "unique advances"
+    input: text
+
+  unique advances cost :
+    label: "unique advances cost"
+    input: integer
