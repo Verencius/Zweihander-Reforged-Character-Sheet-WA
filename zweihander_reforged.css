@@ -1,0 +1,189 @@
+* { 
+    padding:0 !important;}
+ #karta {
+    border: 1px black solid;
+    background: #ebe6dd;
+    color: #27241f;
+    font-size: 13px;}
+ h1,  h2,  h3,  h4,  h5,  h6 {
+    margin: .5rem 0;
+    line-height: 1.2;}
+ h5 {
+    font-size: .85em;}
+ h4 {
+    font-size: 1.05em;}
+ h3 {
+    font-size: 1.17em;}
+ h1,  h2 {    
+    font-weight: 400;}
+ #karta .header h1 {
+    margin-bottom: 0;
+    color: black;}
+ .header h2 {
+    margin-top: 0;
+    font-size: 1.6em;
+    margin-left: 2px;
+    color: #27241f;}
+ .header h3 {    
+    font-size: 16px;
+    font-style: italic;
+    font-weight: normal;
+    margin: 10px 10px 20px;}
+ .border {
+    border: 1px solid #e6e6df!important;}
+ .border-right {
+    border-right: 1px solid #e6e6df!important;}
+ .border-left {
+    border-left: 1px solid #e6e6df!important;}
+ .card {
+    border: 1px solid #27241f;
+    background-color: #fefefe!important;
+    margin: 4px;
+    font-size: 13px;
+    color: #000!important;}
+ .card.row {
+    flex-direction: row;}
+ .card-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #f9f9f9;
+    background-color: #27241f;
+    margin-bottom: 0;}
+ .card-title h3,  .card-title h4,  .card-title h5 {
+    color: white;}
+ .card .border {
+    padding: 4px;}
+ .card .border-strong {
+    border: 1px solid #716c64;
+    text-align: center;
+    background-color: #ebe6dd;
+    border-radius: 15px;
+    margin: 1px;}
+ .card .border-strong.btext {
+    display: inline-block;
+    min-width: 38px;
+    padding: 0 2px;}
+ .card-content {
+    padding: 8px 10px;}
+ .card-info-label {
+    text-transform: uppercase;
+    border-top: 1px solid #858585;
+    color: #858585;
+    font-size: 0.8em;
+    padding-bottom: 6px;}
+ .card i.fa-square-full {
+    margin: 0 2px;}
+ .table th {
+    background-color: #fefefe;
+    color: #27241f;
+    text-align: left;}
+ .table td {
+    color: #27241f;}
+ .table tr {
+    background-color: #fefefe !important;
+    border-bottom: 1px solid #eae5dc;}
+ .table td.circle {    
+    width: 60px;
+    text-align: right;}
+ .col-xs-equal,  .col-sm-equal,  .col-md-equal,  .col-lg-equal {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;}
+ /* Bootstrap 3 fixes */
+.ml-auto {
+    margin-left: auto!important;}
+ .mr-auto {
+    margin-right: auto!important;}
+ .pr-0 {
+    padding-right: 0!important;}
+ .text-right {
+    text-align: right!important;}
+ .form-control {
+    background: #e2dfca!important;
+    color: #000!important;
+    border: 1px solid #b9b384!important;}
+ .form-control::placeholder{
+    color: #777!important;}
+ .form-control::-webkit-input-placeholder {
+    color: #777!important;}
+ .form-control:-ms-input-placeholder {
+    color: #777!important;}
+ .form-control:focus,  .form-control:active {
+    background: #c5be8c!important;
+    color: #000!important;}
+ .form-control option {
+    color: #000;}
+ .border-strong .form-control {
+    border-radius: 15px;
+    margin: 0;}
+ .checkbox {
+    margin: 0 2px;}
+ .input-large,  .input-large:focus {
+    text-align: center;
+    font-size: 42px !important;}
+ .marque.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+ .CodeMirror {
+    background: #e2dfca!important;
+    color: #000!important;
+    text-shadow: none!important;
+    height: 150px!important}
+ .CodeMirror-buttonsPanel [type="button"] {
+    background: #e2dfca!important;
+    border: 1px solid #b9b38d;}
+ .CodeMirror-buttonsPanel [type="button"]:hover {
+    background: #b9b38d!important;
+    border: 1px solid #a7a077;
+    color: #000;}
+ .CodeMirror-gutters {
+    background: #f1efe8!important;}
+ .sceditor-container {
+    width: 100%!important;
+    background-color: #e2dfca!important;
+    color: #000!important;}
+ div.sceditor-toolbar {
+    background: #e2dfca!important;}
+ div.sceditor-toolbar .sceditor-button {
+    color: #000!important;
+    text-shadow: 0 0 black;}
+ div.sceditor-toolbar .sceditor-button.active,  div.sceditor-toolbar .sceditor-button:hover {
+    background: #b9b38d!important;}
+ div.sceditor-toolbar .sceditor-button.disabled,  div.sceditor-toolbar .sceditor-button.disabled:hover {
+    background: #e2dfca!important;
+    color: #666!important;}
+ .input-hidden { display: none;}
+ .input-hidden + label { display: inline-block}
+ .input-hidden ~ .tab { display: none}
+ #tab1:checked ~ .tab.content1,  #tab2:checked ~ .tab.content2,  #tab3:checked ~ .tab.content3,  #tab4:checked ~ .tab.content4,  #tab5:checked ~ .tab.content5,  #tab6:checked ~ .tab.content6,  #tab7:checked ~ .tab.content7,  #tab8:checked ~ .tab.content8,  #tab9:checked ~ .tab.content9,  #tab10:checked ~ .tab.content10,  #tab11:checked ~ .tab.content11,  #tab12:checked ~ .tab.content12 { 
+  display: block;}
+ .input-hidden + label {
+  flex: 1 0 16%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid black;
+  background: darkred;
+  color: white;
+  padding: 4px;
+  border-radius: 1rem !important;
+  position: relative;
+  top: 1px;
+  min-width: 240px;
+  max-width: 240px;
+  width: 240px;
+  height: 30px;}
+ .input-hidden:hover + label {
+  background: white !important;
+  color: black;
+  font-weight: 800;}
+ .input-hidden:checked + label {
+  background: white !important;
+  color: black;
+  font-weight: 800;}
+ 

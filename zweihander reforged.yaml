@@ -32,7 +32,6 @@ fields:
     label: "personal ancestry"
     input: string
 
-
   personal height:
     label: "personal height"
     input: string
@@ -65,8 +64,8 @@ fields:
     label: "personal social class"
     input: string
 
-  personal brush with death:
-    label: "personal brush with death"
+  personal death:
+    label: "personal death"
     input: string
 
   personal pronoun:

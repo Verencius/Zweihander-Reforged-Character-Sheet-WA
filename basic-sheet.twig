@@ -124,60 +124,69 @@
     <!-- TAB #1Personal -->
     <div class="tab content1">
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <!-- TAB #1.1 -->
                 <div class="row header">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-9">
-                                <div class="row">
-                                    My name is&nbsp;{% if variables.name is defined %}<h1>{{ variables.name}}{% else %}Survivor{% endif %}</h1>
-                                    <!-- this should loop through 3 different professions and select the highest defined -->
-                                    and I'm&nbsp;<h2>The&nbsp;{% if profession_current is not empty %}{{ profession_current|title}}{% else %}Mystery{% endif %}</h2>
-                                    
+                            <div class="col-sm-9 card-content">
+                                <div class="row card">
+                                    <div class="col-sm-12">
+                                        <h2>
+                                        My name is&nbsp;{% if variables.name is defined %}<b>{{ variables.name}}{% else %}Survivor{% endif %}</b>
+                                        <!-- this should loop through 3 different professions and select the highest defined -->
+                                        and I'm&nbsp;<b>a&nbsp;{% if profession_current is not empty %}{{ profession_current|title}}{% else %}Mystery{% endif %}</b>
+                                        </h2>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        I'm&nbsp;<b>{{ variables.personal_age_group}}&nbsp;{{ variables.personal_ancestry }}&nbsp;{{ variables.personal_gender }}</b>.&nbsp;I was born in&nbsp;<b>{{ variables.personal_season_of_birth }}&nbsp;</b>
+                                        in the place called&nbsp;<b>{{ variables.personal_place_of_birth}}</b>.&nbsp;I was raised in a/an&nbsp;<b>{{ variables.personal_upbringing}}&nbsp;</b> home of the&nbsp;<b>{{ variables.personal_social_class}}&nbsp;</b> class {% if variables.personal_patron_deity is not empty %} and became a follower of&nbsp;<b>{{ variables.personal_patron_deity}}</b>{% endif %}.
+                                        When you see me  I am of a/an&nbsp;<b>{{ variables.personal_height}} stature</b>&nbsp;with a/an&nbsp;<b>{{ variables.personal_build_type}} build</b>,<b>&nbsp;{{ variables.personal_hair_color}} hair</b>, 
+                                        <b>&nbsp;{{ variables.personal_eye_color}} eyes</b>,<b>&nbsp;{{ variables.personal_complexion}} complexion</b>&nbsp;and&nbsp;<b>{{ variables.personal_distinguishing_marks_1}}</b>.
+                                        My life changed the day that {% if variables.personal_brush_with_death is defined and variables.personal_brush_with_death is not empty %}{{ variables.personal_brush_with_death}}{% else %}<i><b>&nbsp;is shrouded in the fog of war</b></i>{% endif %}.
+                                        Yet I lived to tell the tale.
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    I'm&nbsp;{{ variables.personal_age_group}}&nbsp;{{ variables.personal_gender }}&nbsp;{{ variables.personal_ancestry }}.&nbsp;I was born in&nbsp;{{ variables.personal_season_of_birth }}
-                                    in the place called {{ variables.personal_place_of_birth}}.I was raised in a {{ variables.personal_upbringing}} home of the{{ variables.personal_social_class}} class {% if variables.personal_patron_deity is not empty %} and became a follower of {{ variables.personal_patron_deity}}{% endif %}.
-                                    When you see me  I am of a/an {{ variables.personal_height}} stature with a/an {{ variables.personal_build_type}} build, {{ variables.personal_hair_color}} hair, 
-                                    {{ variables.personal_eye_color}} eyes, {{ variables.personal_complexion}} complexion. and a {{ variables.personal_distinguishing_marks_1}}.
-                                    My life changed the day that {% if variables.personal_brush_with_death is defined and variables.personal_brush_with_death is not empty %}{{ variables.personal_brush_with_death}}{% else %}"This one's fate is not determined yet"{% endif %}. 
-                                    Yet I lived to tell the tale.<br>
+                                <div class="row card">
+                                    <div class="col-sm-12"><strong>Inner Strength:</strong> {{ variables.alignment_inner_strength }}</div>
+                                    <div class="col-sm-12">Did you call upon one of your Inner Strengths 5 RP</div>
                                 </div>
-                                <div class="row">
-                                    <b>Inner Strength:</b> {{ variables.alignment_inner_strength }}
-                                    <br>
-                                    Did you call upon one of your Inner Strengths 5 RP
-                                    <br>
-                                    <b>Tragic Flaw:</b> {{ variables.alignment_tragic_flaw }}
-                                    <br>
-                                    Did you call upon one of your Tragic Flaws 5 RP
+                                <div class="row card">
+                                    <div class="col-sm-12"><strong>Tragic Flaw:</strong> {{ variables.alignment_tragic_flaw }}</div>
+                                    <div class="col-sm-12">Did you call upon one of your Tragic Flaws 5 RP</div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3">
-                                {% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} 
-                            </div>
+                                <div class="row card">
+                                    <div class="col-sm-12"><strong>In my adventures I have been tained by corruption:</strong>
+                                    {% for i in 1..9 %}{% if variables.alignment_corruption >= i %}&nbsp;<i class="fas fa-circle"></i> {% else %}&nbsp;<i class="far fa-circle"></i>{% endif %}{% endfor %}
+                                    &nbsp;<strong>Gain Malignancy</strong>
+                                    </div>
+                                    <div class="col-sm-12"><strong>And the world has left a mark on me:</strong></div>
+                                    <div class="col-sm-12">{% if malignancies_and_scars is not empty %} {{ malignancies_and_scars }}{% else %} ... {% endif %}</div>
+                                    <div class="col-sm-12"><strong>Permanent Corrupton</strong>&nbsp;{% if permanent_corruption == 0 %} 0 {% else %} {{ permanent_corruption }} {% endif %}</div>
+                                </div>
+                            </div>    
+                            <div class="col-sm-3">{% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} </div>
                         </div>
-                        <div class="row">
+                            <div class="row">
                           <div class="col-sm-12">
                             <div class="row card mt-3">
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 card-title"><h3>Attributes And Skills</h3></div>
-                </div>
-                <div class="row card-content">
-                    <div class="col-sm-12">
-                        <div class="row border-bottom">
-                            <div class="col-sm-4">
-                                <div class="row border-bottom">
-                                    <div class="col-sm-12"><strong>Primary Attributes</strong></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-8">Combat</div>
-                                    <div class="col-sm-4">{{ variables.attribute_combat}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-8">Bonus Advance</div>
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 card-title"><h3>Attributes And Skills</h3></div>
+                                    </div>
+                                    <div class="row card-content">
+                                        <div class="col-sm-12">
+                                            <div class="row border-bottom">
+                                                <div class="col-sm-4">
+                                                    <div class="row border-bottom">
+                                                        <div class="col-sm-12"><strong>Primary Attributes</strong></div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-8">Combat</div>
+                                                            <div class="col-sm-4">{{ variables.attribute_combat}}</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-8">Bonus Advance</div>
 <!--                                  <div class="col-sm-4">{% if variables.attribute_combat_advance_1 == 0 %}<i class="far fa-square-full"></i>{% else %}<i class="fas fa-square-full"></i>{% endif %}{% if variables.attribute_combat_advance_2 == 0 %}<i class="far fa-square-full"></i>{% else %}<i class="fas fa-square-full"></i>{% endif %}{% if variables.attribute_combat_advance_3 == 0 %}<i class="far fa-square-full"></i>{% else %}<i class="fas fa-square-full"></i>{% endif %}</div>
                                 </div>
                                 <div class="row">
@@ -675,27 +684,7 @@
                             <div class="col-sm-4"><div class="col-sm-4 border-strong btext">{% if variables.alignment_permanent_chaos_ranks is defined and variables.alignment_permanent_chaos_ranks is not empty %}{{ variables.alignment_permanent_chaos_ranks}}{% else %}0{% endif %}</div></div>
                         </div>
                     </div>
-                </div>-->
-        <div class="row card">
-            <div class="col-sm-12">
-                <div class="row card-title">
-                    <div class="col-sm-12"><h5>Order Alignment - {{ variables.alignment_order|upper}}</h5></div>
-                </div>
-                <div class="row card-content">
-                    <div class="col-sm-12">{{ variables.alignment_order_description}} </div>
-                </div>
-            </div>
-        </div>
-        <div class="row card">
-            <div class="col-sm-12">
-                <div class="row card-title">
-                    <div class="col-sm-12"><h5>Chaos Alignment - {{ variables.alignment_chaos|upper}}</h5></div>
-                </div>
-                <div class="row card-content">
-                    <div class="col-sm-12">{{ variables.alignment_chaos_description}} </div>
-                </div>
-            </div>
-        </div>     
+                </div>-->   
     </div>
     <!-- TAB #3 Attributes, skills -->
     <div class="tab content3">
