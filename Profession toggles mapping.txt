@@ -1,0 +1,18 @@
+Bool 1 Skill Rank  
+Bool 2 Skill Rank
+Bool 3 Skill Rank
+Bool 4 Skill Rank 
+Bool 5 Skill Rank 
+Bool 6 Skill Rank 
+Bool 7 Primary Attribute Adjustment
+Bool 8 Professional Talent
+Bool 9 Ancestral Talent
+Bool 10 Secondary Attribute Modifier
+Bool 11 Secondary Attribute Modifier
+Bool 12 Secondary Attribute Modifier
+Bool 13 Secondary Attribute Modifier
+Bool 14 Secondary Attribute Modifier
+Bool 15 Secondary Attribute Modifier
+Bool 16 General Talent
+Bool 17 General Talent
+Bool 18 General Talent 

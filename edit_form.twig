@@ -2775,12 +2775,20 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-2">BA</div>
+                        <div class="col-sm-2">Attribute</div>
                         <div class="col-sm-8">
-                            <input  value="{{ variables.profession_intermediate_bonus_advance_1 is defined ? variables.profession_intermediate_bonus_advance_1 }}"  class="form-control" id="profession_intermediate_bonus_advance_1" name="profession_intermediate_bonus_advance_1" placeholder="" type="text" />
+                            <select class="form-control" id="profession_intermediate_bonus_1" name="profession_intermediate_bonus_1">
+                                <option value="Agility" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Agility" %}selected="selected" {% endif %}  >+1 [AB]</option>
+                                <option value="Brawn" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Brawn" %}selected="selected" {% endif %}  >+1 [BB]</option>
+                                <option value="Combat" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Combat" %}selected="selected" {% endif %}  >+1 [CB]</option>
+                                <option value="Fellowship" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Fellowship" %}selected="selected" {% endif %}  >+1 [FB]</option>
+                                <option value="Intelligence" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Intelligence" %}selected="selected" {% endif %}  >+1 [IB]</option>
+                                <option value="Perception" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Perception" %}selected="selected" {% endif %}  >+1 [PB]</option>
+                                <option value="Willpower" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Willpower" %}selected="selected" {% endif %}  >+1 [WB]</option>
+                            </select>
                         </div>
                         <div class="col-sm-2 text-center">
-                            <input  value="1"  {% if variables.profession_intermediate_bonus_advance_checkbox_1 is defined and variables.profession_intermediate_bonus_advance_checkbox_1 == 1   %} checked="checked"{% endif %}   class="" id="profession_intermediate_bonus_advance_checkbox_1" name="profession_intermediate_bonus_advance_checkbox_1" placeholder="" type="checkbox" />
+                            <input  value="1"  {% if variables.profession_intermediate_toggle_10 is defined and variables.profession_intermediate_toggle_10 == 1   %} checked="checked"{% endif %}   class="" id="profession_intermediate_toggle_10" name="profession_intermediate_toggle_10" placeholder="" type="checkbox" />
                         </div>
                     </div>
                     <div class="row">

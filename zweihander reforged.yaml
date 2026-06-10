@@ -75,6 +75,10 @@ fields:
   personal patron deity:
     label: "personal patron deity"
     input: string
+  
+  personal language:
+    label: "personal language"
+    input: string
 
   alignment tragic flaw:
     label: "alignment tragic flaw"
@@ -589,46 +593,6 @@ fields:
       None: None
       One-handed: One-handed
       Two-handed: Two-handed
-
-  language 1:
-    label: "language 1"
-    input: string
-
-
-  language 2:
-    label: "language 2"
-    input: string
-
-
-  language 3:
-    label: "language 3"
-    input: string
-
-
-  language 4:
-    label: "language 4"
-    input: string
-
-
-  language 5:
-    label: "language 5"
-    input: string
-
-
-  language 6:
-    label: "language 6"
-    input: string
-
-
-  language 7:
-    label: "language 7"
-    input: string
-
-
-  language 8:
-    label: "language 8"
-    input: string
-
 
   supplies tool name 1:
     label: "supplies tool name 1"
@@ -2524,11 +2488,9 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-
-  profession basic skill 1 checkbox:
-    label: "profession basic skill 1 checkbox"
+  profession basic toggle 1:
+    label: "profession basic toggle 1"
     input: checkbox
-
 
   profession basic skill 2:
     label: "profession basic skill 2"
@@ -2557,8 +2519,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession basic skill 2 checkbox:
-    label: "profession basic skill 2 checkbox"
+  profession basic toggle 2:
+    label: "profession basic toggle 2"
     input: checkbox
 
 
@@ -2589,8 +2551,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession basic skill 3 checkbox:
-    label: "profession basic skill 3 checkbox"
+  profession basic toggle 3:
+    label: "profession basic toggle 3"
     input: checkbox
 
 
@@ -2621,8 +2583,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession basic skill 4 checkbox:
-    label: "profession basic skill 4 checkbox"
+  profession basic toggle 4:
+    label: "profession basic toggle 4"
     input: checkbox
 
 
@@ -2652,8 +2614,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession basic skill 5 checkbox:
-    label: "profession basic skill 5 checkbox"
+  profession basic toggle 5:
+    label: "profession basic toggle 5"
     input: checkbox
 
 
@@ -2683,18 +2645,17 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession basic skill 6 checkbox:
-    label: "profession basic skill 6 checkbox"
+  profession basic toggle 6:
+    label: "profession basic toggle 6"
     input: checkbox
 
   profession basic profession talent:
     label: "profession basic profession talent"
     input: string
 
-  profession basic profession talent checkbox:
-    label: "profession basic profession talent checkbox"
+  profession basic toggle 7:
+    label: "profession basic toggle 7"
     input: checkbox
-
 
   profession basic professional talent desc:
     label: "profession basic professional talent desc"
@@ -2714,8 +2675,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession basic bonus 1 checkbox:
-    label: "profession basic bonus 1 checkbox"
+  profession basic toggle 8:
+    label: "profession basic toggle 8"
     input: checkbox
 
 
@@ -2732,8 +2693,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession basic bonus 2 checkbox:
-    label: "profession basic bonus 2 checkbox"
+  profession basic toggle 9:
+    label: "profession basic toggle 9"
     input: checkbox
 
 
@@ -2750,8 +2711,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession basic bonus 3 checkbox:
-    label: "profession basic bonus 3 checkbox"
+  profession basic toggle 10:
+    label: "profession basic toggle 10"
     input: checkbox
 
 
@@ -2768,8 +2729,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession basic bonus 4 checkbox:
-    label: "profession basic bonus 4 checkbox"
+  profession basic toggle 11:
+    label: "profession basic toggle 11"
     input: checkbox
 
 
@@ -2786,8 +2747,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession basic bonus 5 checkbox:
-    label: "profession basic bonus 5 checkbox"
+  profession basic toggle 12:
+    label: "profession basic toggle 12"
     input: checkbox
 
 
@@ -2804,8 +2765,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession basic bonus 6 checkbox:
-    label: "profession basic bonus 6 checkbox"
+  profession basic toggle 13:
+    label: "profession basic toggle 13"
     input: checkbox
 
 
@@ -2819,8 +2780,8 @@ fields:
     input: text
 
 
-  profession basic talent 1 checkbox:
-    label: "profession basic talent 1 checkbox"
+  profession basic toggle 14:
+    label: "profession basic toggle 14"
     input: checkbox
 
 
@@ -2834,13 +2795,13 @@ fields:
     input: text
 
 
-  profession basic talent 2 checkbox:
-    label: "profession basic talent 2 checkbox"
+  profession basic toggle 15:
+    label: "profession basic toggle 15"
     input: checkbox
 
 
-  profession basic talent 3 checkbox:
-    label: "profession basic talent 3 checkbox"
+  profession basic toggle 16:
+    label: "profession basic toggle 16"
     input: checkbox
 
 
@@ -2867,13 +2828,13 @@ fields:
       Perception: Perception +5%
       Willpower: Willpower +5%
 
-  profession basic attribute checkbox:
-    label: "profession basic attribute checkbox"
+  profession basic toggle 17:
+    label: "profession basic toggle 17"
     input: checkbox
 
 
-  profession basic ancestral talent checkbox:
-    label: "profession basic ancestral talent checkbox"
+  profession basic toggle 18:
+    label: "profession basic toggle 18"
     input: checkbox
 
 
@@ -2909,8 +2870,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession intermediate skill 1 checkbox:
-    label: "profession intermediate skill 1 checkbox"
+  profession intermediate toggle 1:
+    label: "profession intermediate toggle 1"
     input: checkbox
 
 
@@ -2941,8 +2902,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession intermediate skill 2 checkbox:
-    label: "profession intermediate skill 2 checkbox"
+  profession intermediate toggle 2:
+    label: "profession intermediate toggle 2"
     input: checkbox
 
 
@@ -2973,8 +2934,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession intermediate skill 3 checkbox:
-    label: "profession intermediate skill 3 checkbox"
+  profession intermediate toggle 3:
+    label: "profession intermediate toggle 3"
     input: checkbox
 
 
@@ -3005,8 +2966,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession intermediate skill 4 checkbox:
-    label: "profession intermediate skill 4 checkbox"
+  profession intermediate toggle 4:
+    label: "profession intermediate toggle 4"
     input: checkbox
 
 
@@ -3037,8 +2998,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession intermediate skill 5 checkbox:
-    label: "profession intermediate skill 5 checkbox"
+  profession intermediate toggle 5:
+    label: "profession intermediate toggle 5"
     input: checkbox
 
 
@@ -3069,8 +3030,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession intermediate skill 6 checkbox:
-    label: "profession intermediate skill 6 checkbox"
+  profession intermediate toggle 6:
+    label: "profession intermediate toggle 6"
     input: checkbox
 
 
@@ -3087,8 +3048,8 @@ fields:
       Perception: Perception +5%
       Willpower: Willpower +5%
 
-  profession intermediate attribute checkbox:
-    label: "profession intermediate attribute checkbox"
+  profession intermediate toggle 7:
+    label: "profession intermediate toggle 7"
     input: checkbox
 
 
@@ -3097,8 +3058,8 @@ fields:
     input: string
 
 
-  profession intermediate profession talent checkbox:
-    label: "profession intermediate profession talent checkbox"
+  profession intermediate toggle 8:
+    label: "profession intermediate toggle 8"
     input: checkbox
 
 
@@ -3120,8 +3081,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession intermediate bonus 1 checkbox:
-    label: "profession intermediate bonus 1 checkbox"
+  profession intermediate toggle 9:
+    label: "profession intermediate toggle 9"
     input: checkbox
 
 
@@ -3138,8 +3099,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession intermediate bonus 2 checkbox:
-    label: "profession intermediate bonus 2 checkbox"
+  profession intermediate toggle 10:
+    label: "profession intermediate toggle 10"
     input: checkbox
 
 
@@ -3156,8 +3117,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession intermediate bonus 3 checkbox:
-    label: "profession intermediate bonus 3 checkbox"
+  profession intermediate toggle 11:
+    label: "profession intermediate toggle 11"
     input: checkbox
 
 
@@ -3174,8 +3135,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession intermediate bonus 4 checkbox:
-    label: "profession intermediate bonus 4 checkbox"
+  profession intermediate toggle 12:
+    label: "profession intermediate toggle 12"
     input: checkbox
 
 
@@ -3192,8 +3153,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession intermediate bonus 5 checkbox:
-    label: "profession intermediate bonus 5 checkbox"
+  profession intermediate toggle 13:
+    label: "profession intermediate toggle 13"
     input: checkbox
 
 
@@ -3210,8 +3171,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession intermediate bonus 6 checkbox:
-    label: "profession intermediate bonus 6 checkbox"
+  profession intermediate toggle 14:
+    label: "profession intermediate toggle 14"
     input: checkbox
 
 
@@ -3225,8 +3186,8 @@ fields:
     input: text
 
 
-  profession intermediate talent 1 checkbox:
-    label: "profession intermediate talent 1 checkbox"
+  profession intermediate toggle 15:
+    label: "profession intermediate toggle 15"
     input: checkbox
 
 
@@ -3240,18 +3201,18 @@ fields:
     input: text  
 
 
-  profession intermediate talent 2 checkbox:
-    label: "profession intermediate talent 2 checkbox"
+  profession intermediate toggle 16:
+    label: "profession intermediate toggle 16"
     input: checkbox
 
 
-  profession intermediate talent 3 checkbox:
-    label: "profession intermediate talent 3 checkbox"
+  profession intermediate toggle 17:
+    label: "profession intermediate toggle 17"
     input: checkbox
 
 
-  profession intermediate ancestral talent checkbox:
-    label: "profession intermediate ancestral talent checkbox"
+  profession intermediate toggle 18:
+    label: "profession intermediate toggle 18"
     input: checkbox
 
 
@@ -3287,8 +3248,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession advanced skill 1 checkbox:
-    label: "profession advanced skill 1 checkbox"
+  profession advanced toggle 1:
+    label: "profession advanced toggle 1"
     input: checkbox
 
 
@@ -3319,8 +3280,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession advanced skill 2 checkbox:
-    label: "profession advanced skill 2 checkbox"
+  profession advanced toggle 2:
+    label: "profession advanced toggle 2"
     input: checkbox
 
 
@@ -3351,8 +3312,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession advanced skill 3 checkbox:
-    label: "profession advanced skill 3 checkbox"
+  profession advanced toggle 3:
+    label: "profession advanced toggle 3"
     input: checkbox
 
 
@@ -3383,8 +3344,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession advanced skill 4 checkbox:
-    label: "profession advanced skill 4 checkbox"
+  profession advanced toggle 4:
+    label: "profession advanced toggle 4"
     input: checkbox
 
 
@@ -3415,8 +3376,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession advanced skill 5 checkbox:
-    label: "profession advanced skill 5 checkbox"
+  profession advanced toggle 5:
+    label: "profession advanced toggle 5"
     input: checkbox
 
 
@@ -3447,8 +3408,8 @@ fields:
       Thievery: Thievery
       Toughness: Toughness
 
-  profession advanced skill 6 checkbox:
-    label: "profession advanced skill 6 checkbox"
+  profession advanced toggle 6:
+    label: "profession advanced toggle 6"
     input: checkbox
 
 
@@ -3462,8 +3423,8 @@ fields:
     input: text
 
 
-  profession advanced profession talent checkbox:
-    label: "profession advanced profession talent checkbox"
+  profession advanced toggle 7:
+    label: "profession advanced toggle 7"
     input: checkbox
 
 
@@ -3480,8 +3441,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession advanced bonus 1 checkbox:
-    label: "profession advanced bonus 1 checkbox"
+  profession advanced toggle 8:
+    label: "profession advanced toggle 8"
     input: checkbox
 
 
@@ -3498,8 +3459,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession advanced bonus 2 checkbox:
-    label: "profession advanced bonus 2 checkbox"
+  profession advanced toggle 9:
+    label: "profession advanced toggle 9"
     input: checkbox
 
 
@@ -3516,8 +3477,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession advanced bonus 3 checkbox:
-    label: "profession advanced bonus 3 checkbox"
+  profession advanced toggle 10:
+    label: "pprofession advanced toggle 10"
     input: checkbox
 
   
@@ -3534,8 +3495,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession advanced bonus 4 checkbox:
-    label: "profession advanced bonus 4 checkbox"
+  profession advanced toggle 11:
+    label: "profession advanced toggle 11"
     input: checkbox
 
 
@@ -3552,8 +3513,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession advanced bonus 5 checkbox:
-    label: "profession advanced bonus 5 checkbox"
+  profession advanced toggle 12:
+    label: "profession advanced toggle 12"
     input: checkbox
 
   profession advanced bonus 6:
@@ -3569,8 +3530,8 @@ fields:
       Perception: +1 [PB]
       Willpower: +1 [WB]
 
-  profession advanced bonus 6 checkbox:
-    label: "profession advanced bonus 6 checkbox"
+  profession advanced toggle 13:
+    label: " profession advanced toggle 13"
     input: checkbox
 
   profession advanced talent 1:
@@ -3582,8 +3543,8 @@ fields:
     input: text
 
 
-  profession advanced talent 1 checkbox:
-    label: "profession advanced talent 1 checkbox"
+  profession advanced toggle 14:
+    label: " profession advanced toggle 14"
     input: checkbox
 
 
@@ -3597,8 +3558,8 @@ fields:
     input: text
 
 
-  profession advanced talent 2 checkbox:
-    label: "profession advanced talent 2 checkbox"
+  profession advanced toggle 15:
+    label: "profession advanced toggle 15"
     input: checkbox
 
 
@@ -3607,8 +3568,8 @@ fields:
     input: string
 
 
-  profession advanced talent 3 checkbox:
-    label: "profession advanced talent 3 checkbox"
+  profession advanced toggle 16:
+    label: "profession advanced toggle 16"
     input: checkbox
 
 
@@ -3625,8 +3586,12 @@ fields:
     label: "profession advanced ancestral talent desc"
     input: text
 
-  profession advanced ancestral talent checkbox:
-    label: "profession advanced ancestral talent checkbox"
+  profession advanced toggle 17:
+    label: "profession advanced toggle 17"
+    input: checkbox
+  
+  profession advanced toggle 18:
+    label: "profession advanced toggle 18"
     input: checkbox
 
   option toggle magic:
