@@ -15,7 +15,7 @@
 {% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor') + variables.attribute_willpower_bonus_mod + attribute_willpower_advance_array|reduce((carry, v) => carry + v) %}
 {% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + variables.attribute_fellowship_bonus_mod + attribute_fellowship_advance_array|reduce((carry, v) => carry + v)%}
 <!-- skill advances value -->
-{% set skill_combat_simple_melee_value = variables.attribute_combat + ([variables.skill_combat_simple_melee_10,variables.skill_combat_simple_melee_20,variables.skill_combat_simple_melee_30]|reduce((carry, v) => carry + v))*10 %}
+{% set attribute_combatskill_combat_simple_melee_value = variables. + ([variables.skill_combat_simple_melee_10,variables.skill_combat_simple_melee_20,variables.skill_combat_simple_melee_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_combat_martial_melee_value = variables.attribute_combat + ([variables.skill_combat_martial_melee_10,variables.skill_combat_martial_melee_20,variables.skill_combat_martial_melee_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_combat_simple_ranged_value = variables.attribute_combat + ([variables.skill_combat_simple_ranged_10,variables.skill_combat_simple_ranged_20,variables.skill_combat_simple_ranged_30]|reduce((carry, v) => carry + v))*10 %}
 {% set skill_combat_martial_ranged_value = variables.attribute_combat + ([variables.skill_combat_martial_ranged_10,variables.skill_combat_martial_ranged_20,variables.skill_combat_martial_ranged_30]|reduce((carry, v) => carry + v))*10 %}
@@ -2778,13 +2778,13 @@
                         <div class="col-sm-2">Attribute</div>
                         <div class="col-sm-8">
                             <select class="form-control" id="profession_intermediate_bonus_1" name="profession_intermediate_bonus_1">
-                                <option value="Agility" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Agility" %}selected="selected" {% endif %}  >+1 [AB]</option>
-                                <option value="Brawn" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Brawn" %}selected="selected" {% endif %}  >+1 [BB]</option>
-                                <option value="Combat" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Combat" %}selected="selected" {% endif %}  >+1 [CB]</option>
-                                <option value="Fellowship" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Fellowship" %}selected="selected" {% endif %}  >+1 [FB]</option>
-                                <option value="Intelligence" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Intelligence" %}selected="selected" {% endif %}  >+1 [IB]</option>
-                                <option value="Perception" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Perception" %}selected="selected" {% endif %}  >+1 [PB]</option>
-                                <option value="Willpower" {% if profession_intermediate_bonus_1 is defined and profession_intermediate_bonus_1 == "Willpower" %}selected="selected" {% endif %}  >+1 [WB]</option>
+                                <option value="Agility" {% if variables.profession_intermediate_bonus_1|default == "Agility" %}selected="selected" {% endif %}  >+1 AB</option>
+                                <option value="Brawn" {% if variables.profession_intermediate_bonus_1|default == "Brawn" %}selected="selected" {% endif %}  >+1 BB</option>
+                                <option value="Combat" {% if variables.profession_intermediate_bonus_1|default == "Combat" %}selected="selected" {% endif %}  >+1 CB</option>
+                                <option value="Fellowship" {% if variables.profession_intermediate_bonus_1|default == "Fellowship" %}selected="selected" {% endif %}  >+1 FB</option>
+                                <option value="Intelligence" {% if variables.profession_intermediate_bonus_1|default == "Intelligence" %}selected="selected" {% endif %}  >+1 IB</option>
+                                <option value="Perception" {% if variables.profession_intermediate_bonus_1|default == "Perception" %}selected="selected" {% endif %}  >+1 PB</option>
+                                <option value="Willpower" {% if variables.profession_intermediate_bonus_1|default == "Willpower" %}selected="selected" {% endif %}  >+1 WB</option>
                             </select>
                         </div>
                         <div class="col-sm-2 text-center">

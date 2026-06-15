@@ -2667,13 +2667,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession basic toggle 8:
     label: "profession basic toggle 8"
@@ -2685,13 +2685,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession basic toggle 9:
     label: "profession basic toggle 9"
@@ -2703,13 +2703,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession basic toggle 10:
     label: "profession basic toggle 10"
@@ -2721,13 +2721,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession basic toggle 11:
     label: "profession basic toggle 11"
@@ -2739,13 +2739,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession basic toggle 12:
     label: "profession basic toggle 12"
@@ -2757,13 +2757,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession basic toggle 13:
     label: "profession basic toggle 13"
@@ -3073,13 +3073,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession intermediate toggle 9:
     label: "profession intermediate toggle 9"
@@ -3091,13 +3091,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession intermediate toggle 10:
     label: "profession intermediate toggle 10"
@@ -3109,13 +3109,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession intermediate toggle 11:
     label: "profession intermediate toggle 11"
@@ -3127,13 +3127,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession intermediate toggle 12:
     label: "profession intermediate toggle 12"
@@ -3145,13 +3145,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession intermediate toggle 13:
     label: "profession intermediate toggle 13"
@@ -3163,13 +3163,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession intermediate toggle 14:
     label: "profession intermediate toggle 14"
@@ -3433,13 +3433,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession advanced toggle 8:
     label: "profession advanced toggle 8"
@@ -3451,13 +3451,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession advanced toggle 9:
     label: "profession advanced toggle 9"
@@ -3469,13 +3469,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession advanced toggle 10:
     label: "pprofession advanced toggle 10"
@@ -3487,13 +3487,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession advanced toggle 11:
     label: "profession advanced toggle 11"
@@ -3505,13 +3505,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession advanced toggle 12:
     label: "profession advanced toggle 12"
@@ -3522,13 +3522,13 @@ fields:
     input: select
     options:
       None: None
-      Agility: +1 [AB]
-      Brawn: +1 [BB]
-      Combat: +1 [CB]
-      Fellowship: +1 [FB]
-      Intelligence: +1 [IB]
-      Perception: +1 [PB]
-      Willpower: +1 [WB]
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession advanced toggle 13:
     label: " profession advanced toggle 13"
