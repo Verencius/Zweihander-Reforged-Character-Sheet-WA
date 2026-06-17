@@ -246,363 +246,125 @@ fields:
     label: "daemonic gift desc 5"
     input: string
 
-
-  shield is defensive:
-    label: "shield is defensive"
-    input: checkbox
-
-
-  shield name:
-    label: "shield name"
-    input: string
-
-
-  shield is ruined:
-    label: "shield is ruined"
-    input: checkbox
-
-
-  armor is ruined:
-    label: "armor is ruined" 
-    input: checkbox
-
-
-  armor is natural:
-    label: "armor is natural"
-    input: checkbox
-
-
-  shield qualities:
-    label: "shield qualities"
-    input: string
-
-
-  shield is protective:
-    label: "shield is protective"
-    input: checkbox
-
-
-  shield is makersmark:
-    label: "shield is makersmark"
-    input: checkbox
-
-
-  armor is makersmark:
-    label: "armor is makersmark"
-    input: checkbox
-
-
-  shield is castleforged:
-    label: "shield is castleforged"
-    input: checkbox
-
-
-  armor is castleforged:
-    label: "armor is castleforged"
-    input: checkbox
-
-
   armor name:
     label: "armor name"
     input: string
 
-
-  armor dth mod:
-    label: "armor dth mod"
+  armor dth:
+    label: "armor dth"
     input: integer
-
 
   armor qualities:
     label: "armor qualities"
     input: text
 
-
   armor clothes:
     label: "armor clothes"
     input: string
-
-
+ 
   weapon name 1:
     label: "weapon name 1"
     input: string
-
 
   weapon ammo 1:
     label: "weapon ammo 1"
     input: integer
 
-
-  weapon is defensive 1:
-    label: "weapon is defensive 1"
-    input: checkbox
-
-
-  weapon is ruined 1:
-    label: "weapon is ruined 1"
-    input: checkbox
-
-
-  weapon skill 1:
-    label: "weapon skill 1"
-    input: select
-
-    options:
-      Melee: Melee
-      Ranged: Ranged
-      Blackpowder: Blackpowder
-
-  weapon ammo 2:
-    label: "weapon ammo 2"
-    input: integer
-
-
-  weapon is defensive 2:
-    label: "weapon is defensive 2"
-    input: checkbox
-
-
-  weapon is makersmark 1:
-    label: "weapon is makersmark 1"
-    input: checkbox
-
-
-  weapon load 2:
-    label: "weapon load 2"
-    input: text
-
-
-  weapon ammo 3:
-    label: "weapon ammo 3"
-    input: integer
-
-
-  weapon is defensive 3:
-    label: "weapon is defensive 3"
-    input: checkbox
-
-
-  weapon is defensive 4:
-    label: "weapon is defensive 4"
-    input: checkbox
-
-
-  weapon is castleforged 1:
-    label: "weapon is castleforged 1"
-    input: checkbox
-
-
-  weapon handling 2:
-    label: "weapon handling 2"
-    input: select
-
-    options:
-      None: None
-      One-handed: One-handed
-      Two-handed: Two-handed
-
-  weapon is ruined 2:
-    label: "weapon is ruined 2"
-    input: checkbox
-
-
   weapon distance 1:
     label: "weapon distance 1"
-    input: text
-
-
-  weapon load 3:
-    label: "weapon load 3"
-    input: text
-
-
-  weapon is makersmark 2:
-    label: "weapon is makersmark 2"
-    input: checkbox
-
+    input: string
 
   weapon damage 1:
     label: "weapon damage 1"
     input: string
-
-
-  weapon handling 3:
-    label: "weapon handling 3"
-    input: select
-
-    options:
-      None: None
-      One-handed: One-handed
-      Two-handed: Two-handed
-
-  weapon is castleforged 2:
-    label: "weapon is castleforged 2"
-    input: checkbox
-
-
+  
   weapon qualities 1:
     label: "weapon qualities 1"
     input: text
-
-
-  weapon load 1:
-    label: "weapon load 1"
-    input: text
-
-
-  weapon is ruined 3:
-    label: "weapon is ruined 3"
-    input: checkbox
-
-
-  weapon handling 1:
-    label: "weapon handling 1"
-    input: select
-
-    options:
-      None: None
-      One-handed: One-handed
-      Two-handed: Two-handed
-
-  weapon is makersmark 3:
-    label: "weapon is makersmark 3"
-    input: checkbox
-
+      
+  weapon active 1:
+    label: "weapon active 1"
+    input: "checkbox"
 
   weapon name 2:
     label: "weapon name 2"
     input: string
 
-
-  weapon is castleforged 3:
-    label: "weapon is castleforged 3"
-    input: checkbox
-
-
-  weapon skill 2:
-    label: "weapon skill 2"
-    input: select
-
-    options:
-      Melee: Melee
-      Ranged: Ranged
-      Blackpowder: Blackpowder
-
-  weapon is ruined 4:
-    label: "weapon is ruined 4"
-    input: checkbox
-
-
-  weapon is makersmark 4:
-    label: "weapon is makersmark 4"
-    input: checkbox
-
-
-  weapon is castleforged 4:
-    label: "weapon is castleforged 4"
-    input: checkbox
-
+  weapon ammo 2:
+    label: "weapon ammo 2"
+    input: integer
 
   weapon distance 2:
     label: "weapon distance 2"
-    input: text
-
+    input: string
 
   weapon damage 2:
     label: "weapon damage 2"
-    input: integer
-
-
+    input: string
+  
   weapon qualities 2:
     label: "weapon qualities 2"
     input: text
-
+    
+  weapon active 2:
+    label: "weapon active 2"
+    input: "checkbox"
 
   weapon name 3:
     label: "weapon name 3"
     input: string
 
-
-  weapon skill 3:
-    label: "weapon skill 3"
-    input: select
-
-    options:
-      Melee: Melee
-      Ranged: Ranged
-      Blackpowder: Blackpowder
+  weapon ammo 3:
+    label: "weapon ammo 3"
+    input: integer
 
   weapon distance 3:
     label: "weapon distance 3"
-    input: text
-
+    input: string
 
   weapon damage 3:
     label: "weapon damage 3"
-    input: integer
-
-
+    input: string
+  
   weapon qualities 3:
     label: "weapon qualities 3"
     input: text
-
+    
+  weapon active 3:
+    label: "weapon active 3"
+    input: "checkbox"
 
   weapon name 4:
     label: "weapon name 4"
     input: string
 
-
-  weapon skill 4:
-    label: "weapon skill 4"
-    input: select
-
-    options:
-      Melee: Melee
-      Ranged: Ranged
-      Blackpowder: Blackpowder
-
-  weapon damage 4:
-    label: "weapon damage 4"
-    input: integer
-
-
-  weapon qualities 4:
-    label: "weapon qualities 4"
-    input: text
-
-
   weapon ammo 4:
     label: "weapon ammo 4"
     input: integer
 
-
   weapon distance 4:
     label: "weapon distance 4"
+    input: string
+
+  weapon damage 4:
+    label: "weapon damage 4"
+    input: string
+  
+  weapon qualities 4:
+    label: "weapon qualities 4"
     input: text
-
-
-  weapon load 4:
-    label: "weapon load 4"
-    input: text
-
-
-  weapon handling 4:
-    label: "weapon handling 4"
-    input: select
-
-    options:
-      None: None
-      One-handed: One-handed
-      Two-handed: Two-handed
+    
+  weapon active 4:
+    label: "weapon active 4"
+    input: "checkbox"
 
   supplies tool name 1:
     label: "supplies tool name 1"
     input: string
 
-
   supplies name 1:
     label: "supplies name 1"
     input: string
-
 
   supplies rating 1:
     label: "supplies rating 1"
@@ -3610,23 +3372,32 @@ fields:
     label: "peril condition track"
     input: select
     options:
-      fine: FINE
-      imperiled: IMPERILED
-      minus5: -5% TO SKILL TESTS
-      minus10: -10% TO SKILL TESTS
-      minus15: -15% TO SKILL TESTS
-      exhausted: EXHAUSTED!
+      fine: fine
+      imperiled: imperiled
+      minus5: minus5
+      minus10: minus10
+      minus15: minus15
+      exhausted: exhausted
+  
+  peril stress:
+    label: "peril stress"
+    input: select
+    options:
+      none: None
+      stressed: stressed
+      frightened: frightened
+      terrified: terrified
 
   damage condition track:
     label: "damage condition track"
     input: select
     options:
-      alive: ALIVE
-      lightly: LIGHTLY WOUNDED
-      moderately: MODERATELY WOUNDED
-      seriously: SERIOUSLY WOUNDED
-      grievously: GRIEVOUSLY WOUNDED
-      dying: DYING!
+      alive: alive
+      lightly: light
+      moderately: moderately
+      seriously: seriously
+      grievously: grievously
+      dying: dying
 
   action points:
     label: "action points"

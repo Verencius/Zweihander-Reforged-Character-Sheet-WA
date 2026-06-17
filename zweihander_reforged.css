@@ -1,4 +1,4 @@
-* { 
+{ 
     padding:0 !important;}
  #karta {
     border: 1px black solid;
@@ -40,7 +40,16 @@
     background-color: #fefefe!important;
     margin: 4px;
     font-size: 13px;
-    color: #000!important;}
+    color: #000!important;
+    flex-shrink: 0;
+    min-width: fit-content;}
+ .card-left {
+    border: 1px solid #27241f;
+    background-color: #fefefe!important;
+    margin-left: 4px;
+    font-size: 13px;
+    color: #000!important;
+   }
  .card.row {
     flex-direction: row;}
  .card-title {
@@ -99,6 +108,8 @@
     padding-right: 0!important;}
  .text-right {
     text-align: right!important;}
+.text-center {
+    text-align: center!important;}
  .form-control {
     background: #e2dfca!important;
     color: #000!important;
@@ -122,6 +133,11 @@
  .input-large,  .input-large:focus {
     text-align: center;
     font-size: 42px !important;}
+ .text-medium {
+   font-size: 18px !important;
+   font-weight: bold;}
+ .text-title {
+   font-weight:bold;}
  .marque.row {
     display: flex;
     align-items: center;
