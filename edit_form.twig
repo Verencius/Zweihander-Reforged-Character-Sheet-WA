@@ -2744,29 +2744,46 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="row">
-                        <div class="col-sm-10">
-                            <strong>Intermediate</strong>
-                        </div>
-                        <div class="col-sm-2 text-center">
-                            <strong>200 RP</strong>
-                        </div>
+                        <div class="col-sm-10 text-title">Intermediate</div>
+                        <div class="col-sm-2 text-center text-title">20 RP</div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-2">
-                            <strong>Profession</strong>
-                        </div>
+                        <div class="col-sm-2 text-title">Profession</div>
                         <div class="col-sm-8">
                             <input  value="{{ variables.profession_intermediate is defined ? variables.profession_intermediate }}"  class="form-control" id="profession_intermediate" name="profession_intermediate" placeholder="" type="text" />
                         </div>
                         <div class="col-sm-2 text-center"></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-2">SR</div>
+                        <div class="col-sm-2">Skill</div>
                         <div class="col-sm-8">
-                            <input  value="{{ variables.profession_intermediate_skill_rank_1 is defined ? variables.profession_intermediate_skill_rank_1 }}"  class="form-control" id="profession_intermediate_skill_rank_1" name="profession_intermediate_skill_rank_1" placeholder="" type="text" />
-                        </div>
-                        <div class="col-sm-2 text-center">
-                            <input  value="1"  {% if variables.profession_intermediate_skill_rank_checkbox_1 is defined and variables.profession_intermediate_skill_rank_checkbox_1 == 1   %} checked="checked"{% endif %}   class="" id="profession_intermediate_skill_rank_checkbox_1" name="profession_intermediate_skill_rank_checkbox_1" placeholder="" type="checkbox" />
+                            <select class="form-control" id="profession_intermediate_skill_1" name="profession_intermediate_skill_1">
+                                <option value="None">{% if variables.profession_intermediate_skill_1|default == "None" %}selected="selected"{% endif %}-- Select Skill --</option>
+                                <option value="Athletics" {% if variables.profession_intermediate_skill_1|default == "Athletics" %}selected="selected"{% endif %}>Athletics</option>
+                                <option value="Awareness" {% if variables.profession_intermediate_skill_1|default == "Awareness" %}selected="selected"{% endif %}>Awareness</option>
+                                <option value="Blackpowder" {% if variables.profession_intermediate_skill_1|default == "Blackpowder" %}selected="selected"{% endif %}>Blackpowder</option>
+                                <option value="Coordination" {% if variables.profession_intermediate_skill_1|default == "Coordination" %}selected="selected"{% endif %}>Coordination</option>
+                                <option value="Craft" {% if variables.profession_intermediate_skill_1|default == "Craft" %}selected="selected"{% endif %}>Craft</option>
+                                <option value="Disguise" {% if variables.profession_intermediate_skill_1|default == "Disguise" %}selected="selected"{% endif %}>Disguise</option>
+                                <option value="Folklore" {% if variables.profession_intermediate_skill_1|default == "Folklore" %}selected="selected"{% endif %}>Folklore</option>
+                                <option value="Gamble" {% if variables.profession_intermediate_skill_1|default == "Gamble" %}selected="selected"{% endif %}>Gamble</option>
+                                <option value="Guile" {% if variables.profession_intermediate_skill_1|default == "Guile" %}selected="selected"{% endif %}>Guile</option>
+                                <option value="Handling" {% if variables.profession_intermediate_skill_1|default == "Handling" %}selected="selected"{% endif %}>Handling</option>
+                                <option value="Insight" {% if variables.profession_intermediate_skill_1|default == "Insight" %}selected="selected"{% endif %}>Insight</option>
+                                <option value="Leechcraft" {% if variables.profession_intermediate_skill_1|default == "Leechcraft" %}selected="selected"{% endif %}>Leechcraft</option>
+                                <option value="Melee" {% if variables.profession_intermediate_skill_1|default == "Melee" %}selected="selected"{% endif %}>Melee</option>
+                                <option value="Occultism" {% if variables.profession_intermediate_skill_1|default == "Occultism" %}selected="selected"{% endif %}>Occultism</option>
+                                <option value="Persuasion" {% if variables.profession_intermediate_skill_1|default == "Persuasion" %}selected="selected"{% endif %}>Persuasion</option>
+                                <option value="Ranged" {% if variables.profession_intermediate_skill_1|default == "Ranged" %}selected="selected"{% endif %}>Ranged</option>
+                                <option value="Resolve" {% if variables.profession_intermediate_skill_1|default == "Resolve" %}selected="selected"{% endif %}>Resolve</option>
+                                <option value="Stealth" {% if variables.profession_intermediate_skill_1|default == "Stealth" %}selected="selected"{% endif %}>Stealth</option>
+                                <option value="Survival" {% if variables.profession_intermediate_skill_1|default == "Survival" %}selected="selected"{% endif %}>Survival</option>
+                                <option value="Thievery" {% if variables.profession_intermediate_skill_1|default == "Thievery" %}selected="selected"{% endif %}>Thievery</option>
+                                <option value="Toughness" {% if variables.profession_intermediate_skill_1|default == "Toughness" %}selected="selected"{% endif %}>Toughness</option>
+                            </select>
+                            </div>
+                        <div class="col-sm-2 text-center checkbox-large">
+                            <input  value="1"  {% if variables.profession_intermediate_toggle_1|default and variables.profession_intermediate_toggle_1 == 1   %}checked="checked"{% endif %}class="" id="profession_intermediate_toggle_1" name="profession_intermediate_toggle_1" placeholder="" type="checkbox" />
                         </div>
                     </div>
                     <div class="row">

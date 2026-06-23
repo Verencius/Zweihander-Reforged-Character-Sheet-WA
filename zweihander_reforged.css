@@ -82,6 +82,10 @@
     padding-bottom: 6px;}
  .card i.fa-square-full {
     margin: 0 2px;}
+ .content-spacing {
+    margin: 0 2px;
+    word-break: break-word !important;
+    white-space: normal !important;}
  .table th {
     background-color: #fefefe;
     color: #27241f;
@@ -134,7 +138,7 @@
     text-align: center;
     font-size: 42px !important;}
  .text-medium {
-   font-size: 18px !important;
+   font-size: 14px !important;
    font-weight: bold;}
  .text-title {
    font-weight:bold;}
@@ -202,4 +206,9 @@
   background: white !important;
   color: black;
   font-weight: 800;}
- 
+ .checkbox-large {
+    width: 20px;
+    height: 20px;
+    transform: scale(1.5);
+    cursor: pointer;
+    text-align: center;}

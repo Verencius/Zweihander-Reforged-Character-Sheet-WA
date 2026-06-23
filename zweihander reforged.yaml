@@ -2594,16 +2594,13 @@ fields:
     label: "profession basic toggle 17"
     input: checkbox
 
-
   profession basic toggle 18:
     label: "profession basic toggle 18"
     input: checkbox
 
-
   profession intermediate name:
     label: "profession intermediate name"
     input: string
-
 
   profession intermediate skill 1:
     label: "profession intermediate skill 1"
@@ -2635,7 +2632,6 @@ fields:
   profession intermediate toggle 1:
     label: "profession intermediate toggle 1"
     input: checkbox
-
 
   profession intermediate skill 2:
     label: "profession intermediate skill 2"
