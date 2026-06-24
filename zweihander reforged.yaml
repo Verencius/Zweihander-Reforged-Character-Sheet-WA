@@ -254,6 +254,10 @@ fields:
     label: "armor dth"
     input: integer
 
+  armor bb:
+    label: "armor bb"
+    input: integer
+
   armor qualities:
     label: "armor qualities"
     input: text
@@ -2212,16 +2216,13 @@ fields:
     label: "ritual crit fail 9"
     input: text
 
-
   ritual crit fail 10:
     label: "ritual crit fail 10"
     input: text
 
-
   profession basic name:
     label: "profession basic name"
     input: string
-
 
   profession basic skill 1:
     label: "profession basic skill 1"
@@ -2285,7 +2286,6 @@ fields:
     label: "profession basic toggle 2"
     input: checkbox
 
-
   profession basic skill 3:
     label: "profession basic skill 3"
     input: select
@@ -2316,7 +2316,6 @@ fields:
   profession basic toggle 3:
     label: "profession basic toggle 3"
     input: checkbox
-
 
   profession basic skill 4:
     label: "profession basic skill 4"
@@ -2349,7 +2348,6 @@ fields:
     label: "profession basic toggle 4"
     input: checkbox
 
-
   profession basic skill 5:
     label: "profession basic skill 5"
     input: select
@@ -2380,7 +2378,6 @@ fields:
     label: "profession basic toggle 5"
     input: checkbox
 
-
   profession basic skill 6:
     label: "profession basic skill 6"
     input: select
@@ -2410,58 +2407,50 @@ fields:
   profession basic toggle 6:
     label: "profession basic toggle 6"
     input: checkbox
-
-  profession basic profession talent:
-    label: "profession basic profession talent"
-    input: string
+  
+  profession basic attribute:
+    label: "profession basic attribute"
+    input: select
+    options:
+      None: None
+      Agility: Agility +5%
+      Brawn: Brawn +5%
+      Combat: Combat +5%
+      Fellowship: Fellowship +5%
+      Intelligence: Intelligence +5%
+      Perception: Perception +5%
+      Willpower: Willpower +5%
 
   profession basic toggle 7:
     label: "profession basic toggle 7"
     input: checkbox
-
-  profession basic professional talent desc:
-    label: "profession basic professional talent desc"
+  
+  profession basic profession talent:
+    label: "profession basic profession talent"
+    input: string
+  
+  profession basic profession talent desc:
+    label: "profession basic profession talent desc"
     input: text
-
-
-  profession basic bonus 1:
-    label: "profession basic bonus 1"
-    input: select
-    options:
-      None: None
-      Agility: Agility
-      Brawn: Brawn
-      Combat: Combat
-      Fellowship: Fellowship
-      Intelligence: Intelligence
-      Perception: Perception
-      Willpower: Willpower
 
   profession basic toggle 8:
     label: "profession basic toggle 8"
     input: checkbox
 
+  profession basic ancestral talent:
+    label: "profession basic ancestral talent"
+    input: string
 
-  profession basic bonus 2:
-    label: "profession basic bonus 2"
-    input: select
-    options:
-      None: None
-      Agility: Agility
-      Brawn: Brawn
-      Combat: Combat
-      Fellowship: Fellowship
-      Intelligence: Intelligence
-      Perception: Perception
-      Willpower: Willpower
-
+  profession basic ancestral talent desc:
+    label: "profession basic ancestral talent desc"
+    input: text
+  
   profession basic toggle 9:
     label: "profession basic toggle 9"
     input: checkbox
-
-
-  profession basic bonus 3:
-    label: "profession basic bonus 3"
+  
+  profession basic bonus 1:
+    label: "profession basic bonus 1"
     input: select
     options:
       None: None
@@ -2476,10 +2465,9 @@ fields:
   profession basic toggle 10:
     label: "profession basic toggle 10"
     input: checkbox
-
-
-  profession basic bonus 4:
-    label: "profession basic bonus 4"
+   
+  profession basic bonus 2:
+    label: "profession basic bonus 2"
     input: select
     options:
       None: None
@@ -2490,14 +2478,13 @@ fields:
       Intelligence: Intelligence
       Perception: Perception
       Willpower: Willpower
-
+ 
   profession basic toggle 11:
     label: "profession basic toggle 11"
-    input: checkbox
+    input: checkbox 
 
-
-  profession basic bonus 5:
-    label: "profession basic bonus 5"
+  profession basic bonus 3:
+    label: "profession basic bonus 3"
     input: select
     options:
       None: None
@@ -2513,6 +2500,39 @@ fields:
     label: "profession basic toggle 12"
     input: checkbox
 
+  profession basic bonus 4:
+    label: "profession basic bonus 4"
+    input: select
+    options:
+      None: None
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
+ 
+  profession basic toggle 13:
+    label: "profession basic toggle 13"
+    input: checkbox
+
+  profession basic bonus 5:
+    label: "profession basic bonus 5"
+    input: select
+    options:
+      None: None
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
+
+  profession basic toggle 14:
+    label: "profession basic toggle 14"
+    input: checkbox
 
   profession basic bonus 6:
     label: "profession basic bonus 6"
@@ -2527,72 +2547,41 @@ fields:
       Perception: Perception
       Willpower: Willpower
 
-  profession basic toggle 13:
-    label: "profession basic toggle 13"
+  profession basic toggle 15:
+    label: "profession basic toggle 15"
     input: checkbox
-
 
   profession basic talent 1:
     label: "profession basic talent 1"
     input: string
 
-
   profession basic talent 1 desc:
     label: "profession basic talent 1 desc"
     input: text
-
-
-  profession basic toggle 14:
-    label: "profession basic toggle 14"
-    input: checkbox
-
-
-  profession basic talent 2:
-    label: "profession basic talent 2"
-    input: string
-
-
-  profession basic talent 2 desc:
-    label: "profession basic talent 2 desc"
-    input: text
-
-
-  profession basic toggle 15:
-    label: "profession basic toggle 15"
-    input: checkbox
-
 
   profession basic toggle 16:
     label: "profession basic toggle 16"
     input: checkbox
 
+  profession basic talent 2:
+    label: "profession basic talent 2"
+    input: string
+
+  profession basic talent 2 desc:
+    label: "profession basic talent 2 desc"
+    input: text
+
+  profession basic toggle 17:
+    label: "profession basic toggle 17"
+    input: checkbox
 
   profession basic talent 3:
     label: "profession basic talent 3"
     input: string
 
-
   profession basic talent 3 desc:
     label: "profession basic talent 3 desc"
     input: text
-
-
-  profession basic attribute:
-    label: "profession basic attribute"
-    input: select
-    options:
-      None: None
-      Agility: Agility +5%
-      Brawn: Brawn +5%
-      Combat: Combat +5%
-      Fellowship: Fellowship +5%
-      Intelligence: Intelligence +5%
-      Perception: Perception +5%
-      Willpower: Willpower +5%
-
-  profession basic toggle 17:
-    label: "profession basic toggle 17"
-    input: checkbox
 
   profession basic toggle 18:
     label: "profession basic toggle 18"
@@ -2664,7 +2653,6 @@ fields:
     label: "profession intermediate toggle 2"
     input: checkbox
 
-
   profession intermediate skill 3:
     label: "profession intermediate skill 3"
     input: select
@@ -2695,7 +2683,6 @@ fields:
   profession intermediate toggle 3:
     label: "profession intermediate toggle 3"
     input: checkbox
-
 
   profession intermediate skill 4:
     label: "profession intermediate skill 4"
@@ -2728,7 +2715,6 @@ fields:
     label: "profession intermediate toggle 4"
     input: checkbox
 
-
   profession intermediate skill 5:
     label: "profession intermediate skill 5"
     input: select
@@ -2759,7 +2745,6 @@ fields:
   profession intermediate toggle 5:
     label: "profession intermediate toggle 5"
     input: checkbox
-
 
   profession intermediate skill 6:
     label: "profession intermediate skill 6"
@@ -2792,7 +2777,6 @@ fields:
     label: "profession intermediate toggle 6"
     input: checkbox
 
-
   profession intermediate attribute:
     label: "profession intermediate attribute"
     input: select
@@ -2810,42 +2794,32 @@ fields:
     label: "profession intermediate toggle 7"
     input: checkbox
 
-
   profession intermediate profession talent:
     label: "profession intermediate profession talent"
     input: string
-
-
-  profession intermediate toggle 8:
-    label: "profession intermediate toggle 8"
-    input: checkbox
-
 
   profession intermediate profession talent desc:
     label: "profession intermediate profession talent desc"
     input: text
 
+  profession intermediate toggle 8:
+    label: "profession intermediate toggle 8"
+    input: checkbox
+  
+  profession intermediate ancestral talent:
+    label: "profession intermediate ancestral talent"
+    input: string
 
-  profession intermediate bonus 1:
-    label: "profession intermediate bonus 1"
-    input: select
-    options:
-      None: None
-      Agility: Agility
-      Brawn: Brawn
-      Combat: Combat
-      Fellowship: Fellowship
-      Intelligence: Intelligence
-      Perception: Perception
-      Willpower: Willpower
+  profession intermediate ancestral talent desc:
+    label: "profession intermediate ancestral talent desc"
+    input: text 
 
   profession intermediate toggle 9:
     label: "profession intermediate toggle 9"
     input: checkbox
 
-
-  profession intermediate bonus 2:
-    label: "profession intermediate bonus 2"
+  profession intermediate bonus 1:
+    label: "profession intermediate bonus 1"
     input: select
     options:
       None: None
@@ -2861,9 +2835,8 @@ fields:
     label: "profession intermediate toggle 10"
     input: checkbox
 
-
-  profession intermediate bonus 3:
-    label: "profession intermediate bonus 3"
+  profession intermediate bonus 2:
+    label: "profession intermediate bonus 2"
     input: select
     options:
       None: None
@@ -2879,9 +2852,8 @@ fields:
     label: "profession intermediate toggle 11"
     input: checkbox
 
-
-  profession intermediate bonus 4:
-    label: "profession intermediate bonus 4"
+  profession intermediate bonus 3:
+    label: "profession intermediate bonus 3"
     input: select
     options:
       None: None
@@ -2898,8 +2870,8 @@ fields:
     input: checkbox
 
 
-  profession intermediate bonus 5:
-    label: "profession intermediate bonus 5"
+  profession intermediate bonus 4:
+    label: "profession intermediate bonus 4"
     input: select
     options:
       None: None
@@ -2915,9 +2887,8 @@ fields:
     label: "profession intermediate toggle 13"
     input: checkbox
 
-
-  profession intermediate bonus 6:
-    label: "profession intermediate bonus 6"
+  profession intermediate bonus 5:
+    label: "profession intermediate bonus 5"
     input: select
     options:
       None: None
@@ -2933,51 +2904,64 @@ fields:
     label: "profession intermediate toggle 14"
     input: checkbox
 
-
-  profession intermediate talent 1:
-    label: "profession intermediate talent 1"
-    input: string
-
-
-  profession intermediate talent 1 desc:
-    label: "profession intermediate talent 1 desc"
-    input: text
-
+  profession intermediate bonus 6:
+    label: "profession intermediate bonus 6"
+    input: select
+    options:
+      None: None
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
 
   profession intermediate toggle 15:
     label: "profession intermediate toggle 15"
     input: checkbox
 
+  profession intermediate talent 1:
+    label: "profession intermediate talent 1"
+    input: string
+
+  profession intermediate talent 1 desc:
+    label: "profession intermediate talent 1 desc"
+    input: text
+
+  profession intermediate toggle 16:
+    label: "profession intermediate toggle 16"
+    input: checkbox
 
   profession intermediate talent 2:
     label: "profession intermediate talent 2"
     input: string
-
 
   profession intermediate talent 2 desc:
     label: "profession intermediate talent 2 desc"
     input: text  
 
 
-  profession intermediate toggle 16:
-    label: "profession intermediate toggle 16"
-    input: checkbox
-
-
   profession intermediate toggle 17:
     label: "profession intermediate toggle 17"
     input: checkbox
 
+  profession intermediate talent 3:
+    label: "profession intermediate talent 3"
+    input: string
+
+
+  profession intermediate talent 3 desc:
+    label: "profession intermediate talent 3 desc"
+    input: text  
 
   profession intermediate toggle 18:
     label: "profession intermediate toggle 18"
     input: checkbox
 
-
   profession advanced name:
     label: "profession advanced name"
     input: string
-
 
   profession advanced skill 1:
     label: "profession advanced skill 1"
@@ -3010,7 +2994,6 @@ fields:
     label: "profession advanced toggle 1"
     input: checkbox
 
-
   profession advanced skill 2:
     label: "profession advanced skill 2"
     input: select
@@ -3041,7 +3024,6 @@ fields:
   profession advanced toggle 2:
     label: "profession advanced toggle 2"
     input: checkbox
-
 
   profession advanced skill 3:
     label: "profession advanced skill 3"
@@ -3074,7 +3056,6 @@ fields:
     label: "profession advanced toggle 3"
     input: checkbox
 
-
   profession advanced skill 4:
     label: "profession advanced skill 4"
     input: select
@@ -3106,7 +3087,6 @@ fields:
     label: "profession advanced toggle 4"
     input: checkbox
 
-
   profession advanced skill 5:
     label: "profession advanced skill 5"
     input: select
@@ -3137,7 +3117,6 @@ fields:
   profession advanced toggle 5:
     label: "profession advanced toggle 5"
     input: checkbox
-
 
   profession advanced skill 6:
     label: "profession advanced skill 6"
@@ -3171,59 +3150,36 @@ fields:
     input: checkbox
 
 
+  profession advanced toggle 7:
+    label: "profession advanced toggle 7"
+    input: checkbox
+
   profession advanced profession talent:
     label: "profession advanced profession talent"
     input: string
-
 
   profession advanced profession talent desc:
     label: "profession advanced profession talent desc"
     input: text
 
-
-  profession advanced toggle 7:
-    label: "profession advanced toggle 7"
-    input: checkbox
-
-
-  profession advanced bonus 1:
-    label: "profession advanced bonus 1"
-    input: select
-    options:
-      None: None
-      Agility: Agility
-      Brawn: Brawn
-      Combat: Combat
-      Fellowship: Fellowship
-      Intelligence: Intelligence
-      Perception: Perception
-      Willpower: Willpower
-
   profession advanced toggle 8:
     label: "profession advanced toggle 8"
     input: checkbox
 
+  profession advanced ancestral talent:
+    label: "profession advanced ancestral talent"
+    input: string
 
-  profession advanced bonus 2:
-    label: "profession advanced bonus 2"
-    input: select
-    options:
-      None: None
-      Agility: Agility
-      Brawn: Brawn
-      Combat: Combat
-      Fellowship: Fellowship
-      Intelligence: Intelligence
-      Perception: Perception
-      Willpower: Willpower
+  profession advanced ancestral talent desc:
+    label: "profession advanced ancestral talent desc"
+    input: text
 
   profession advanced toggle 9:
     label: "profession advanced toggle 9"
     input: checkbox
 
-
-  profession advanced bonus 3:
-    label: "profession advanced bonus 3"
+  profession advanced bonus 1:
+    label: "profession advanced bonus 1"
     input: select
     options:
       None: None
@@ -3239,9 +3195,8 @@ fields:
     label: "pprofession advanced toggle 10"
     input: checkbox
 
-  
-  profession advanced bonus 4:
-    label: "profession advanced bonus 4"
+  profession advanced bonus 2:
+    label: "profession advanced bonus 2"
     input: select
     options:
       None: None
@@ -3257,9 +3212,8 @@ fields:
     label: "profession advanced toggle 11"
     input: checkbox
 
-
-  profession advanced bonus 5:
-    label: "profession advanced bonus 5"
+  profession advanced bonus 3:
+    label: "profession advanced bonus 3"
     input: select
     options:
       None: None
@@ -3274,9 +3228,9 @@ fields:
   profession advanced toggle 12:
     label: "profession advanced toggle 12"
     input: checkbox
-
-  profession advanced bonus 6:
-    label: "profession advanced bonus 6"
+  
+  profession advanced bonus 4:
+    label: "profession advanced bonus 4"
     input: select
     options:
       None: None
@@ -3292,6 +3246,41 @@ fields:
     label: " profession advanced toggle 13"
     input: checkbox
 
+  profession advanced bonus 5:
+    label: "profession advanced bonus 5"
+    input: select
+    options:
+      None: None
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
+
+  profession advanced toggle 14:
+    label: " profession advanced toggle 14"
+    input: checkbox
+
+
+  profession advanced bonus 6:
+    label: "profession advanced bonus 6"
+    input: select
+    options:
+      None: None
+      Agility: Agility
+      Brawn: Brawn
+      Combat: Combat
+      Fellowship: Fellowship
+      Intelligence: Intelligence
+      Perception: Perception
+      Willpower: Willpower
+
+  profession advanced toggle 15:
+    label: "profession advanced toggle 15"
+    input: checkbox
+
   profession advanced talent 1:
     label: "profession advanced talent 1"
     input: string
@@ -3300,11 +3289,9 @@ fields:
     label: "profession advanced talent 1 desc"
     input: text
 
-
-  profession advanced toggle 14:
-    label: " profession advanced toggle 14"
+  profession advanced toggle 16:
+    label: "profession advanced toggle 16"
     input: checkbox
-
 
   profession advanced talent 2:
     label: "profession advanced talent 2"
@@ -3315,38 +3302,17 @@ fields:
     label: "profession advanced talent 2 desc"
     input: text
 
-
-  profession advanced toggle 15:
-    label: "profession advanced toggle 15"
+  profession advanced toggle 17:
+    label: "profession advanced toggle 17"
     input: checkbox
-
 
   profession advanced talent 3:
     label: "profession advanced talent 3"
     input: string
 
-
-  profession advanced toggle 16:
-    label: "profession advanced toggle 16"
-    input: checkbox
-
-
   profession advanced talent 3 desc:
     label: "profession advanced talent 3 desc"
     input: text
-
-
-  profession advanced ancestral talent:
-    label: "profession advanced ancestral talent"
-    input: string
-
-  profession advanced ancestral talent desc:
-    label: "profession advanced ancestral talent desc"
-    input: text
-
-  profession advanced toggle 17:
-    label: "profession advanced toggle 17"
-    input: checkbox
   
   profession advanced toggle 18:
     label: "profession advanced toggle 18"
