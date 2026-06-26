@@ -390,7 +390,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Stealth" and toggle == 1 %}
             {% set stealth_count = stealth_count + 1 %}
         {% endif %}
@@ -404,7 +403,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Survival" and toggle == 1 %}
             {% set survival_count = survival_count + 1 %}
         {% endif %}
@@ -418,7 +416,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Thievery" and toggle == 1 %}
             {% set thievery_count = thievery_count + 1 %}
         {% endif %}
@@ -432,7 +429,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Toughness" and toggle == 1 %}
             {% set toughness_count = toughness_count + 1 %}
         {% endif %}
@@ -467,8 +463,17 @@
 {% endfor %}
 {% set weapon_pth = weapon_pth_found[0] %}
 {% set weapon_pth_name = hardened_weapon_name[0] %}
+<!-- peril talents -->
+{% set talent_pth_salt = 0 %}
+{% for n in 1..3 %}
+    {% if variables["profession_basic_toggle_" ~ (15 + n)] == true and "Salt Of The Earth" in variables["profession_basic_talent_" ~ n]|lower
+       or variables["profession_intermediate_toggle_" ~ (15 + n)] == true and "Salt Of The Earth" in variables["profession_intermediate_talent_" ~ n]|lower
+       or variables["profession_advanced_toggle_" ~ (15 + n)] == true and "Salt Of The Earth" in variables["profession_advanced_talent_" ~ n]|lower %}
+        {% set talent_pth_salt = 3 %}
+    {% endif %}
+{% endfor %}
 <!-- peril threshold finalization -->
-{% set peril_threshold_adjusted = peril_base + weapon_pth + variables.peril_situational %}
+{% set peril_threshold_adjusted = peril_base + weapon_pth + talent_pth_salt + variables.peril_situational %}
 <!-- damage threshold modifiers -->
 {% set damage_base = attribute_brawn_bonus_final %}
 <!-- armor dth mod -->
@@ -521,13 +526,17 @@
 {% endfor %}
 <!-- final DTH calculactions -->
 {% set damage_threshold_adjusted = damage_base + armor_dth_final + weapon_dth + talent_dth_end + talent_dth_salt + variables.damage_situational %}
-<!-- initiative -->
-{% set initiative_burden = 0 %}
-{% for n in 4..6 %}
-    {% if variables["trappings_tool_" ~ n] is not empty %}
-        {% set initiative_burden = initiative_burden + 1 %}
+<!-- initiative overage tools -->
+{% set burden_tools = [] %}
+{% for n in 1..6 %}
+    {% if variables["supplies_tool_" ~ n] is not empty %}
+        {% set burden_tools = burden_tools | merge([1]) %}
     {% endif %}
 {% endfor %}
+{% set total_tools = burden_tools | length %}
+{% set initiative_burden = total_tools > 3 ? total_tools - 3 : 0 %}
+<!-- initiative overage wealth -->
+{% set wealth_enc = (variables.silver / 1000)|round(0, 'floor') %}
 <!-- initiative talents -->
 {% set initiative_instincts = 0 %}
 {% for n in 1..3 %}
@@ -537,29 +546,37 @@
         {% set initiative_instincts = 1 %}
     {% endif %}
 {% endfor %}
-
-{% set initiative_ancestral = 0 %}
+<!-- penalty for 4 weapons -->
+{% set weapon_count = [] %}
+{% for i in 1..4 %}
+    {% if variables["weapon_name_" ~ i] is not empty %}
+        {% set weapon_count = weapon_count | merge([1]) %}
+    {% endif %}
+{% endfor %}
+{% set initiative_weapon = weapon_count | length > 3 ? 1 : 0 %}
+<!-- ancestral talent initiative modifier -->
+{% set initiative_ancestral = false %}
 {% if variables.profession_basic_toggle_8 == true and "liquid poise" in variables.profession_basic_ancestral_talent|lower
    or variables.profession_intermediate_toggle_8 == true and "liquid poise" in variables.profession_intermediate_ancestral_talent|lower
    or variables.profession_advanced_toggle_8 == true and "liquid poise" in variables.profession_advanced_ancestral_talent|lower %}
-    {% set initiative_ancestral = 1 %}
+    {% set initiative_ancestral = true %}
 {% endif %}
 <!-- initiative base calculations -->
-{% if initiative_instincts == 1 and attribute_agility_bonus_final > attribute_perception_bonus_final %}
+{% if initiative_ancestral == true and attribute_agility_bonus_final > attribute_perception_bonus_final %}
     {% set initiative_base = attribute_agility_bonus_final + 3 %}
 {% else %}
     {% set initiative_base = attribute_perception_bonus_final + 3 %}
 {% endif %}
 <!-- initiative final calculation -->
-{% set initiative_final = initiative_base + initiative_armor + initiative_burden + initiative_instincts + initiative_ancestral + variables.initiative_temporary %}
+{% set initiative_final = initiative_base + initiative_armor + initiative_burden + initiative_weapon + initiative_instincts + variables.burden_penalty + initiative_ancestral + variables.initiative_temporary %}
 <!-- end of macros -->
 <div id="karta" class="container-fluid">
     <!-- Tabbing -->
     <input class="input-hidden" type="radio" name="tabs" id="tab1" checked/><label for="tab1">Personal</label>
 <!-- <input class="input-hidden" type="radio" name="tabs" id="tab3"/><label for="tab3">Attributes & Skills</label> -->
-    <input class="input-hidden" type="radio" name="tabs" id="tab4"/><label for="tab4">Traits Talents & Gifts</label>
-    <input class="input-hidden" type="radio" name="tabs" id="tab5"/><label for="tab5">Combat Profile</label>
-    <input class="input-hidden" type="radio" name="tabs" id="tab6"/><label for="tab6">Trappings</label>
+<!--    <input class="input-hidden" type="radio" name="tabs" id="tab4"/><label for="tab4">Traits Talents & Gifts</label> -->
+<!--    <input class="input-hidden" type="radio" name="tabs" id="tab5"/><label for="tab5">Combat Profile</label> -->
+<!--    <input class="input-hidden" type="radio" name="tabs" id="tab6"/><label for="tab6">Trappings</label> -->
     <input class="input-hidden" type="radio" name="tabs" id="tab7"/><label for="tab7">Magic Profile</label>
     <input class="input-hidden" type="radio" name="tabs" id="tab8"/><label for="tab8">Advancement</label>
     <!-- TAB #1Personal -->
@@ -711,7 +728,7 @@
                                         <div class="row">
                                             <div class="col-sm-5 text-title">Folklore</div>
                                             <div class="col-sm-4">{% for i in 1..3 %}{% if folklore_advance >= i %}<i class="fas fa-square-full"></i>{% else %}<i class="far fa-square-full"></i>{% endif %}{% endfor %}</div>
-                                            <div class="col-sm-3 border-bottom text-center">{{ skill_folklore_total}}%&nbsp;</div>
+                                            <div class="col-sm-3 border-bottom text-center">{{ skill_folklore_total}}&nbsp;%</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-5 text-title">Gamble</div>
@@ -888,6 +905,12 @@
                             <div class="col-sm-6 border-bottom">{{ weapon_pth }} / {{ weapon_pth_name }}</div>
                         </div>
                         {% endif %}
+                        {% if talent_pth_salt !=0 %}
+                        <div class="row">
+                            <div class="col-sm-6 border-bottom">Salt Of The Earth</div>
+                            <div class="col-sm-6 border-bottom">{{ talent_pth_salt }}</div>
+                        </div>
+                        {% endif %}
                         <div class="row">
                             <div class="col-sm-6 border-bottom">Situational Modifier</div>
                             <div class="col-sm-6 border-bottom">{%if variables.peril_temporary != "" %}{{ variable.peril.temporary }} {% else %} 0 {%endif%}</div>
@@ -964,6 +987,18 @@
                             <div class="col-sm-5 border-bottom">{{ weapon_dth }} / {{ weapon_dth_name }}</div>
                         </div>
                         {% endif %}
+                        {% if talent_dth_salt != 0 %}
+                        <div class="row">
+                            <div class="col-sm-7 border-bottom">Salt Of The Earth</div>
+                            <div class="col-sm-5 border-bottom">{{ talent_dth_salt }}</div>
+                        </div>
+                        {% endif %}
+                        {% if talent_dth_end != 0 %}
+                        <div class="row">
+                            <div class="col-sm-7 border-bottom">Defensive</div>
+                            <div class="col-sm-5 border-bottom">{{ talent_dth_end }}</div>
+                        </div>
+                        {% endif %}
                         <div class="row">
                             <div class="col-sm-7 border-bottom">Situational Modifier</div>
                             <div class="col-sm-5 border-bottom">{%if variables.damage_temporary != "" %}{{ variable.damage.temporary }} {% else %} 0 {%endif%}</div>
@@ -1018,7 +1053,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="row content-spacing">{{ variables.armor_qualities }}</div>
-                                <div class="row card-info-label content-spacing">Armor Qualities. [Keywords: Ruined, Maker's Mark, Ill-fitted]</div>
+                                <div class="row card-info-label content-spacing">Armor Qualities. Keywords: Ruined, Maker's Mark, Ill-fitted</div>
                                 <div class="row content-spacing">{{ variables.armor_clothes }}</div>
                                 <div class="row card-info-label content-spacing">Worn Clothes</div>
                             </div>
@@ -1081,10 +1116,7 @@
                         </div>
                         {% endif %}
                         <div class="row">
-                            <div class="col-sm-12 card-info-label">Writing in 4th weapon will trigger IM penalty (but you can never have too many knives)</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 card-info-label">Use Keywords: Ruined, Defensive, Hardened. These are auto-calculated. Equip weapon to get benefits</div>
+                            <div class="col-sm-12 card-info-label">Having more than 3 weapons will trigger IM penalty (but as saying goes you can never have too many knives). Use Keywords: Ruined, Defensive, Hardened. These are auto-calculated. Equip weapon to get benefits</div>
                         </div>
                     </div>
                 </div>
@@ -1094,19 +1126,25 @@
                     <div class="col-sm-12 card-title">Initiative Modifier</div>
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-6 ml-auto text-title border-bottom">Base</div>
+                            <div class="col-sm-6 ml-auto text-title border-bottom">Base Initiative</div>
                             <div class="col-sm-6 ml-auto text-title border-bottom">{{ initiative_base }}</div>
                         </div>
+                        {% if initiative_ancestral != 0 %}
+                        <div class="row">
+                            <div class="col-sm-6 ml-auto text-title border-bottom">Liquid Poise</div>
+                            <div class="col-sm-6 ml-auto text-title border-bottom">{% if attribute_agility_bonus_final > attribute_perception_bonus_fina %} [AB] {% else %} [PB] {% endif %}
+                        </div>
+                        {% endif %}
                         {% if initiative_armor is not empty %}
                         <div class="row">
                             <div class="col-sm-6 ml-auto border-bottom">Ill-fitted</div>
                             <div class="col-sm-6 ml-auto border-bottom">{{ initiative_armor }}</div>
                         </div>
                         {% endif %}
-                        {% if initiative_burden is not empty %}
+                        {% if initiative_burden !=0 %}
                         <div class="row">
                             <div class="col-sm-6 ml-auto border-bottom">Burden</div>
-                            <div class="col-sm-6 ml-auto border-bottom">{{ initiative_burden }}</div>
+                            <div class="col-sm-6 ml-auto border-bottom">{{ initiative_burden + variables.burden_penalty }}</div>
                         </div>
                         {% endif %}
                         <div class="row">
@@ -1116,6 +1154,9 @@
                         <div class="row">
                             <div class="col-sm-6 ml-auto text-title border-bottom">Initialtive Modifier</div>
                             <div class="col-sm-6 ml-auto text-title border-bottom">{{ initiative_final }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 card-info-label">All listed modifiers are included in the final score</div>
                         </div>
                     </div>
                 </div>
@@ -1127,590 +1168,257 @@
                     <div class="col-sm-12 card-title">Tools</div>
                     <div class="col-sm-12">
                         {# Display tools only if they exist #}
-                        {% if variables.tool_name_1 is not empty %}<div class="row content-spacing">{{ variables.tool_name_1 }}</div>{% endif %}
-                        {% if variables.tool_name_2 is not empty %}<div class="row content-spacing">{{ variables.tool_name_2 }}</div>{% endif %}
-                        {% if variables.tool_name_3 is not empty %}<div class="row content-spacing">{{ variables.tool_name_3 }}</div>{% endif %}
-                        {% if variables.tool_name_4 is not empty %}<div class="row content-spacing">{{ variables.tool_name_4 }}</div>{% endif %}
-                        {% if variables.tool_name_5 is not empty %}<div class="row content-spacing">{{ variables.tool_name_4 }}</div>{% endif %}
-                        {% if variables.tool_name_6 is not empty %}<div class="row content-spacing">{{ variables.tool_name_4 }}</div>{% endif %}
+                        {% if variables.tool_1 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_1 }}</div>{% endif %}
+                        {% if variables.tool_2 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_2 }}</div>{% endif %}
+                        {% if variables.tool_3 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_3 }}</div>{% endif %}
+                        {% if variables.tool_4 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_4 }}</div>{% endif %}
+                        {% if variables.tool_5 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_4 }}</div>{% endif %}
+                        {% if variables.tool_6 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_4 }}</div>{% endif %}
                         {# Penalty Warning Logic #}
                         {% if initiative_burden > 0 %}
                         <div class="row card-info-label content-spacing text-danger font-weight-bold">
-                            IM penalty applied (Carrying {{ initiative_burden +3 }} tools)
-                        </div>
-                        {% else %}
-                        <div class="row card-info-label content-spacing text-muted">
-                            IM penalty if carrying more than 3 tools
+                            IM penalty applied (Carrying {{ total_tools }} tools)
                         </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-6">
+                <div class="row card">
+                    <div class="col-sm-12 card-title">Small Objects</div>
+                    <div class="col-sm-6">
+                        {% if variables.memento is not empty %}<div class="row memento">{{ variables.memento }}</div>
+                        <div class="row card-info-label">memento</div>{% endif %}
+                        {% if variables.object_2 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_2 }}</div><div class="row card-info-label"></div>{% endif %}
+                        {% if variables.object_3 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_3 }}</div><div class="row card-info-label"></div>{% endif %}
+                        {% if variables.object_4 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_4 }}</div><div class="row card-info-label"></div>{% endif %}
+                        {% if variables.object_5 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_5 }}</div><div class="row card-info-label"></div>{% endif %}
+                    </div>
+                    <div class="col-sm-6">
+                        {% if variables.object_6 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_6 }}</div><div class="row card-info-label"></div>{% endif %}
+                        {% if variables.object_7 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_7 }}</div><div class="row card-info-label"></div>{% endif %}
+                        {% if variables.object_8 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_8 }}</div><div class="row card-info-label"></div>{% endif %}
+                        {% if variables.object_9 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_9 }}</div><div class="row card-info-label"></div>{% endif %}
+                        {% if variables.object_10 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_10 }}</div><div class="row card-info-label"></div>{% endif %}
+                    </div>
+                    <div class="col-sm-12 ">
+                        <div class="row card-info-label content-spacing">When you’re in a scene related to your Brush With Death, hold the Memento to ignore all Peril Condition Track penalties. <br>These benefits last until you escape or defeat the situation.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row card">
+                    <div class="col-sm-8 card-title">Supplies</div>
+                    <div class="col-sm-4 card-title">Rating</div>
+                    <div class="col-sm-12">
+                        {% if variables.supply_name_1 is not empty%}
+                        <div class="row">
+                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_1}}</div>
+                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_1}}</div>
+                        </div>
+                        {% endif %}
+                        {% if variables.supply_name_2 is not empty%}
+                        <div class="row">
+                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_2}}</div>
+                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_2}}</div>
+                        </div>
+                        {% endif %}
+                        {% if variables.supply_name_3 is not empty%}
+                        <div class="row">
+                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_3}}</div>
+                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_4}}</div>
+                        </div>
+                        {% endif %}
+                        {% if variables.supply_name_1 is not empty%}
+                        <div class="row">
+                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_5}}</div>
+                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_5}}</div>
+                        </div>
+                        {% endif %}
+                        {% if variables.supply_name_6 is not empty%}
+                        <div class="row">
+                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_6}}</div>
+                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_6}}</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="row card">
+                    <div class="col-sm-12 card-title">Titles and Deeds</div>
+                    <div class="col-sm-12"> {{ variables.property }}</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row card">
+                    <div class="col-sm-12 card-title">Extra Burden I Carry</div>
+                    <div class="col-sm-12"> {{ variables.burden }}</div>
+                    {% if variables.burden_penalty >0 %}
+                    <div class="col-sm-8 card-title">Burden Penalty</div>
+                    <div class="col-sm-4 card-title">{{ variables.burden_penalty }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="row card">
+                    <div class="col-sm-8 card-title">Silver</div>
+                    <div class="col-sm-4 card-title">{% if variables.silver|default %} {{ variables.silver }} {% else %}0{% endif %}</div>
+                    <div class="col-sm-12 card-info-label content-spacing">You can carry up to 1,000 SP. Additional coins must be stored inside a tool, such as a backpack.</div>
+                </div>
+            </div>
+        </div>
     <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
         <!-- TAB #3 temporary fun and order and chaos concept -->
     <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
      <!-- TAB #3 temporary fun and order and chaos concept -->
     <!-- TAB #3 Attributes, skills -->
     <!-- TAB #4 Traits, Talents and Gifts -->
-    <div class="tab content4">
-        <div class="row card mt-3">
+    <!--<div class="tab content4"> -->
+    <!-- <div class="row card mt-3"> -->
+        <div class="row">
             <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 card-title"><h3>Traits, Talents and Gifts</h3></div>
+                <div class="row card">
+                    <div class="col-sm-12 card-title">Talents</div>
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 border-bottom"><h5>Ancestral Talents</h5></div>
+                                {% if variables.profession_basic_ancestral_talent is not empty and variables.profession_basic_toggle_9 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2 "><strong>{{ variables.profession_basic_ancestral_talent|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_basic_ancestral_talent_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_intermediate_ancestral_talent is not empty and variables.profession_intermediate_toggle_9 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2 "><strong>{{ variables.profession_intermediate_ancestral_talent|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_intermediate_ancestral_talent_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_advanced_ancestral_talent is not empty and variables.profession_advanced_toggle_9 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2 "><strong>{{ variables.profession_advanced_ancestral_talent|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_advanced_ancestral_talent_desc }}</div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 border-bottom"><h5>Professional Talents</h5></div>
+                                {% if variables.profession_basic_profession_talent is not empty and variables.profession_basic_toggle_8 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_profession_talent|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_basic_profession_talent_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_intermediate_profession_talent is not empty and variables.profession_intermediate_toggle_8 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_profession_talent|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_intermediate_profession_talent_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_advanced_profession_talent is not empty and variables.profession_advanced_toggle_8 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_profession_talent|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_advanced_profession_talent_desc }}</div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 border-bottom"><h5>General Talents</h5></div>
+                                <!-- basic profiession -->
+                                {% if variables.profession_basic_talent_1 is not empty and variables.profession_basic_toggle_16 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_talent_1|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_basic_talent_1_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_basic_talent_2 is not empty and variables.profession_basic_toggle_17 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_talent_2|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_basic_talent_1_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_basic_talent_3 is not empty and variables.profession_basic_toggle_18 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_talent_3|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_basic_talent_3_desc }}</div>
+                                </div>
+                                {% endif %}
+                                <!-- intermediate profession -->
+                                {% if variables.profession_intermediate_talent_1 is not empty and variables.profession_intermediate_toggle_16 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_talent_1|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_intermediate_talent_1_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_intermediate_talent_2 is not empty and variables.profession_intermediate_toggle_17 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_talent_2|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_intermediate_talent_1_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_intermediate_talent_3 is not empty and variables.profession_intermediate_toggle_18 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_talent_3|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_intermediate_talent_3_desc }}</div>
+                                </div>
+                                {% endif %}
+                                <!-- advanced profession -->
+                                {% if variables.profession_advanced_talent_1 is not empty and variables.profession_advanced_toggle_16 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_talent_1|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_advanced_talent_1_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_advanced_talent_2 is not empty and variables.profession_advanced_toggle_17 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_talent_2|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_advanced_talent_1_desc }}</div>
+                                </div>
+                                {% endif %}
+                                {% if variables.profession_advanced_talent_3 is not empty and variables.profession_advanced_toggle_18 == true %}
+                                <div class="row">
+                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_talent_3|title}}</strong></div>
+                                    <div class="col-sm-10">{{ variables.profession_advanced_talent_3_desc }}</div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-12 card-info-label">Keyowrds: Salt of the Earth, Instincts, Liquid Poise</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="row card-content">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-12 border-bottom"><h5>Traits</h5></div>
-                        </div>
-                        {% if variables.trait_name_1 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2 "><strong>{{ variables.trait_name_1|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_1}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_2 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_2|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_2}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_3 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_3|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_3}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_4 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_4|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_4}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_5 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_5|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_5}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_6 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_6|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_6}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_7 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_7|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_7}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_8 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_8|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_8}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_9 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_9|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_9}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.trait_name_10 != "" %}
-                        <div class="row">
-                            <div class="col-sm-2"><strong>{{ variables.trait_name_10|title}}</strong></div>
-                            <div class="col-sm-10">{{ variables.trait_description_10}}</div>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-12 border-bottom"><h5>Talents</h5></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 ">
-                                {% if variables.talent_name_1 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_1|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_1}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_2 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_2|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_2}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_3 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_3|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_3}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_4 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_4|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_4}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_5 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_5|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_5}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_6 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_6|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_6}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_7 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_7|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_7}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_8 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_8|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_8}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_9 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.talent_name_9|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_9}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.talent_name_10 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.talent_name_10|title}}</div>
-                                    <div class="col-sm-10">{{ variables.talent_desc_10}}</div>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-12 border-bottom"><h5>Daemonic Gifts</h5></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                {% if variables.daemonic_gift_name_1 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.daemonic_gift_name_1|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.daemonic_gift_desc_1}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.daemonic_gift_name_2 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.daemonic_gift_name_2|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.daemonic_gift_desc_2}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.daemonic_gift_name_3 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.daemonic_gift_name_3|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.daemonic_gift_desc_3}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.daemonic_gift_name_4 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.daemonic_gift_name_4|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.daemonic_gift_desc_4}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.daemonic_gift_name_5 != "" %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.daemonic_gift_name_5|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.daemonic_gift_desc_5}}</div>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
         </div>
-    </div>
     <!-- TAB #5 Combat Profile -->
     <!--Trappings -->
-    <div class="tab content6">
-        <div class="row card mt-3">
-            <div class="col-sm-12">
-                <div class="row card-title">
-                    <div class="col-sm-12"><h3>Trappings and Wealth</h3></div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-1 text-right"><strong>GC</strong></div>
-                    <div class="col-sm-1 border-strong btext">{%if variables.wealth_gc == 0 %}0{% else %}{{ variables.wealth_gc}}{% endif %}</div>
-                    <div class="col-sm-1 text-right"><strong>SS</strong></div>
-                    <div class="col-sm-1 border-strong btext">{% if variables.wealth_ss == 0 %}0{% else %}{{ variables.wealth_ss}}{% endif %}</div>
-                    <div class="col-sm-1 text-right"><strong>BP</strong></div>
-                    <div class="col-sm-1 border-strong btext">{% if variables.wealth_bp == 0 %}0{% else %}{{ variables.wealth_bp}}{% endif %}</div>
-                    <div class="col-sm-1 text-right"><strong>Enc.</strong></div>
-                    <div class="col-sm-1 border-strong btext">{{ wealth_enc}}</div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex border-bottom"><h5>Trappings on Self</h5></div>
-                                    <div class="col-sm-1 d-flex"><h5>Qty.</h5></div>
-                                    <div class="col-sm-1 d-flex"><h5>Enc.</h5></div>
-                                </div>
-                                {% if variables.trappings_name_1 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_1}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_1}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_1}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_2 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_2}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_2}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_2}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_3 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_3}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_3}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_3}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_4 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_4}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_4}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_4}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_5 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_5}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_5}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_5}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_6 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_6}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_6}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_6}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_7 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_7}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_7}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_7}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_8 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_8}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_8}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_8}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_9 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_9}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_9}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_9}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_10 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_10}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_10}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_10}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_11 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_11}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_11}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_11}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_12 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_12}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_12}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_12}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_13 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_13}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_13}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_13}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_14 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_14}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_14}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_14}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_15 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_15}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_15}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_15}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_16 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_16}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_16}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_16}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_17 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_17}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_17}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_17}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_18 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_18}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_18}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_18}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_19 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_19}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_19}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_19}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_20 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_20}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_20}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_20}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_name_21 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.trappings_name_21}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_qty_21}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_enc_21}}</div>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex border-bottom"><h5>Trappings on Steed or Vehicle</h5></div>
-                                    <div class="col-sm-1 d-flex"><h5>Enc.</h5></div>
-                                </div>
-                                {% if variables.trappings_vehicle_name_1 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_1}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_1}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_2 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_2}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_2}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_3 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_3}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_3}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_4 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_4}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_4}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_5 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_5}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_5}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_6 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_6}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_6}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_7 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_7}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_7}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_8 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_8}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_8}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_9 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_9}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_9}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.trappings_vehicle_name_10 is not empty %}
-                                <div class="row">
-                                    <div class="col-sm-11 d-flex">{{ variables.trappings_vehicle_name_10}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.trappings_vehicle_enc_10}}</div>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex border-bottom"><h5>Reagent</h5></div>
-                                    <div class="col-sm-1 d-flex"><h5>Qty.</h5></div>
-                                    <div class="col-sm-1 d-flex"><h5>Enc.</h5></div>
-                                </div>
-                                {% if variables.reagent_name_1 is defined %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.reagent_name_1}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_1}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_1}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_2 is defined %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.reagent_name_2}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_2}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_2}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_3 is defined %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.reagent_name_3}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_3}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_3}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_4 is defined %}
-                                <div class="row">
-                                    <div class="col-sm-10 d-flex">{{ variables.reagent_name_4}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_4}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_4}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_5 is defined %}
-                                <div class="row">
-                                    <div class="col-md-10 d-flex">{{ variables.reagent_name_5}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_5}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_5}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_6 is defined %}
-                                <div class="row">
-                                    <div class="col-md-10 d-flex">{{ variables.reagent_name_6}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_6}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_6}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_7 is defined %}
-                                <div class="row">
-                                    <div class="col-md-10 d-flex">{{ variables.reagent_name_7}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_7}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_7}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_8 is defined %}
-                                <div class="row">
-                                    <div class="col-md-10 d-flex">{{ variables.reagent_name_8}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_8}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_8}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_9 is defined %}
-                                <div class="row">
-                                    <div class="col-md-10 d-flex">{{ variables.reagent_name_9}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_9}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_9}}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.reagent_name_10 is defined %}
-                                <div class="row">
-                                    <div class="col-md-10 d-flex">{{ variables.reagent_name_10}} </div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_qty_10}}</div>
-                                    <div class="col-sm-1 d-flex">{{ variables.reagent_enc_10}}</div>
-                                </div>
-                                {% endif %} 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 border-bottom"><h5><strong>Property</strong></h5></div>
-                    <div class="col-sm-12">{{ variables.wealth_property|nl2br}}</div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Magic Profile -->
     <div class="tab content7">
         <div class="row card mt-3">
             <div class="col-sm-12">
                 <div class="row card-title">
-                    <div class="col-sm-12"><h3>Magic and Rituals</h3></div>
+                    <div class="col-sm-12">Magic and Rituals</div>
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-4">
-                        Cast Magic (Incantation):&nbsp;<strong>{{ skill_willpower_incantation_value}}</strong>
+                        Cast Magic (Occultism):&nbsp;<strong>{{ skill_occultism_total }}</strong>
                     </div>
                     <div class="col-sm-4">
                         Intelligence Bonus [IB]:&nbsp;<strong>{{ attribute_intelligence_bonus_final}}</strong>
                     </div>
                     <div class="col-sm-4">
                         Willpower Bonus [WB]&nbsp;<strong>{{ attribute_willpower_bonus_final}}</strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        {% if variables.magic_source_type != "arcane" %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}&nbsp;Arcane
-                    </div>
-                    <div class="col-sm-4">
-                        {% if variables.magic_source_type != "covenant" %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}&nbsp;Covenant
-                    </div>
-                    <div class="col=sm-4">
-                        {% if variables.magic_source_type != "divine" %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}&nbsp;Divine
                     </div>
                 </div>
             </div>
@@ -1735,7 +1443,7 @@
                                     <div class="col-sm-6">{{ variables.magic_effect_1}}</div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
+                                    <div class="col-sm-2 card-info-label">Material</div>
                                     <div class="col-sm-2 card-info-label">Distance</div>
                                     <div class="col-sm-2 card-info-label">Duration</div>
                                     <div class="col-sm-6 card-info-label">Effect</div>
@@ -2667,7 +2375,7 @@
                                 <strong>Basic</strong>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <strong>100 RP</strong>
+                                <strong>10 RP</strong>
                             </div>
                         </div>
                         <div class="row">
