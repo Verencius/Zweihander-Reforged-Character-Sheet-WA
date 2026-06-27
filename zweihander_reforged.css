@@ -80,6 +80,12 @@
     color: #858585;
     font-size: 0.8em;
     padding-bottom: 6px;}
+ .card-info-leader {
+   text-transform: uppercase;
+   border-bottom: 1px solid #858585;
+   color: #858585;
+   font-size: 1.2em;
+   padding-top: 6px; }
  .card i.fa-square-full {
     margin: 0 2px;}
  .content-spacing {
@@ -212,3 +218,6 @@
     transform: scale(1.5);
     cursor: pointer;
     text-align: center;}
+.memento {
+   border: 1px solid #e6e6df!important;
+   background-color: indianred;}

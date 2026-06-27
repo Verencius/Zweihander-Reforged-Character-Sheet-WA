@@ -40,8 +40,8 @@ fields:
     label: "personal weight"
     input: string
 
-  personal build input:
-    label: "personal build input"
+  personal build:
+    label: "personal build"
     input: string
 
   personal complexion:
@@ -76,6 +76,10 @@ fields:
     label: "personal patron deity"
     input: string
   
+  personal death:
+    label: "personal death"
+    input: string
+  
   personal language:
     label: "personal language"
     input: string
@@ -91,22 +95,28 @@ fields:
   alignment corruption:
     label: "alignment corruption"
     input: integer
+    min: 0
+    max: 9
 
   alignment permanent corruption:
     label: "alignment permanent corruption"
     input: integer
+    min: 0
+    max: 9
 
-  reward total points:
-    label: "reward total points"
+  reward points:
+    label: "reward points"
     input: integer
+    min: 0
 
-  reward reputation points:
-    label: "reward reputation points"
+  reputation:
+    label: "reward reputation"
     input: integer
+    min: 0
 
-  reward current points:
-    label: "reward current points"
-    input: integer
+  reputation text:
+    label: "reward reputation text"
+    input: text
 
   injury name 1:
     label: "injury name 1"
@@ -116,86 +126,83 @@ fields:
     label: "injury description 1"
     input: text
 
-
   injury name 2:
     label: "injury name 2"
     input: string
-
 
   injury description 2:
     label: "injury description 2"
     input: text
 
-
   injury name 3:
     label: "injury name 3"
     input: string
-
 
   injury description 3:
     label: "injury description 3"
     input: text
 
-
   injury name 4:
     label: "injury name 4"
     input: string
-
 
   injury description 4:
     label: "injury description 4"
     input: text
 
-
   injury name 5:
     label: "injury name 5"
     input: string
-
 
   injury description 5:
     label: "injury description 5"
     input: text
 
-
   Malignancies and Scars:
     label: "Malignancies and Scars"
     input: text
 
-
   attribute brawn:
     label: "attribute brawn"
     input: integer
-
+    min: 0
+    max: 100
 
   attribute agility:
     label: "attribute agility"
     input: integer
-
+    min: 0
+    max: 100
 
   attribute perception:
     label: "attribute perception"
     input: integer
-
+    min: 0
+    max: 100
 
   attribute intelligence:
     label: "attribute intelligence"
     input: integer
-
+    min: 0
+    max: 100
 
   attribute willpower:
     label: "attribute willpower"
     input: integer
-
+    min: 0
+    max: 100
 
   attribute fellowship:
     label: "attribute fellowship"
     input: integer
-
+    min: 0
+    max: 100
 
   attribute combat:
     label: "attribute combat"
     input: integer
-
+    min: 0
+    max: 100
 
   daemonic gift 1:
     label: "daemonic gift 1"
@@ -253,10 +260,14 @@ fields:
   armor dth:
     label: "armor dth"
     input: integer
+    min: 0
+    max: 10
 
   armor bb:
     label: "armor bb"
     input: integer
+    min: 0
+    max: 10
 
   armor qualities:
     label: "armor qualities"
@@ -270,9 +281,9 @@ fields:
     label: "weapon name 1"
     input: string
 
-  weapon ammo 1:
-    label: "weapon ammo 1"
-    input: integer
+  weapon load 1:
+    label: "weapon load 1"
+    input: string
 
   weapon distance 1:
     label: "weapon distance 1"
@@ -294,9 +305,9 @@ fields:
     label: "weapon name 2"
     input: string
 
-  weapon ammo 2:
-    label: "weapon ammo 2"
-    input: integer
+  weapon load 2:
+    label: "weapon load 2"
+    input: string
 
   weapon distance 2:
     label: "weapon distance 2"
@@ -318,9 +329,9 @@ fields:
     label: "weapon name 3"
     input: string
 
-  weapon ammo 3:
-    label: "weapon ammo 3"
-    input: integer
+  weapon load 3:
+    label: "weapon load 3"
+    input: string
 
   weapon distance 3:
     label: "weapon distance 3"
@@ -342,9 +353,9 @@ fields:
     label: "weapon name 4"
     input: string
 
-  weapon ammo 4:
-    label: "weapon ammo 4"
-    input: integer
+  weapon load 4:
+    label: "weapon load 4"
+    input: string
 
   weapon distance 4:
     label: "weapon distance 4"
@@ -362,178 +373,157 @@ fields:
     label: "weapon active 4"
     input: "checkbox"
 
-  supplies tool name 1:
-    label: "supplies tool name 1"
+  tool 1:
+    label: "tool name 1"
     input: string
 
-  supplies name 1:
-    label: "supplies name 1"
+  tool 2:
+    label: "tool name 2"
     input: string
 
-  supplies rating 1:
-    label: "supplies rating 1"
+  tool 3:
+    label: "tool name 3"
+    input: string
+
+  tool 4:
+    label: "tool name 4"
+    input: string
+
+  tool 5:
+    label: "tool name 5"
+    input: string
+
+  tool 6:
+    label: "tool name 6"
+    input: string
+
+  supply name 1:
+    label: "supply name 1"
+    input: string
+
+  supply rating 1:
+    label: "supply rating 1"
     input: integer
+    min: 0
 
-
-  supplies name 2:
-    label: "supplies name 2"
+  supply name 2:
+    label: "supply name 2"
     input: string
 
-
-  supplies tool name 2:
-    label: "supplies tool name 2"
-    input: string
-
-
-  supplies rating 2:
-    label: "supplies rating 2"
+  supply rating 2:
+    label: "supply rating 2"
     input: integer
+    min: 0
 
-
-  supplies name 3:
-    label: "supplies name 3"
+  supply name 3:
+    label: "supply name 3"
     input: string
 
-
-  supplies tool name 3:
-    label: "supplies tool name 3"
-    input: string
-
-
-  supplies rating 3:
-    label: "supplies rating 3"
+  supply rating 3:
+    label: "supply rating 3"
     input: integer
+    min: 0
 
-
-  supplies name 4:
-    label: "supplies name 4"
+  supply name 4:
+    label: "supply name 4"
     input: string
 
-
-  supplies rating 4:
-    label: "supplies rating 4"
+  supply rating 4:
+    label: "supply rating 4"
     input: integer
+    min: 0
 
-
-  supplies name 5:
-    label: "supplies name 5"
+  supply name 5:
+    label: "supply name 5"
     input: string
 
-
-  supplies rating 5:
-    label: "supplies rating 5"
+  supply rating 5:
+    label: "supply rating 5"
     input: integer
+    min: 0
 
-
-  supplies name 6:
-    label: "supplies name 6"
+  supply name 6:
+    label: "supply name 6"
     input: string
 
-
-  supplies tool name 5:
-    label: "supplies tool name 5"
-    input: string
-
-
-  supplies rating 6:
-    label: "supplies rating 6"
+  supply rating 6:
+    label: "supply rating 6"
     input: integer
+    min: 0
 
-
-  supplies tool name 6:
-    label: "supplies tool name 6"
+  memento:
+    label: "memento"
     input: string
 
-
-  supplies tool name 4:
-    label: "supplies tool name 4"
+  object 2:
+    label: "object 2"
     input: string
 
-
-  small object memento:
-    label: "small object memento"
+  object 3:
+    label: "object 3"
     input: string
 
-
-  small object 2:
-    label: "small object 2"
+  object 4:
+    label: "object 4"
     input: string
 
-
-  small object 3:
-    label: "small object 3"
+  object 5:
+    label: "object 5"
     input: string
 
-
-  small object 4:
-    label: "small object 4"
+  object 6:
+    label: "object 6"
     input: string
 
-
-  small object 5:
-    label: "small object 5"
+  object 7:
+    label: "object 7"
     input: string
 
-
-  small object 6:
-    label: "small object 6"
+  object 8:
+    label: "object 8"
     input: string
 
-
-  small object 7:
-    label: "small object 7"
+  object 9:
+    label: "object 9"
     input: string
 
-
-  small object 8:
-    label: "small object 8"
+  object 10:
+    label: "object 10"
     input: string
 
-
-  small object 9:
-    label: "small object 9"
-    input: string
-
-
-  small object 10:
-    label: "small object 10"
-    input: string
-
-
-  wealth property:
-    label: "wealth property"
+  property:
+    label: "property"
     input: text
 
-
-  wealth trinkets:
-    label: "wealth trinkets"
-    input: string
-
-
-  Wealth silver:
-    label: "Wealth silver"
+  silver:
+    label: "silver"
     input: integer
+    min: 0
+  
+  burden:
+    label: "Burden"
+    input: text
 
+  burden.penalty:
+    label: "Burden Penalty"
+    input: integer
+    min: 0
 
   magic name 1:
     label: "magic name 1"
     input: string
 
-
   magic material 1:
     label: "magic material 1"
     input: string
-
 
   magic crit fail 1:
     label: "magic crit fail 1"
     input: text
 
-
   magic principle 1:
     label: "magic principle 1"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -544,21 +534,17 @@ fields:
     label: "magic name 2"
     input: string
 
-
   magic material 2:
     label: "magic material 2"
     input: string
-
 
   magic crit fail 2:
     label: "magic crit fail 2"
     input: text
 
-
   magic principle 2:
     label: "magic principle 2"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -569,21 +555,17 @@ fields:
     label: "magic name 3"
     input: string
 
-
   magic material 3:
     label: "magic material 3"
     input: string
-
 
   magic crit fail 3:
     label: "magic crit fail 3"
     input: text
 
-
   magic principle 3:
     label: "magic principle 3"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -594,21 +576,17 @@ fields:
     label: "magic name 4"
     input: string
 
-
   magic material 4:
     label: "magic material 4"
     input: string
-
 
   magic crit fail 4:
     label: "magic crit fail 4"
     input: text
 
-
   magic principle 4:
     label: "magic principle 4"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -619,21 +597,17 @@ fields:
     label: "magic name 5"
     input: string
 
-
   magic material 5:
     label: "magic material 5"
     input: string
-
 
   magic crit fail 5:
     label: "magic crit fail 5"
     input: text
 
-
   magic principle 5:
     label: "magic principle 5"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -644,21 +618,17 @@ fields:
     label: "magic name 6"
     input: string
 
-
   magic material 6:
     label: "magic material 6"
     input: string
-
 
   magic crit fail 6:
     label: "magic crit fail 6"
     input: text
 
-
   magic principle 6:
     label: "magic principle 6"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -669,21 +639,17 @@ fields:
     label: "magic name 7"
     input: string
 
-
   magic material 7:
     label: "magic material 7"
     input: string
-
 
   magic crit fail 7:
     label: "magic crit fail 7"
     input: text
 
-
   magic principle 7:
     label: "magic principle 7"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -694,21 +660,17 @@ fields:
     label: "magic name 8"
     input: string
 
-
   magic material 8:
     label: "magic material 8"
     input: string
-
 
   magic crit fail 8:
     label: "magic crit fail 8"
     input: text
 
-
   magic principle 8:
     label: "magic principle 8"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -719,21 +681,17 @@ fields:
     label: "magic name 9"
     input: string
 
-
   magic material 9:
     label: "magic material 9"
     input: string
-
 
   magic crit fail 9:
     label: "magic crit fail 9"
     input: text
 
-
   magic principle 9:
     label: "magic principle 9"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -744,21 +702,17 @@ fields:
     label: "magic name 10"
     input: string
 
-
   magic material 10:
     label: "magic material 10"
     input: string
-
 
   magic crit fail 10:
     label: "magic crit fail 10"
     input: text
 
-
   magic principle 10:
     label: "magic principle 10"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -769,16 +723,13 @@ fields:
     label: "magic name 11"
     input: string
 
-
   magic crit fail 11:
     label: "magic crit fail 11"
     input: text
 
-
   magic principle 11:
     label: "magic principle 11"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -789,21 +740,17 @@ fields:
     label: "magic material 11"
     input: string
 
-
   magic name 12:
     label: "magic name 12"
     input: string
-
 
   magic crit fail 12:
     label: "magic crit fail 12"
     input: text
 
-
   magic principle 12:
     label: "magic principle 12"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -814,21 +761,17 @@ fields:
     label: "magic material 12"
     input: string  
 
-
   magic name 13:
     label: "magic name 13"
     input: string
-
 
   magic crit fail 13:
     label: "magic crit fail 13"
     input: text
 
-
   magic principle 13:
     label: "magic principle 13"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -839,21 +782,17 @@ fields:
     label: "magic material 13"
     input: string
 
-
   magic name 14:
     label: "magic name 14"
     input: string
-
 
   magic crit fail 14:
     label: "magic crit fail 14"
     input: text
 
-
   magic principle 14:
     label: "magic principle 14"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -864,21 +803,17 @@ fields:
     label: "magic material 14"
     input: string
 
-
   magic name 15:
     label: "magic name 15"
     input: string
-
 
   magic crit fail 15:
     label: "magic crit fail 15"
     input: text
 
-
   magic principle 15:
     label: "magic principle 15"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -889,21 +824,17 @@ fields:
     label: "magic material 15"
     input: string
 
-
   magic name 16:
     label: "magic name 16"
     input: string
-
 
   magic crit fail 16:
     label: "magic crit fail 16"
     input: text
 
-
   magic principle 16:
     label: "magic principle 16"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -914,21 +845,17 @@ fields:
     label: "magic material 16"
     input: string
 
-
   magic name 17:
     label: "magic name 17"
     input: string
-
 
   magic crit fail 17:
     label: "magic crit fail 17"
     input: text
 
-
   magic principle 17:
     label: "magic principle 17"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -939,21 +866,17 @@ fields:
     label: "magic material 17"
     input: string
 
-
   magic name 18:
     label: "magic name 18"
     input: string
-
 
   magic crit fail 18:
     label: "magic crit fail 18"
     input: text
 
-
   magic principle 18:
     label: "magic principle 18"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -964,21 +887,17 @@ fields:
     label: "magic material 18"
     input: string
 
-
   magic name 19:
     label: "magic name 19"
     input: string
-
 
   magic crit fail 19:
     label: "magic crit fail 19"
     input: text
 
-
   magic principle 19:
     label: "magic principle 19"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -989,21 +908,17 @@ fields:
     label: "magic material 19"
     input: string
 
-
   magic name 20:
     label: "magic name 20"
     input: string
-
 
   magic crit fail 20:
     label: "magic crit fail 20"
     input: text
 
-
   magic principle 20:
     label: "magic principle 20"
     input: select
-
     options:
       None: None
       Petty: Petty Spell
@@ -1014,11 +929,9 @@ fields:
     label: "magic material 20"
     input: string
 
-
   magic distance 1:
     label: "magic distance 1"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1028,7 +941,6 @@ fields:
   magic distance 2:
     label: "magic distance 2"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1058,7 +970,6 @@ fields:
   magic distance 5:
     label: "magic distance 5"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1078,7 +989,6 @@ fields:
   magic distance 7:
     label: "magic distance 7"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1088,7 +998,6 @@ fields:
   magic distance 8:
     label: "magic distance 8"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1098,7 +1007,6 @@ fields:
   magic distance 9:
     label: "magic distance 9"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1108,7 +1016,6 @@ fields:
   magic distance 10:
     label: "magic distance 10"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1118,7 +1025,6 @@ fields:
   magic distance 11:
     label: "magic distance 11"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1128,7 +1034,6 @@ fields:
   magic distance 12:
     label: "magic distance 12"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1138,7 +1043,6 @@ fields:
   magic distance 13:
     label: "magic distance 13"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1148,7 +1052,6 @@ fields:
   magic distance 14:
     label: "magic distance 14"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1158,7 +1061,6 @@ fields:
   magic distance 15:
     label: "magic distance 15"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1168,7 +1070,6 @@ fields:
   magic distance 16:
     label: "magic distance 16"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1178,7 +1079,6 @@ fields:
   magic distance 17:
     label: "magic distance 17"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1188,7 +1088,6 @@ fields:
   magic distance 18:
     label: "magic distance 18"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1198,7 +1097,6 @@ fields:
   magic distance 19:
     label: "magic distance 19"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1208,7 +1106,6 @@ fields:
   magic distance 20:
     label: "magic distance 20"
     input: select
-
     options:
       Self: Self
       Close: Close
@@ -1218,7 +1115,6 @@ fields:
   magic duration 1:
     label: "magic duration 1"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1228,7 +1124,6 @@ fields:
   magic duration 2:
     label: "magic duration 2"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1238,7 +1133,6 @@ fields:
   magic duration 3:
     label: "magic duration 3"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1248,7 +1142,6 @@ fields:
   magic duration 4:
     label: "magic duration 4"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1258,7 +1151,6 @@ fields:
   magic duration 5:
     label: "magic duration 5"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1268,7 +1160,6 @@ fields:
   magic duration 6:
     label: "magic duration 6"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1278,7 +1169,6 @@ fields:
   magic duration 7:
     label: "magic duration 7"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1288,7 +1178,6 @@ fields:
   magic duration 8:
     label: "magic duration 8"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1298,7 +1187,6 @@ fields:
   magic duration 9:
     label: "magic duration 9"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1308,7 +1196,6 @@ fields:
   magic duration 10:
     label: "magic duration 10"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1318,7 +1205,6 @@ fields:
   magic duration 11:
     label: "magic duration 11"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1328,7 +1214,6 @@ fields:
   magic duration 12:
     label: "magic duration 12"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1338,7 +1223,6 @@ fields:
   magic duration 13:
     label: "magic duration 13"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1348,7 +1232,6 @@ fields:
   magic duration 14:
     label: "magic duration 14"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1358,7 +1241,6 @@ fields:
   magic duration 15:
     label: "magic duration 15"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1368,7 +1250,6 @@ fields:
   magic duration 16:
     label: "magic duration 16"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1378,7 +1259,6 @@ fields:
   magic duration 17:
     label: "magic duration 17"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1388,7 +1268,6 @@ fields:
   magic duration 18:
     label: "magic duration 18"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1398,7 +1277,6 @@ fields:
   magic duration 19:
     label: "magic duration 19"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1408,7 +1286,6 @@ fields:
   magic duration 20:
     label: "magic duration 20"
     input: select
-
     options:
       Focus: Focus
       Instant: Instantaneous
@@ -1419,283 +1296,228 @@ fields:
     label: "magic effect 1"
     input: text
 
-
   magic effect 2:
     label: "magic effect 2"
     input: text
-
 
   magic effect 3:
     label: "magic effect 3"
     input: text
 
-
   magic effect 4:
     label: "magic effect 4"
     input: text
-
 
   magic effect 5:
     label: "magic effect 5"
     input: text
 
-
   magic effect 6:
     label: "magic effect 6"
     input: text
-
-
-  magic effect 8:
-    label: "magic effect 8"
-    input: text
-
-
-  magic effect 9:
-    label: "magic effect 9"
-    input: text
-
-
-  magic effect 10:
-    label: "magic effect 10"
-    input: text
-
-
-  magic effect 11:
-    label: "magic effect 11"
-    input: text
-
-
-  magic effect 12:
-    label: "magic effect 12"
-    input: text
-
-
-  magic effect 13:
-    label: "magic effect 13"
-    input: text
-
-
-  magic effect 14:
-    label: "magic effect 14"
-    input: text
-
-
-  magic effect 15:
-    label: "magic effect 15"
-    input: text
-
-
-  magic effect 16:
-    label: "magic effect 16"
-    input: text
-
-
-  magic effect 17:
-    label: "magic effect 17"
-    input: text
-
-
-  magic effect 18:
-    label: "magic effect 18"
-    input: text
-
-
-  magic effect 19:
-    label: "magic effect 19"
-    input: text
-
-
-  magic effect 20:
-    label: "magic effect 20"
-    input: text
-
-
-  magic crit success 1:
-    label: "magic crit success 1"
-    input: text
-
-
-  magic crit success 2:
-    label: "magic crit success 2"
-    input: text
-
-
-  magic crit success 3:
-    label: "magic crit success 3"
-    input: text
-
-
-  magic crit success 4:
-    label: "magic crit success 4"
-    input: text
-
-
-  magic crit success 5:
-    label: "magic crit success 5"
-    input: text
-
-
-  magic crit success 6:
-    label: "magic crit success 6"
-    input: text
-
-
-  magic crit success 7:
-    label: "magic crit success 7"
-    input: text
-
-
-  magic crit success 8:
-    label: "magic crit success 8"
-    input: text
-
-
-  magic crit success 9:
-    label: "magic crit success 9"
-    input: text
-
-
-  magic crit success 10:
-    label: "magic crit success 10"
-    input: text
-
-
-  magic crit success 11:
-    label: "magic crit success 11"
-    input: text
-
-
-  magic crit success 12:
-    label: "magic crit success 12"
-    input: text
-
-
-  magic crit success 13:
-    label: "magic crit success 13"
-    input: text
-
-
-  magic crit success 14:
-    label: "magic crit success 14"
-    input: text
-
-
-  magic crit success 15:
-    label: "magic crit success 15"
-    input: text
-
-
-  magic crit success 16:
-    label: "magic crit success 16"
-    input: text
-
-
-  magic crit success 17:
-    label: "magic crit success 17"
-    input: text
-
-
-  magic crit success 18:
-    label: "magic crit success 18"
-    input: text
-
-
-  magic crit success 19:
-    label: "magic crit success 19"
-    input: text
-
-
-  magic crit success 20:
-    label: "magic crit success 20"
-    input: text
-
 
   magic effect 7:
     label: "magic effect 7"
     input: text
 
+  magic effect 8:
+    label: "magic effect 8"
+    input: text
+
+  magic effect 9:
+    label: "magic effect 9"
+    input: text
+
+  magic effect 10:
+    label: "magic effect 10"
+    input: text
+
+  magic effect 11:
+    label: "magic effect 11"
+    input: text
+
+  magic effect 12:
+    label: "magic effect 12"
+    input: text
+
+  magic effect 13:
+    label: "magic effect 13"
+    input: text
+
+  magic effect 14:
+    label: "magic effect 14"
+    input: text
+
+  magic effect 15:
+    label: "magic effect 15"
+    input: text
+
+  magic effect 16:
+    label: "magic effect 16"
+    input: text
+
+  magic effect 17:
+    label: "magic effect 17"
+    input: text
+
+  magic effect 18:
+    label: "magic effect 18"
+    input: text
+
+  magic effect 19:
+    label: "magic effect 19"
+    input: text
+
+  magic effect 20:
+    label: "magic effect 20"
+    input: text
+
+  magic crit success 1:
+    label: "magic crit success 1"
+    input: text
+
+  magic crit success 2:
+    label: "magic crit success 2"
+    input: text
+
+  magic crit success 3:
+    label: "magic crit success 3"
+    input: text
+
+  magic crit success 4:
+    label: "magic crit success 4"
+    input: text
+
+  magic crit success 5:
+    label: "magic crit success 5"
+    input: text
+
+  magic crit success 6:
+    label: "magic crit success 6"
+    input: text
+
+  magic crit success 7:
+    label: "magic crit success 7"
+    input: text
+
+  magic crit success 8:
+    label: "magic crit success 8"
+    input: text
+
+  magic crit success 9:
+    label: "magic crit success 9"
+    input: text
+
+  magic crit success 10:
+    label: "magic crit success 10"
+    input: text
+
+  magic crit success 11:
+    label: "magic crit success 11"
+    input: text
+
+  magic crit success 12:
+    label: "magic crit success 12"
+    input: text
+
+  magic crit success 13:
+    label: "magic crit success 13"
+    input: text
+
+  magic crit success 14:
+    label: "magic crit success 14"
+    input: text
+
+  magic crit success 15:
+    label: "magic crit success 15"
+    input: text
+
+  magic crit success 16:
+    label: "magic crit success 16"
+    input: text
+
+  magic crit success 17:
+    label: "magic crit success 17"
+    input: text
+
+  magic crit success 18:
+    label: "magic crit success 18"
+    input: text
+
+  magic crit success 19:
+    label: "magic crit success 19"
+    input: text
+
+  magic crit success 20:
+    label: "magic crit success 20"
+    input: text
 
   magic wellspring 1:
     label: "magic wellspring 1"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
       Divine Magic: Divine Magic
       Chaos Magic: Chaos Magic
-
 
   magic wellspring 2:
     label: "magic wellspring 2"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
       Divine Magic: Divine Magic
       Chaos Magic: Chaos Magic
-
 
   magic wellspring 3:
     label: "magic wellspring 3"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
       Divine Magic: Divine Magic
       Chaos Magic: Chaos Magic
-
 
   magic wellspring 4:
     label: "magic wellspring 4"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
       Divine Magic: Divine Magic
       Chaos Magic: Chaos Magic
-
 
   magic wellspring 5:
     label: "magic wellspring 5"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
       Divine Magic: Divine Magic
       Chaos Magic: Chaos Magic
-
 
   magic wellspring 6:
     label: "magic wellspring 6"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
       Divine Magic: Divine Magic
       Chaos Magic: Chaos Magic
-
 
   magic wellspring 7:
     label: "magic wellspring 7"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
       Divine Magic: Divine Magic
       Chaos Magic: Chaos Magic
 
-
   magic wellspring 8:
     label: "magic wellspring 8"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
@@ -1705,7 +1527,6 @@ fields:
   magic wellspring 9:
     label: "magic wellspring 9"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
@@ -1715,7 +1536,6 @@ fields:
   magic wellspring 10:
     label: "magic wellspring 10"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
@@ -1725,7 +1545,6 @@ fields:
   magic wellspring 11:
     label: "magic wellspring 11"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
@@ -1735,7 +1554,6 @@ fields:
   magic wellspring 12:
     label: "magic wellspring 12"
     input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
@@ -1745,67 +1563,6 @@ fields:
   magic wellspring 13:
     label: "magic wellspring 13"
     input: select
-
-    options:
-      Folk Magic: Folk Magic
-      Arcane Magic: Arcane Magic
-      Divine Magic: Divine Magic
-      Chaos Magic: Chaos Magic
-
-  magic wellspring 15:
-    label: "magic wellspring 15"
-    input: select
-
-    options:
-      Folk Magic: Folk Magic
-      Arcane Magic: Arcane Magic
-      Divine Magic: Divine Magic
-      Chaos Magic: Chaos Magic
-
-  magic wellspring 16:
-    label: "magic wellspring 16"
-    input: select
-
-    options:
-      Folk Magic: Folk Magic
-      Arcane Magic: Arcane Magic
-      Divine Magic: Divine Magic
-      Chaos Magic: Chaos Magic
-
-  magic wellspring 17:
-    label: "magic wellspring 17"
-    input: select
-
-    options:
-      Folk Magic: Folk Magic
-      Arcane Magic: Arcane Magic
-      Divine Magic: Divine Magic
-      Chaos Magic: Chaos Magic
-
-  magic wellspring 18:
-    label: "magic wellspring 18"
-    input: select
-
-    options:
-      Folk Magic: Folk Magic
-      Arcane Magic: Arcane Magic
-      Divine Magic: Divine Magic
-      Chaos Magic: Chaos Magic
-
-  magic wellspring 19:
-    label: "magic wellspring 19"
-    input: select
-
-    options:
-      Folk Magic: Folk Magic
-      Arcane Magic: Arcane Magic
-      Divine Magic: Divine Magic
-      Chaos Magic: Chaos Magic
-
-  magic wellspring 20:
-    label: "magic wellspring 20"
-    input: select
-
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
@@ -1815,7 +1572,60 @@ fields:
   magic wellspring 14:
     label: "magic wellspring 14"
     input: select
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
 
+  magic wellspring 15:
+    label: "magic wellspring 15"
+    input: select
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 16:
+    label: "magic wellspring 16"
+    input: select
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 17:
+    label: "magic wellspring 17"
+    input: select
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 18:
+    label: "magic wellspring 18"
+    input: select
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 19:
+    label: "magic wellspring 19"
+    input: select
+    options:
+      Folk Magic: Folk Magic
+      Arcane Magic: Arcane Magic
+      Divine Magic: Divine Magic
+      Chaos Magic: Chaos Magic
+
+  magic wellspring 20:
+    label: "magic wellspring 20"
+    input: select
     options:
       Folk Magic: Folk Magic
       Arcane Magic: Arcane Magic
@@ -1826,391 +1636,313 @@ fields:
     label: "ritual name 1"
     input: text
 
-
   ritual condition 1:
     label: "ritual condition 1"
     input: string
 
-
-  ritual casting time 1:
-    label: "ritual casting time 1"
+  ritual time 1:
+    label: "ritual time 1"
     input: text
-
 
   ritual condition 2:
     label: "ritual condition 2"
     input: string
 
-
-  ritual materials 1:
-    label: "ritual materials 1"
+  ritual material 1:
+    label: "ritual material 1"
     input: text
-
 
   ritual condition 3:
     label: "ritual condition 3"
     input: string
 
-
   ritual condition 4:
     label: "ritual condition 4"
     input: string
-
 
   ritual condition 5:
     label: "ritual condition 5"
     input: string
 
-
   ritual duration 1:
     label: "ritual duration 1"
     input: string
-
 
   ritual condition 6:
     label: "ritual condition 6"
     input: string
 
-
   ritual crit success 1:
     label: "ritual crit success 1"
     input: text
-
 
   ritual condition 7:
     label: "ritual condition 7"
     input: string
 
-
   ritual effect 1:
     label: "ritual effect 1"
     input: text
-
 
   ritual condition 8:
     label: "ritual condition 8"
     input: string
 
-
   ritual name 2:
     label: "ritual name 2"
     input: text
-
 
   ritual condition 9:
     label: "ritual condition 9"
     input: string
 
-
-  ritual casting time 2:
-    label: "ritual casting time 2"
+  ritual time 2:
+    label: "ritual time 2"
     input: text
-
 
   ritual condition 10:
     label: "ritual condition 10"
     input: string
 
-
-  ritual materials 2:
-    label: "ritual materials 2"
+  ritual material 2:
+    label: "ritual material 2"
     input: text
-
 
   ritual duration 2:
     label: "ritual duration 2"
     input: string
 
-
   ritual crit success 2:
     label: "ritual crit success 2"
     input: text
-
 
   ritual effect 2:
     label: "ritual effect 2"
     input: text
 
-
   ritual name 3:
     label: "ritual name 3"
     input: text
 
-
-  ritual casting time 3:
-    label: "ritual casting time 3"
+  ritual time 3:
+    label: "ritual time 3"
     input: text
 
-
-  ritual materials 3:
-    label: "ritual materials 3"
+  ritual material 3:
+    label: "ritual material 3"
     input: text
-
 
   ritual duration 3:
     label: "ritual duration 3"
     input: string
 
-
   ritual crit success 3:
     label: "ritual crit success 3"
     input: text
-
 
   ritual effect 3:
     label: "ritual effect 3"
     input: text
 
-
   ritual name 4:
     label: "ritual name 4"
     input: text
 
-
-  ritual casting time 4:
-    label: "ritual casting time 4"
+  ritual time 4:
+    label: "ritual time 4"
     input: text
 
-
-  ritual materials 4:
-    label: "ritual materials 4"
+  ritual material 4:
+    label: "ritual material 4"
     input: text
-
 
   ritual duration 4:
     label: "ritual duration 4"
     input: string
 
-
   ritual crit success 4:
     label: "ritual crit success 4"
     input: text
-
 
   ritual effect 4:
     label: "ritual effect 4"
     input: text
 
-
   ritual name 5:
     label: "ritual name 5"
     input: text
 
-
-  ritual casting time 5:
-    label: "ritual casting time 5"
+  ritual time 5:
+    label: "ritual time 5"
     input: text
 
-
-  ritual materials 5:
-    label: "ritual materials 5"
+  ritual material 5:
+    label: "ritual material 5"
     input: text
-
 
   ritual duration 5:
     label: "ritual duration 5"
     input: string
 
-
   ritual crit success 5:
     label: "ritual crit success 5"
     input: text
-
 
   ritual effect 5:
     label: "ritual effect 5"
     input: text
 
-
   ritual name 6:
     label: "ritual name 6"
     input: text
 
-
-  ritual casting time 6:
-    label: "ritual casting time 6"
+  ritual time 6:
+    label: "ritual time 6"
     input: text
 
-
-  ritual materials 6:
-    label: "ritual materials 6"
+  ritual material 6:
+    label: "ritual material 6"
     input: text
-
 
   ritual duration 6:
     label: "ritual duration 6"
     input: string
 
-
   ritual crit success 6:
     label: "ritual crit success 6"
     input: text
-
 
   ritual effect 6:
     label: "ritual effect 6"
     input: text
 
-
   ritual name 7:
     label: "ritual name 7"
     input: text
 
-
-  ritual casting time 7:
-    label: "ritual casting time 7"
+  ritual time 7:
+    label: "ritual time 7"
     input: text
 
-
-  ritual materials 7:
-    label: "ritual materials 7"
+  ritual material 7:
+    label: "ritual material 7"
     input: text
-
 
   ritual duration 7:
     label: "ritual duration 7"
     input: string
 
-
   ritual crit success 7:
     label: "ritual crit success 7"
     input: text
-
 
   ritual effect 7:
     label: "ritual effect 7"
     input: text
 
-
   ritual name 8:
     label: "ritual name 8"
     input: text
 
-
-  ritual casting time 8:
-    label: "ritual casting time 8"
+  ritual time 8:
+    label: "ritual time 8"
     input: text
 
-
-  ritual materials 8:
-    label: "ritual materials 8"
+  ritual material 8:
+    label: "ritual material 8"
     input: text
-
 
   ritual duration 8:
     label: "ritual duration 8"
     input: string
 
-
   ritual crit success 8:
     label: "ritual crit success 8"
     input: text
-
 
   ritual effect 8:
     label: "ritual effect 8"
     input: text
 
-
   ritual name 9:
     label: "ritual name 9"
     input: text
 
-
-  ritual casting time 9:
-    label: "ritual casting time 9"
+  ritual time 9:
+    label: "ritual time 9"
     input: text
 
-
-  ritual materials 9:
-    label: "ritual materials 9"
+  ritual material 9:
+    label: "ritual material 9"
     input: text
-
 
   ritual duration 9:
     label: "ritual duration 9"
     input: string
 
-
   ritual crit success 9:
     label: "ritual crit success 9"
     input: text
-
 
   ritual effect 9:
     label: "ritual effect 9"
     input: text
 
-
   ritual name 10:
     label: "ritual name 10"
     input: text
 
-
-  ritual casting time 10:
-    label: "ritual casting time 10"
+  ritual time 10:
+    label: "ritual time 10"
     input: text
 
-
-  ritual materials 10:
-    label: "ritual materials 10"
+  ritual material 10:
+    label: "ritual material 10"
     input: text
-
 
   ritual duration 10:
     label: "ritual duration 10"
     input: string
 
-
   ritual crit success 10:
     label: "ritual crit success 10"
     input: text
-
 
   ritual effect 10:
     label: "ritual effect 10"
     input: text
 
-
   ritual crit fail 1:
     label: "ritual crit fail 1"
     input: text
-
 
   ritual crit fail 2:
     label: "ritual crit fail 2"
     input: text
 
-
   ritual crit fail 3:
     label: "ritual crit fail 3"
     input: text
-
 
   ritual crit fail 4:
     label: "ritual crit fail 4"
     input: text
 
-
   ritual crit fail 5:
     label: "ritual crit fail 5"
     input: text
-
 
   ritual crit fail 6:
     label: "ritual crit fail 6"
     input: text
 
-
   ritual crit fail 7:
     label: "ritual crit fail 7"
     input: text
 
-
   ritual crit fail 8:
     label: "ritual crit fail 8"
     input: text
-
 
   ritual crit fail 9:
     label: "ritual crit fail 9"
@@ -2869,7 +2601,6 @@ fields:
     label: "profession intermediate toggle 12"
     input: checkbox
 
-
   profession intermediate bonus 4:
     label: "profession intermediate bonus 4"
     input: select
@@ -2941,7 +2672,6 @@ fields:
     label: "profession intermediate talent 2 desc"
     input: text  
 
-
   profession intermediate toggle 17:
     label: "profession intermediate toggle 17"
     input: checkbox
@@ -2949,7 +2679,6 @@ fields:
   profession intermediate talent 3:
     label: "profession intermediate talent 3"
     input: string
-
 
   profession intermediate talent 3 desc:
     label: "profession intermediate talent 3 desc"
@@ -3149,6 +2878,18 @@ fields:
     label: "profession advanced toggle 6"
     input: checkbox
 
+  profession advanced attribute:
+    label: "profession advanced attribute"
+    input: select
+    options:
+      None: None
+      Agility: Agility +5%
+      Brawn: Brawn +5%
+      Combat: Combat +5%
+      Fellowship: Fellowship +5%
+      Intelligence: Intelligence +5%
+      Perception: Perception +5%
+      Willpower: Willpower +5%
 
   profession advanced toggle 7:
     label: "profession advanced toggle 7"
@@ -3192,7 +2933,7 @@ fields:
       Willpower: Willpower
 
   profession advanced toggle 10:
-    label: "pprofession advanced toggle 10"
+    label: "profession advanced toggle 10"
     input: checkbox
 
   profession advanced bonus 2:
@@ -3243,7 +2984,7 @@ fields:
       Willpower: Willpower
 
   profession advanced toggle 13:
-    label: " profession advanced toggle 13"
+    label: "profession advanced toggle 13"
     input: checkbox
 
   profession advanced bonus 5:
@@ -3260,7 +3001,7 @@ fields:
       Willpower: Willpower
 
   profession advanced toggle 14:
-    label: " profession advanced toggle 14"
+    label: "profession advanced toggle 14"
     input: checkbox
 
 
@@ -3341,8 +3082,8 @@ fields:
       minus15: minus15
       exhausted: exhausted
   
-  peril stress:
-    label: "peril stress"
+  peril condition track:
+    label: "peril condition track"
     input: select
     options:
       none: None
@@ -3387,11 +3128,27 @@ fields:
     label: "peril threshold 18"
     input: integer
 
-
-  unique advances:
-    label: "unique advances"
-    input: text
-
-  unique advances cost :
+  reward unique:
     label: "unique advances cost"
     input: integer
+  
+  reward unique text:
+    label: "reward unique text"
+    input: text
+
+peril_situational:
+  label: "Peril Situational Modifier"
+  input: integer
+
+damage_situational:
+  label: "Damage Situational Modifier"
+  input: integer
+
+initiative_temporary:
+  label: "Initiative Temporary Modifier"
+  input: integer
+
+burden_penalty:
+  label: "Burden Penalty"
+  input: integer
+  min: 0
