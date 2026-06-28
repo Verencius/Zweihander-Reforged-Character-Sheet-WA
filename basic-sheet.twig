@@ -625,11 +625,11 @@
                     <div class="col-sm-12 text-title">Languages:&nbsp;{{ variables.personal_language }}</div>
                 </div>
                 <div class="row card">
-                    <div class="col-sm-12 text-title">Inner Strength:&nbsp;{{ variables.alignment_inner_strength }}</div>
+                    <div class="col-sm-12 text-title">Inner Strength:&nbsp;{{ variables.inner_strength }}</div>
                     <div class="col-sm-12 card-info-label"><i>Did you call upon one of your Inner Strengths 5 RP</i></div>
                 </div>
                 <div class="row card">
-                    <div class="col-sm-12 text-title">Tragic Flaw:&nbsp;{{ variables.alignment_tragic_flaw }}</div>
+                    <div class="col-sm-12 text-title">Tragic Flaw:&nbsp;{{ variables.tragic_flaw }}</div>
                     <div class="col-sm-12 card-info-label"><i>Did you call upon one of your Tragic Flaws 5 RP</i></div>
                 </div>
                 <div class="row card">
@@ -646,7 +646,7 @@
                 <div class="row card">
                     <div class="col-sm-12 card-title"><h5>In my adventures I have been tained by corruption:
                     {% for i in 1..9 %}{% if total_corruption >= i %}&nbsp;<i class="fas fa-square"></i> {% else %}&nbsp;<i class="far fa-square"></i>{% endif %}{% endfor %}
-                    &nbsp;<i class="fa-sharp fa-regular fa-eye-evil"></i>&nbsp;Gain Malignancy || <strong>Permanent Corrupton</strong>&nbsp;{% if permanent_corruption == 0 %} 0 {% else %} {{ permanent_corruption }} {% endif %}</h5>
+                    &nbsp;<i class="fa-sharp fa-regular fa-eye-evil"></i>&nbsp;Gain Malignancy || <strong>Permanent Corrupton</strong>&nbsp;{% if variables.corruption_permanent == 0 %} 0 {% else %} {{ variables.corruption_permanent }} {% endif %}</h5>
                     </div>
                     {% if malignancies_and_scars is not empty %}
                     <div class="col-sm-12 text-title">And the world has left a mark on me:</div>
