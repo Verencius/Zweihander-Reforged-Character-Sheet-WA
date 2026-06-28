@@ -139,13 +139,13 @@
     {% endfor %}
 {% endfor %}
 <!-- set attribute final bonus calculations -->
-{% set attribute_combat_bonus_final = (variables.attribute_combat/10)|round (0,'floor') + variables.attribute_combat_bonus_mod + attribute_combat_advance_array %}
-{% set attribute_brawn_bonus_final = (variables.attribute_brawn/10)|round (0,'floor') + variables.attribute_brawn_bonus_mod + attribute_brawn_advance_array %}
-{% set attribute_agility_bonus_final = (variables.attribute_agility/10)|round (0,'floor') + variables.attribute_agility_bonus_mod + attribute_agility_advance_array %}
-{% set attribute_perception_bonus_final = (variables.attribute_perception/10)|round (0,'floor') + variables.attribute_perception_bonus_mod + attribute_perception_advance_array %}
-{% set attribute_intelligence_bonus_final = (variables.attribute_intelligence/10)|round (0,'floor') + variables.attribute_intelligence_bonus_mod + attribute_intelligence_advance_array %}
-{% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor') + variables.attribute_willpower_bonus_mod + attribute_willpower_advance_array %}
-{% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + variables.attribute_fellowship_bonus_mod + attribute_fellowship_advance_array %}
+{% set attribute_combat_bonus_final = (variables.attribute_combat/10)|round (0,'floor') + attribute_combat_advance_array %}
+{% set attribute_brawn_bonus_final = (variables.attribute_brawn/10)|round (0,'floor') + attribute_brawn_advance_array %}
+{% set attribute_agility_bonus_final = (variables.attribute_agility/10)|round (0,'floor') + attribute_agility_advance_array %}
+{% set attribute_perception_bonus_final = (variables.attribute_perception/10)|round (0,'floor') + attribute_perception_advance_array %}
+{% set attribute_intelligence_bonus_final = (variables.attribute_intelligence/10)|round (0,'floor') + attribute_intelligence_advance_array %}
+{% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor')+ attribute_willpower_advance_array %}
+{% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + attribute_fellowship_advance_array %}
 <!-- skill advances value -->
 <!-- athletics -->
 {% set athletics_count = 0 %}
@@ -482,8 +482,8 @@
         {% set armor_dth_final = 0 %}
     {% elseif "maker's mark" in variables.armor_qualities|lower %}
         {% set armor_dth_final = variables.armor_dth + 1 %}
-    {% elseif variables.armor_dd > attribute_brawn_bonus_final %}
-        {% set armor_dth_raw = variables.armor_dth - (variables.armor_dd - attribute_brawn_bonus_final) %}
+    {% elseif variables.armor_bb > attribute_brawn_bonus_final %}
+        {% set armor_dth_raw = variables.armor_dth - (variables.armor_bb - attribute_brawn_bonus_final) %}
         {% set armor_dth_final = armor_dth_raw > 0 ? armor_dth_raw : 1 %}
     {% else %}
         {% set armor_dth_final = variables.armor_dth %}
@@ -509,13 +509,11 @@
 {% set weapon_dth_name = defensive_weapon_name[0] %}
 <!-- talent DTH mods -->
 {% set talent_dth_end = 0 %}
-{% for n in 1..3 %}
     {% if variables.profession_basic_toggle_8 == true and "The End Is Nigh" in variables.profession_basic_profession_talent|lower
        or variables.profession_intermediate_toggle_8 == true and "The End Is Nigh" in variables.profession_intermediate_profession_talent|lower
        or variables.profession_advanced_toggle_8 == true and "The End Is Nigh" in variables.profession_advanced_profession_talent|lower %}
         {% set talent_dth_end = 3 %}
     {% endif %}
-{% endfor %}
 {% set talent_dth_salt = 0 %}
 {% for n in 1..3 %}
     {% if variables["profession_basic_toggle_" ~ (15 + n)] == true and "Salt Of The Earth" in variables["profession_basic_talent_" ~ n]|lower
@@ -527,16 +525,16 @@
 <!-- final DTH calculactions -->
 {% set damage_threshold_adjusted = damage_base + armor_dth_final + weapon_dth + talent_dth_end + talent_dth_salt + variables.damage_situational %}
 <!-- initiative overage tools -->
+{% set silver_enc = (variables.silver / 1000)|round(0, 'floor') %}
 {% set burden_tools = [] %}
 {% for n in 1..6 %}
-    {% if variables["supplies_tool_" ~ n] is not empty %}
+    {% if variables["tool_" ~ n] is not empty %}
         {% set burden_tools = burden_tools | merge([1]) %}
     {% endif %}
 {% endfor %}
 {% set total_tools = burden_tools | length %}
-{% set initiative_burden = total_tools > 3 ? total_tools - 3 : 0 %}
+{% set initiative_burden = (total_tools > 3 ? total_tools - 3 : 0) + silver_enc + variables.burden_penalty %}
 <!-- initiative overage wealth -->
-{% set wealth_enc = (variables.silver / 1000)|round(0, 'floor') %}
 <!-- initiative talents -->
 {% set initiative_instincts = 0 %}
 {% for n in 1..3 %}
@@ -556,9 +554,9 @@
 {% set initiative_weapon = weapon_count | length > 3 ? 1 : 0 %}
 <!-- ancestral talent initiative modifier -->
 {% set initiative_ancestral = false %}
-{% if variables.profession_basic_toggle_8 == true and "liquid poise" in variables.profession_basic_ancestral_talent|lower
-   or variables.profession_intermediate_toggle_8 == true and "liquid poise" in variables.profession_intermediate_ancestral_talent|lower
-   or variables.profession_advanced_toggle_8 == true and "liquid poise" in variables.profession_advanced_ancestral_talent|lower %}
+{% if variables.profession_basic_toggle_9 == true and "liquid poise" in variables.profession_basic_ancestral_talent|lower
+   or variables.profession_intermediate_toggle_9 == true and "liquid poise" in variables.profession_intermediate_ancestral_talent|lower
+   or variables.profession_advanced_toggle_9 == true and "liquid poise" in variables.profession_advanced_ancestral_talent|lower %}
     {% set initiative_ancestral = true %}
 {% endif %}
 <!-- initiative base calculations -->
@@ -568,7 +566,31 @@
     {% set initiative_base = attribute_perception_bonus_final + 3 %}
 {% endif %}
 <!-- initiative final calculation -->
-{% set initiative_final = initiative_base + initiative_armor + initiative_burden + initiative_weapon + initiative_instincts + variables.burden_penalty + initiative_ancestral + variables.initiative_temporary %}
+{% set initiative_armor = 0 %} {% if "ill-fitted" in variables.armor_qualities|default('')|lower %} {% set initiative_armor = -3 %} {% endif %}
+{% set initiative_final = initiative_base + initiative_armor + initiative_burden + initiative_weapon + initiative_instincts + (initiative_ancestral ? 1 : 0) + variables.initiative_temporary %}
+<!-- reward points -->
+{% set rp_basic = [] %}
+{% set rp_intermediate = [] %}
+{% set rp_advanced = [] %}
+{% set rp_unique = [] %}
+{% for i in 1..18 %}
+    {% if variables["profession_basic_toggle_" ~ i]|default(0) == 1 %}
+        {% set rp_basic = rp_basic | merge([1]) %}
+    {% endif %}
+    {% if variables["profession_intermediate_toggle_" ~ i]|default(0) == 1 %}
+        {% set rp_intermediate = rp_intermediate | merge([1]) %}
+    {% endif %}
+    {% if variables["profession_advanced_toggle_" ~ i]|default(0) == 1 %}
+        {% set rp_advanced = rp_advanced | merge([1]) %}
+    {% endif %}
+{% endfor %}
+{% for i in 1..10 %}
+    {% if variables["reward_unique_" ~ i] is defined and variables["reward_unique_" ~ i] is not empty %}
+        {% set rp_unique = rp_unique | merge([1]) %}
+    {% endif %}
+{% endfor %}
+{% set starting_advances = rp_basic | length > 9 ? 9 : rp_basic | length %}
+{% set total_rp_spent = (rp_basic | length * 10) + (rp_intermediate | length * 20) + (rp_advanced | length * 30) + (rp_unique | length * 10) - (starting_advances * 10) %}
 <!-- end of macros -->
 <div id="karta" class="container-fluid">
     <!-- Tabbing -->
@@ -593,9 +615,9 @@
                         I'm&nbsp;<strong>{{ variables.personal_age_group}}&nbsp;{{ variables.personal_ancestry }}&nbsp;{{ variables.personal_gender }}</strong>.&nbsp;I was born in&nbsp;<strong>{{ variables.personal_season_of_birth }}&nbsp;</strong>
                         in the place called&nbsp;<strong>{{ variables.personal_place_of_birth}}</strong>.&nbsp;I was raised in a/an&nbsp;<strong>{{ variables.personal_upbringing}}&nbsp;</strong>home of the&nbsp;<strong>{{ variables.personal_social_class}}&nbsp;</strong>class
                          {% if variables.personal_patron_deity is not empty %} and became a follower of&nbsp;<strong>{{ variables.personal_patron_deity}}</strong>{% endif %}.
-                        When you see me  I am of a/an&nbsp;<strong>{{ variables.personal_height}} stature</strong>&nbsp;with a/an&nbsp;<strong>{{ variables.personal_build_type}} build</strong>,<strong>&nbsp;{{ variables.personal_hair_color }} hair</strong>,
-                        <strong>&nbsp;{{ variables.personal_eye_color}} eyes</strong>,<strong>&nbsp;{{ variables.personal_complexion}} complexion</strong>&nbsp;and&nbsp;<strong>{{ variables.personal_distinguishing_marks_1 }}</strong>.
-                        My life changed the day that{% if variables.personal_brush_with_death is defined and variables.personal_brush_with_death is not empty %}{{ variables.personal_brush_with_death}}{% else %}<i><strong>&nbsp;is shrouded in the fog of war</strong></i>{% endif %}.
+                        When you see me  I am of a/an&nbsp;<strong>{{ variables.personal_height}} stature</strong>&nbsp;with a/an&nbsp;<strong>{{ variables.personal_build}} build</strong>,<strong>&nbsp;{{ variables.personal_hair_color }} hair</strong>,
+                        <strong>&nbsp;{{ variables.personal_eye_color}} eyes</strong>,<strong>&nbsp;{{ variables.personal_complexion}} complexion</strong>&nbsp;and&nbsp;<strong>{{ variables.personal_distinguishing_marks }}</strong>.
+                        My life changed the day that{% if variables.personal_death is not empty %}{{ variables.personal_death}}{% else %}<strong>&nbsp;is shrouded in the fog of war</strong>{% endif %}.
                         Yet I lived to tell the tale. 
                     </div>
                 </div>
@@ -611,12 +633,25 @@
                     <div class="col-sm-12 card-info-label"><i>Did you call upon one of your Tragic Flaws 5 RP</i></div>
                 </div>
                 <div class="row card">
-                    <div class="col-sm-12"><strong>In my adventures I have been tained by corruption:</strong>
+                    {% if variables.personal_goals is not empty %}
+                    <div class="col-sm-12 card-title">My Goals & Ambitions</div>
+                    <div class="col-sm-12">{{ variables.personal_goals|nl2br}}</div>
+                    {%  endif %}
+                    {% if variables.reputation_text is not empty or variables.reputation != 0 %}
+                    <div class="col-sm-12 card-title">I am known for</div>
+                    <div class="col-sm-12">{{ variables.reputation_text|nl2br}}</div>
+                    <div class="col-sm-12 card-info-label">Current reputation points&nbsp;{{ variables.reputation }}</div>
+                    {%  endif %}
+                </div>
+                <div class="row card">
+                    <div class="col-sm-12 card-title"><h5>In my adventures I have been tained by corruption:
                     {% for i in 1..9 %}{% if total_corruption >= i %}&nbsp;<i class="fas fa-square"></i> {% else %}&nbsp;<i class="far fa-square"></i>{% endif %}{% endfor %}
-                    &nbsp;<strong>Gain Malignancy</strong></div>
-                    <div class="col-sm-12"><strong>And the world has left a mark on me:</strong></div>
-                    <div class="col-sm-12">{% if malignancies_and_scars is not empty %} {{ variable.malignancies_and_scars |nl2br}}{% else %} ... {% endif %}</div>
-                    <div class="col-sm-12"><strong>Permanent Corrupton</strong>&nbsp;{% if permanent_corruption == 0 %} 0 {% else %} {{ permanent_corruption }} {% endif %}</div>
+                    &nbsp;<i class="fa-sharp fa-regular fa-eye-evil"></i>&nbsp;Gain Malignancy || <strong>Permanent Corrupton</strong>&nbsp;{% if permanent_corruption == 0 %} 0 {% else %} {{ permanent_corruption }} {% endif %}</h5>
+                    </div>
+                    {% if malignancies_and_scars is not empty %}
+                    <div class="col-sm-12 text-title">And the world has left a mark on me:</div>
+                    <div class="col-sm-12">{{ variables.malignancies_and_scars |nl2br}}</div>
+                    {% endif %}
                 </div>
             </div>    
             <div class="col-sm-3 card-mt3">{% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} </div>
@@ -913,7 +948,7 @@
                         {% endif %}
                         <div class="row">
                             <div class="col-sm-6 border-bottom">Situational Modifier</div>
-                            <div class="col-sm-6 border-bottom">{%if variables.peril_temporary != "" %}{{ variable.peril.temporary }} {% else %} 0 {%endif%}</div>
+                            <div class="col-sm-6 border-bottom">{%if variables.peril_temporary != "" %}{{ variables.peril_temporary }} {% else %} 0 {%endif%}</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 card-info-label">All listed modifiers are included in the final score</div>
@@ -951,11 +986,11 @@
                             <div class="col-sm-11">STRESSED<div class="row card-info-label">-2 to Damage & Peril you inflict.</div></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-1">{% if variables.peril_condition_track == "frightened" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
+                            <div class="col-sm-1">{% if variables.peril_stress == "frightened" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
                             <div class="col-sm-11">FRIGHTENED<div class="row card-info-label">-4 to Damage & Peril you inflict.</div></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-1">{% if variables.peril_condition_track == "terrified" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
+                            <div class="col-sm-1">{% if variables.peril_stress == "terrified" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
                             <div class="col-sm-11">TERRIFIED<div class="row card-info-label">-6 to Damage & Peril you inflict.</div></div>
                         </div>
                     </div>
@@ -995,13 +1030,13 @@
                         {% endif %}
                         {% if talent_dth_end != 0 %}
                         <div class="row">
-                            <div class="col-sm-7 border-bottom">Defensive</div>
+                            <div class="col-sm-7 border-bottom">The End is Nigh</div>
                             <div class="col-sm-5 border-bottom">{{ talent_dth_end }}</div>
                         </div>
                         {% endif %}
                         <div class="row">
                             <div class="col-sm-7 border-bottom">Situational Modifier</div>
-                            <div class="col-sm-5 border-bottom">{%if variables.damage_temporary != "" %}{{ variable.damage.temporary }} {% else %} 0 {%endif%}</div>
+                            <div class="col-sm-5 border-bottom">{%if variables.damage_temporary != "" %}{{ variables.damage_temporary }} {% else %} 0 {%endif%}</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 card-info-label">All listed modifiers are included in the final score</div>
@@ -1014,19 +1049,19 @@
                             <div class="col-sm-10">ALIVE</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-1">{% if variables.damage_condition_track == "lightly wounded" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
+                            <div class="col-sm-1">{% if variables.damage_condition_track == "lightly" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
                             <div class="col-sm-10">LIGHTLY WOUNDED</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-1">{% if variables.damage_condition_track == "moderately wounded" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
+                            <div class="col-sm-1">{% if variables.damage_condition_track == "moderately" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
                             <div class="col-sm-10">MODERATLY WOUNDED</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-1">{% if variables.damage_condition_track == "seriously wounded" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
+                            <div class="col-sm-1">{% if variables.damage_condition_track == "seriously" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
                             <div class="col-sm-10">SERIOUSLY WOUNDED</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-1">{% if variables.damage_condition_track == "grievously wounded" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
+                            <div class="col-sm-1">{% if variables.damage_condition_track == "grievously" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
                             <div class="col-sm-10">GRIEVOUSLY WOUNDED</div>
                         </div>
                         <div class="row">
@@ -1100,7 +1135,7 @@
                             <div class="col-sm-1 border-bottom">{% if variables.weapon_active_3 == 0 %}<i class="far fa-square"></i>{% else %}<i class="fas fa-square"></i>{% endif %}</div>
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_name_3 }}</div>
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_distance_3 }}</div>
-                            <div class="col-sm-2 border-bottom">{{ variables.weapon_damage_4 }}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_damage_3 }}</div>
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_load_3 }}</div>
                             <div class="col-sm-3 border-bottom">{{ variables.weapon_qualities_3 }}</div>
                         </div>
@@ -1132,7 +1167,7 @@
                         {% if initiative_ancestral != 0 %}
                         <div class="row">
                             <div class="col-sm-6 ml-auto text-title border-bottom">Liquid Poise</div>
-                            <div class="col-sm-6 ml-auto text-title border-bottom">{% if attribute_agility_bonus_final > attribute_perception_bonus_fina %} [AB] {% else %} [PB] {% endif %}
+                            <div class="col-sm-6 ml-auto text-title border-bottom">{% if attribute_agility_bonus_final > attribute_perception_bonus_final %} [AB] {% else %} [PB] {% endif %}</div>
                         </div>
                         {% endif %}
                         {% if initiative_armor is not empty %}
@@ -1144,7 +1179,7 @@
                         {% if initiative_burden !=0 %}
                         <div class="row">
                             <div class="col-sm-6 ml-auto border-bottom">Burden</div>
-                            <div class="col-sm-6 ml-auto border-bottom">{{ initiative_burden + variables.burden_penalty }}</div>
+                            <div class="col-sm-6 ml-auto border-bottom">{{ initiative_burden }}</div>
                         </div>
                         {% endif %}
                         <div class="row">
@@ -1168,12 +1203,12 @@
                     <div class="col-sm-12 card-title">Tools</div>
                     <div class="col-sm-12">
                         {# Display tools only if they exist #}
-                        {% if variables.tool_1 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_1 }}</div>{% endif %}
-                        {% if variables.tool_2 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_2 }}</div>{% endif %}
-                        {% if variables.tool_3 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_3 }}</div>{% endif %}
-                        {% if variables.tool_4 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_4 }}</div>{% endif %}
-                        {% if variables.tool_5 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_4 }}</div>{% endif %}
-                        {% if variables.tool_6 is not empty %}<div class="row content-spacing">{{ variables.supplies_tool_4 }}</div>{% endif %}
+                        {% if variables.tool_1 is not empty %}<div class="row content-spacing">{{ variables.tool_1 }}</div>{% endif %}
+                        {% if variables.tool_2 is not empty %}<div class="row content-spacing">{{ variables.tool_2 }}</div>{% endif %}
+                        {% if variables.tool_3 is not empty %}<div class="row content-spacing">{{ variables.tool_3 }}</div>{% endif %}
+                        {% if variables.tool_4 is not empty %}<div class="row content-spacing">{{ variables.tool_4 }}</div>{% endif %}
+                        {% if variables.tool_5 is not empty %}<div class="row content-spacing">{{ variables.tool_5 }}</div>{% endif %}
+                        {% if variables.tool_6 is not empty %}<div class="row content-spacing">{{ variables.tool_6 }}</div>{% endif %}
                         {# Penalty Warning Logic #}
                         {% if initiative_burden > 0 %}
                         <div class="row card-info-label content-spacing text-danger font-weight-bold">
@@ -1226,10 +1261,16 @@
                         {% if variables.supply_name_3 is not empty%}
                         <div class="row">
                             <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_3}}</div>
+                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_3}}</div>
+                        </div>
+                        {% endif %}
+                        {% if variables.supply_name_4 is not empty%}
+                        <div class="row">
+                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_4}}</div>
                             <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_4}}</div>
                         </div>
                         {% endif %}
-                        {% if variables.supply_name_1 is not empty%}
+                        {% if variables.supply_name_5 is not empty%}
                         <div class="row">
                             <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_5}}</div>
                             <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_5}}</div>
@@ -1270,1485 +1311,267 @@
                 </div>
             </div>
         </div>
-    <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
+        <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
+            <!-- TAB #3 temporary fun and order and chaos concept -->
+        <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
         <!-- TAB #3 temporary fun and order and chaos concept -->
-    <!-- TAB #2: second level tab reputation, fate and Drawbacks and Disorders -->
-     <!-- TAB #3 temporary fun and order and chaos concept -->
-    <!-- TAB #3 Attributes, skills -->
-    <!-- TAB #4 Traits, Talents and Gifts -->
-    <!--<div class="tab content4"> -->
-    <!-- <div class="row card mt-3"> -->
+        <!-- TAB #3 Attributes, skills -->
+        <!-- TAB #4 Traits, Talents and Gifts -->
+        <!--<div class="tab content4"> -->
+        <!-- <div class="row card mt-3"> -->
         <div class="row">
             <div class="col-sm-12">
                 <div class="row card">
                     <div class="col-sm-12 card-title">Talents</div>
+                    {% set tiers = ['basic', 'intermediate', 'advanced'] %}
+                    {# Ancestral Talents #}
+                    <div class="col-sm-12 border-bottom"><h5>Ancestral Talents</h5></div>
+                    {% for tier in tiers %}
+                    {% if variables["profession_" ~ tier ~ "_ancestral_talent"] is not empty and variables["profession_" ~ tier ~ "_toggle_9"] == true %}
+                    <div class="row">
+                        <div class="col-sm-2 text-title">{{ variables["profession_" ~ tier ~ "_ancestral_talent"]|title }}</div>
+                        <div class="col-sm-10">{{ variables["profession_" ~ tier ~ "_ancestral_talent_desc"] }}</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                     {# Professional Talents #}
+                    <div class="col-sm-12 border-bottom"><h5>Professional Talents</h5></div>
+                    {% for tier in tiers %}
+                    {% if variables["profession_" ~ tier ~ "_profession_talent"] is not empty and variables["profession_" ~ tier ~ "_toggle_8"] == true %}
+                    <div class="row">
+                        <div class="col-sm-2"><strong>{{ variables["profession_" ~ tier ~ "_profession_talent"]|title }}</strong></div>
+                        <div class="col-sm-10">{{ variables["profession_" ~ tier ~ "_profession_talent_desc"] }}</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {# General Talents #}
+                    <div class="col-sm-12 border-bottom"><h5>General Talents</h5></div>
+                    {% for tier in tiers %}
+                    {% for i in 1..3 %}
+                    {% if variables["profession_" ~ tier ~ "_talent_" ~ i] is not empty and variables["profession_" ~ tier ~ "_toggle_" ~ (15 + i)] == true %}
+                    <div class="row">
+                        <div class="col-sm-2"><strong>{{ variables["profession_" ~ tier ~ "_talent_" ~ i]|title }}</strong></div>
+                        <div class="col-sm-10">{{ variables["profession_" ~ tier ~ "_talent_" ~ i ~ "_desc"] }}</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
                     <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-12 border-bottom"><h5>Ancestral Talents</h5></div>
-                                {% if variables.profession_basic_ancestral_talent is not empty and variables.profession_basic_toggle_9 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2 "><strong>{{ variables.profession_basic_ancestral_talent|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_basic_ancestral_talent_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_intermediate_ancestral_talent is not empty and variables.profession_intermediate_toggle_9 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2 "><strong>{{ variables.profession_intermediate_ancestral_talent|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_intermediate_ancestral_talent_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_advanced_ancestral_talent is not empty and variables.profession_advanced_toggle_9 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2 "><strong>{{ variables.profession_advanced_ancestral_talent|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_advanced_ancestral_talent_desc }}</div>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-12 border-bottom"><h5>Professional Talents</h5></div>
-                                {% if variables.profession_basic_profession_talent is not empty and variables.profession_basic_toggle_8 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_profession_talent|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_basic_profession_talent_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_intermediate_profession_talent is not empty and variables.profession_intermediate_toggle_8 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_profession_talent|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_intermediate_profession_talent_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_advanced_profession_talent is not empty and variables.profession_advanced_toggle_8 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_profession_talent|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_advanced_profession_talent_desc }}</div>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-12 border-bottom"><h5>General Talents</h5></div>
-                                <!-- basic profiession -->
-                                {% if variables.profession_basic_talent_1 is not empty and variables.profession_basic_toggle_16 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_talent_1|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_basic_talent_1_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_basic_talent_2 is not empty and variables.profession_basic_toggle_17 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_talent_2|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_basic_talent_1_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_basic_talent_3 is not empty and variables.profession_basic_toggle_18 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_basic_talent_3|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_basic_talent_3_desc }}</div>
-                                </div>
-                                {% endif %}
-                                <!-- intermediate profession -->
-                                {% if variables.profession_intermediate_talent_1 is not empty and variables.profession_intermediate_toggle_16 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_talent_1|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_intermediate_talent_1_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_intermediate_talent_2 is not empty and variables.profession_intermediate_toggle_17 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_talent_2|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_intermediate_talent_1_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_intermediate_talent_3 is not empty and variables.profession_intermediate_toggle_18 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_intermediate_talent_3|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_intermediate_talent_3_desc }}</div>
-                                </div>
-                                {% endif %}
-                                <!-- advanced profession -->
-                                {% if variables.profession_advanced_talent_1 is not empty and variables.profession_advanced_toggle_16 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_talent_1|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_advanced_talent_1_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_advanced_talent_2 is not empty and variables.profession_advanced_toggle_17 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_talent_2|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_advanced_talent_1_desc }}</div>
-                                </div>
-                                {% endif %}
-                                {% if variables.profession_advanced_talent_3 is not empty and variables.profession_advanced_toggle_18 == true %}
-                                <div class="row">
-                                    <div class="col-sm-2"><strong>{{ variables.profession_advanced_talent_3|title}}</strong></div>
-                                    <div class="col-sm-10">{{ variables.profession_advanced_talent_3_desc }}</div>
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-12 card-info-label">Keyowrds: Salt of the Earth, Instincts, Liquid Poise</div>
-                            </div>
-                        </div>
+                        <div class="row card-info-label content-spacing">Keywords: Salt of the Earth, Instincts, Liquid Poise</div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <!-- TAB #5 Combat Profile -->
     <!--Trappings -->
     <!-- Magic Profile -->
-    <div class="tab content7">
-        <div class="row card mt-3">
-            <div class="col-sm-12">
-                <div class="row card-title">
-                    <div class="col-sm-12">Magic and Rituals</div>
+        <div class="tab content7">
+            <div class="row card mt-3">
+                <div class="col-sm-4">
+                    Cast Magic (Occultism):&nbsp;<strong>{{ skill_occultism_total }}</strong>
+                    {% for i in 1..3 %}{% if occultism_advance >= i %}<i class="fas fa-square-full"></i>{% else %}<i class="far fa-square-full"></i>{% endif %}{% endfor %}
+                </div>
+                <div class="col-sm-4">
+                    Intelligence Bonus [IB]:&nbsp;<strong>{{ attribute_intelligence_bonus_final}}</strong>
+                </div>
+                <div class="col-sm-4">
+                    Willpower Bonus [WB]&nbsp;<strong>{{ attribute_willpower_bonus_final}}</strong>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-4">
-                        Cast Magic (Occultism):&nbsp;<strong>{{ skill_occultism_total }}</strong>
-                    </div>
-                    <div class="col-sm-4">
-                        Intelligence Bonus [IB]:&nbsp;<strong>{{ attribute_intelligence_bonus_final}}</strong>
-                    </div>
-                    <div class="col-sm-4">
-                        Willpower Bonus [WB]&nbsp;<strong>{{ attribute_willpower_bonus_final}}</strong>
-                    </div>
-                </div>
+            <div class="row card mt-3">
+                <div class="col-sm-12 card-title"><h5>Spells</h5></div>
             </div>
-            <div class="col-sm-12">
-                <div class="row card-title">
-                    <div class="col-sm-12"><h5>Spells</h5></div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12">
-                        {% if variables.magic_name_1 is defined and variables.magic_name_1 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_1|title}}&nbsp;({{ variables.magic_difficulty_1}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_1}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_1}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_1}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_1}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Material</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_1}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_1}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_2 is defined and variables.magic_name_2 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_2|title}}&nbsp;({{ variables.magic_difficulty_2}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_2}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_2}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_2}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_2}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_2}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_2}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_3 is defined and variables.magic_name_3 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_3|title}}&nbsp;({{ variables.magic_difficulty_3}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_3}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_3}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_3}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_3}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_3}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_3}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_4 is defined and variables.magic_name_4 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_4|title}}&nbsp;({{ variables.magic_difficulty_4}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_4}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_4}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_4}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_4}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_4}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_4}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_5 is defined and variables.magic_name_5 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_5|title}}&nbsp;({{ variables.magic_difficulty_5}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_5}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_5}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_5}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_5}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_5}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_5}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_6 is defined and variables.magic_name_6 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_6|title}}&nbsp;;({{ variables.magic_difficulty_6}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_6}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_6}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_6}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_6}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_6}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_6}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_7 is defined and variables.magic_name_7 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_7|title}}&nbsp;({{ variables.magic_difficulty_7}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_7}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_7}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_7}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_7}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_7}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_7}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_8 is defined and variables.magic_name_8 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_8|title}}&nbsp;({{ variables.magic_difficulty_8}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_8}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_8}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_8}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_8}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_8}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_8}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_9 is defined and variables.magic_name_9 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_9|title}}&nbsp;({{ variables.magic_difficulty_9}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_9}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_9}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_9}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_9}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_9}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_9}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_10 is defined and variables.magic_name_10 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_10|title}}&nbsp;({{ variables.magic_difficulty_10}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_10}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_10}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_10}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_10}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_10}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_10}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_11 is defined and variables.magic_name_11 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_11|title}}&nbsp;({{ variables.magic_difficulty_11}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_11}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_11}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_11}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_11}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_11}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_11}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_12 is defined and variables.magic_name_12 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_12|title}}&nbsp;({{ variables.magic_difficulty_12}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_12}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_12}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_12}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_12}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_12}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_12}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_13 is defined and variables.magic_name_13 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_13|title}}&nbsp;({{ variables.magic_difficulty_13}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_13}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_13}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_13}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_13}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_13}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_13}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_14 is defined and variables.magic_name_14 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_14|title}}&nbsp;({{ variables.magic_difficulty_14}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_14}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_14}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_14}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_14}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_14}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_14}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_15 is defined and variables.magic_name_15 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_15|title}}&nbsp;({{ variables.magic_difficulty_15}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_15}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_15}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_15}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_15}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_15}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_15}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_16 is defined and variables.magic_name_16 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_16|title}}&nbsp;({{ variables.magic_difficulty_16}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_16}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_16}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_16}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_16}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_16}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_16}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_17 is defined and variables.magic_name_17 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_17|title}}&nbsp;({{ variables.magic_difficulty_17}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_17}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_17}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_17}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_17}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_17}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_17}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_18 is defined and variables.magic_name_18 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_18|title}}&nbsp;({{ variables.magic_difficulty_18}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_18}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_18}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_18}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_18}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_18}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_18}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_19 is defined and variables.magic_name_19 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_19|title}}&nbsp;({{ variables.magic_difficulty_19}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_19}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_19}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_19}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_19}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_19}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_19}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.magic_name_20 is defined and variables.magic_name_20 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.magic_name_20|title}}&nbsp;({{ variables.magic_difficulty_20}})</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.magic_reagent_20}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_distance_20}}</div>
-                                    <div class="col-sm-2">{{ variables.magic_duration_20}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_effect_20}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Reagent</div>
-                                    <div class="col-sm-2 card-info-label">Distance</div>
-                                    <div class="col-sm-2 card-info-label">Duration</div>
-                                    <div class="col-sm-6 card-info-label">Effect</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.magic_critical_success_20}}</div>
-                                    <div class="col-sm-6">{{ variables.magic_critical_failure_20}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Critical Success</div>
-                                    <div class="col-sm-6 card-info-label">Critical Failure</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
+            <div class="row mt-3">
+            {% for n in 1..20 %}
+            {% if variables["magic_name_" ~ n] is not empty %}
+                <div class="col-sm-6 card">
+                    <div class="row">
+                        <div class="col-sm-12"><h3>{{ variables["magic_name_" ~ n]|title }}&nbsp;({{ variables["magic_principle_" ~ n] }})</h3></div>
+                        <div class="col-sm-12">{{ variables["magic_wellspring_" ~ n] }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-title">Distance</div><div class="col-sm-6">&nbsp;{{ variables["magic_distance_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Materials</div><div class="col-sm-6">&nbsp;{{ variables["magic_material_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Duration</div><div class="col-sm-6">&nbsp;{{ variables["magic_duration_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Effect</div><div class="col-sm-6">&nbsp;{{ variables["magic_effect_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Crit Success</div><div class="col-sm-6">&nbsp;{{ variables["magic_crit_success_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Crit Failure</div><div class="col-sm-6">&nbsp;{{ variables["magic_crit_fail_" ~ n] }}</div>
                     </div>
                 </div>
+            {% endif %}
+            {% endfor %}
             </div>
             <!-- end of spells tab-->
             <!-- TAB: Rituals -->
-            <div class="col-sm-12">
-                <div class="row card-title">
-                    <div class="col-sm-12"><h5>Rituals</h5></div>
-                </div>
+            <div class="row card mt-3">
+                <div class="col-sm-12 card-title"><h5>Rituals</h5></div>
             </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12">
-                        {% if variables.ritual_name_1 is defined and variables.ritual_name_1 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_1|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_1}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_1}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_1}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_1}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_1}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_1|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_1}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_2 is defined and variables.ritual_name_2 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_2|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_2}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_2}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_2}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_2}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_2}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_2|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_2}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_3 is defined and variables.ritual_name_3 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_3|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_3}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_3}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_3}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_3}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_3}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_3|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_3}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_4 is defined and variables.ritual_name_4 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_4|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_4}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_4}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_4}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_4}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_4}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_4|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_4}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_5 is defined and variables.ritual_name_5 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_5|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_5}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_5}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_5}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_5}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_5}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_5|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_5}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_6 is defined and variables.ritual_name_6 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_6|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_6}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_6}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_6}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_6}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_6}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_6|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_6}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_7 is defined and variables.ritual_name_7 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_7|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_7}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_7}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_7}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_7}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_7}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_7|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_7}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_8 is defined and variables.ritual_name_8 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_8|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_8}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_8}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_8}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_8}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_8}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_8|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_8}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_9 is defined and variables.ritual_name_9 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_9|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_9}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_9}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_9}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_9}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_9}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_9|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_9}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if variables.ritual_name_10 is defined and variables.ritual_name_10 != "" %}
-                        <div class="row card">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-12"><h3>{{ variables.ritual_name_10|title}}</h3></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">{{ variables.ritual_casting_time_10}}</div>
-                                    <div class="col-sm-4">{{ variables.ritual_reagents_10}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_condition_10}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_channel_power_10}}</div>
-                                    <div class="col-sm-2">{{ variables.ritual_difficulty_rating_10}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2 card-info-label">Casting Time</div>
-                                    <div class="col-sm-4 card-info-label">Reagents</div>
-                                    <div class="col-sm-2 card-info-label">Condition</div>
-                                    <div class="col-sm-2 card-info-label">Channel Power</div>
-                                    <div class="col-sm-2 card-info-label">Difficulty Rating</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6">{{ variables.ritual_effects_10|nl2br}}</div>
-                                    <div class="col-sm-6">{{ variables.ritual_consequences_10}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 card-info-label">Effects</div>
-                                    <div class="col-sm-6 card-info-label">Consequences</div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
+            <div class="row mt-3">
+            {% for n in 1..10 %}
+            {% if variables["ritual_name_" ~ n] is not empty %}
+                <div class="col-sm-6 card">
+                    <div class="row">
+                        <div class="col-sm-12"><h3>{{ variables["ritual_name_" ~ n]|title }}</h3></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 text-title">Time to Conduct</div><div class="col-sm-6">&nbsp;{{ variables["ritual_time_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Materials</div><div class="col-sm-6">&nbsp;{{ variables["ritual_material_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Conditions</div><div class="col-sm-6">&nbsp;{{ variables["ritual_condition_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Duration</div><div class="col-sm-6">&nbsp;{{ variables["ritual_duration_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Effect</div><div class="col-sm-6">&nbsp;{{ variables["ritual_effect_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Crit Success</div><div class="col-sm-6">&nbsp;{{ variables["ritual_crit_success_" ~ n] }}</div>
+                        <div class="col-sm-6 text-title">Crit Failure</div><div class="col-sm-6">&nbsp;{{ variables["ritual_crit_fail_" ~ n] }}</div>
                     </div>
                 </div>
+                {% endif %}
+            {% endfor %}
             </div>
             <!-- end of rituals tab -->
         </div>
-    </div>
-    <!-- Reward Points, Goals and Progression -->
-    <div class="tab content8">
-        <div class="row card mt-3">
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 card-title"><h3>Reward Points and Professions</h3></div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="row card-content">
-                    <div class="col-sm-3"><strong>Current Reward Points</strong></div>
-                    <div class="col-sm-2"><div class="border-strong btext">{% if variables.current_reward_points is not empty %}{{ variables.current_reward_points}}{% else %}0{% endif %}</div></div>
-                    <div class="col-sm-3"><strong>Total Reward Points</strong></div>
-                    <div class="col-sm-2"><div class="border-strong btext">{% if variables.total_reward_points is not empty %}{{ variables.total_reward_points}}{% else %}0{% endif %}</div></div>
-                </div>
-            </div>
-            {% if variables.personal_goals != "" %}
-            <div class="col-sm-12 border-bottom"><h5>Personal Goals</h5></div>
-            <div class="col-sm-12">    
-                <div class="row">
-                    <div class="col-sm-12">{{ variables.personal_goals|nl2br}}</div>
-                </div>
-            </div>
-            {% endif %}
-            <!-- TAB: Proffesion, Trait -->
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 border-bottom"><h5>Professions</h5></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <strong>Basic</strong>
+        <!-- end of magic tab -->
+        <!-- Reward Points, Goals and Progression -->
+        <div class="tab content8">
+            <div class="row mt-3">
+                <div class="col-sm-9">
+                    <div class="row card">
+                        <div class="col-sm-12 card-title"><h3>Professions & Advancements</h3></div>
+                    <!-- TAB: Proffesion, Trait -->
+                    {% set tiers = [
+                    {name: 'basic', label: 'Basic', rp: '10 RP'},
+                    {name: 'intermediate', label: 'Intermediate', rp: '20 RP'},
+                    {name: 'advanced', label: 'Advanced', rp: '30 RP'}
+                    ] %}
+                    {% for tier in tiers %}
+                        <div class="col-sm-4">
+                        {# Header #}
+                            <div class="row">
+                                <div class="col-sm-9"><strong>{{ tier.label }}</strong></div>
+                                <div class="col-sm-3 text-center"><strong>{{ tier.rp }}</strong></div>
                             </div>
-                            <div class="col-sm-3 text-center">
-                                <strong>10 RP</strong>
+                            {# Profession name #}
+                            <div class="row">
+                                <div class="col-sm-5"><strong>Profession</strong></div>
+                                <div class="col-sm-5">{{ variables["profession_" ~ tier.name] }}</div>
+                                <div class="col-sm-2"></div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <strong>Profession</strong>
+                            {# Skill Ranks — toggles 1-6 #}
+                            {% for i in 1..6 %}
+                            <div class="row">
+                                <div class="col-sm-5">Skill Rank</div>
+                                <div class="col-sm-5 border-bottom text-title text-center">{{ variables["profession_" ~ tier.name ~ "_skill_" ~ i] }}</div>
+                                <div class="col-sm-2">
+                                    {% if variables["profession_" ~ tier.name ~ "_toggle_" ~ i]|default(0) == 0 %}
+                                        <i class="far fa-circle"></i>
+                                    {% else %}
+                                        <i class="fas fa-circle"></i>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="col-sm-7">{{ variables.profession_basic }}
+                            {% endfor %}
+                            {# Attribute — toggle 7 #}
+                            <div class="row">
+                                <div class="col-sm-5">Attribute Adjustment</div>
+                                <div class="col-sm-5 border-bottom text-title text-center">{{ variables["profession_" ~ tier.name ~ "_attribute"] }}</div>
+                                <div class="col-sm-2">
+                                {% if variables["profession_" ~ tier.name ~ "_toggle_7"]|default(0) == 0 %}
+                                    <i class="far fa-circle"></i>
+                                {% else %}
+                                    <i class="fas fa-circle"></i>
+                                {% endif %}
+                                </div>
                             </div>
-                            <div class="col-sm-2 text-center"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_1}}</div> 
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_4}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_4 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_5}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_5 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_6}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_6 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_7}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_7 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_8}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_8 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_9}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_9 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_skill_rank_10}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_skill_rank_checkbox_10 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"><strong>Trait</strong></div>
-                            <div class="col-sm-7">{{ variables.profession_basic_trait}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_trait_checkbox == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_bonus_advance_1}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_bonus_advance_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_bonus_advance_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_bonus_advance_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_bonus_advance_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_bonus_advance_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_bonus_advance_4}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_bonus_advance_checkbox_4 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_bonus_advance_5}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_bonus_advance_checkbox_5 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_bonus_advance_6}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_bonus_advance_checkbox_6 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_bonus_advance_7}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_bonus_advance_checkbox_7 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_talent_1}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_talent_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_talent_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_talent_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_basic_talent_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_basic_talent_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <strong>Intermediate</strong>
+                            {# Trait — toggle 8 #}
+                            <div class="row">
+                                <div class="col-sm-5">Professional Talent</div>
+                                <div class="col-sm-5 border-bottom text-title text-center">{{ variables["profession_" ~ tier.name ~ "_profession_talent"] }}</div>
+                                <div class="col-sm-2">
+                                {% if variables["profession_" ~ tier.name ~ "_toggle_8"]|default(0) == 0 %}
+                                    <i class="far fa-circle"></i>
+                                {% else %}
+                                    <i class="fas fa-circle"></i>
+                                {% endif %}
+                                </div>
                             </div>
-                            <div class="col-sm-3 text-center text-title">20 RP</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3 text-title">Profession</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate }}
+                            {# Ancestral Talent — toggle 9 #}
+                            <div class="row">
+                                <div class="col-sm-5">Ancestral Talent</div>
+                                <div class="col-sm-5 border-bottom text-title text-center">{{ variables["profession_" ~ tier.name ~ "_ancestral_talent"] }}</div>
+                                <div class="col-sm-2">
+                                    {% if variables["profession_" ~ tier.name ~ "_toggle_9"]|default(0) == 0 %}
+                                    <i class="far fa-circle"></i>
+                                    {% else %}
+                                    <i class="fas fa-circle"></i>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="col-sm-2 text-center"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">Skill</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_1}}</div> 
-                            <div class="col-sm-2">{% if variables.profession_intermediate_toggle_1|default == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_4}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_4 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_5}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_5 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_6}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_6 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_7}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_7 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_8}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_8 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_9}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_9 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_skill_rank_10}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_skill_rank_checkbox_10 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"><strong>Trait</strong></div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_trait}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_trait_checkbox == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_bonus_advance_1}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_bonus_advance_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_bonus_advance_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_bonus_advance_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_bonus_advance_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_bonus_advance_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_bonus_advance_4}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_bonus_advance_checkbox_4 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_bonus_advance_5}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_bonus_advance_checkbox_5 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_bonus_advance_6}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_bonus_advance_checkbox_6 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_bonus_advance_7}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_bonus_advance_checkbox_7 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_talent_1}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_talent_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_talent_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_talent_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_intermediate_talent_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_intermediate_talent_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <strong>Advanced</strong>
+                            {# Bonus Advances — toggles 10-15 #}
+                            {% for i in 1..6 %}
+                            <div class="row">
+                                <div class="col-sm-5">Attribute Modifier</div>
+                                <div class="col-sm-5 border-bottom text-title text-center">{{ variables["profession_" ~ tier.name ~ "_bonus_" ~ i] }}</div>
+                                <div class="col-sm-2">
+                                    {% if variables["profession_" ~ tier.name ~ "_toggle_" ~ (9 + i)]|default(0) == 0 %}
+                                    <i class="far fa-circle"></i>
+                                    {% else %}
+                                    <i class="fas fa-circle"></i>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <div class="col-sm-3 text-center">
-                                <strong>300 RP</strong>
+                            {% endfor %}
+                            {# Talents — toggles 16-18 #}
+                            {% for i in 1..3 %}
+                            <div class="row">
+                                <div class="col-sm-5">General Talent</div>
+                                <div class="col-sm-5 border-bottom text-title text-center">{{ variables["profession_" ~ tier.name ~ "_talent_" ~ i] }}</div>
+                                <div class="col-sm-2">
+                                    {% if variables["profession_" ~ tier.name ~ "_toggle_" ~ (15 + i)]|default(0) == 0 %}
+                                    <i class="far fa-circle"></i>
+                                    {% else %}
+                                    <i class="fas fa-circle"></i>
+                                    {% endif %}
+                                </div>
                             </div>
+                            {% endfor %}
                         </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <strong>Profession</strong>
-                            </div>
-                            <div class="col-sm-7">{{ variables.profession_advanced }}
-                            </div>
-                            <div class="col-sm-2 text-center"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_1}}</div> 
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_4}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_4 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_5}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_5 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_6}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_6 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_7}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_7 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_8}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_8 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_9}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_9 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">SR</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_skill_rank_10}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_skill_rank_checkbox_10 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"><strong>Trait</strong></div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_trait}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_trait_checkbox == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_bonus_advance_1}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_bonus_advance_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_bonus_advance_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_bonus_advance_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_bonus_advance_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_bonus_advance_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_bonus_advance_4}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_bonus_advance_checkbox_4 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_bonus_advance_5}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_bonus_advance_checkbox_5 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_bonus_advance_6}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_bonus_advance_checkbox_6 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">BA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_bonus_advance_7}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_bonus_advance_checkbox_7 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_talent_1}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_talent_checkbox_1 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_talent_2}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_talent_checkbox_2 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">TA</div>
-                            <div class="col-sm-7">{{ variables.profession_advanced_talent_3}}</div>
-                            <div class="col-sm-2">{% if variables.profession_advanced_talent_checkbox_3 == 0 %}<i class="far fa-circle"></i>{% else %}<i class="fas fa-circle"></i>{% endif %}</div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-12 border-bottom"><h5>Unique Advances</h5></div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">{{ variables.unique_advances}}</div>
+                <div class="col-sm-3">
+                    <div class="row card">
+                        <div class="col-sm-12 card-title">Reward Points</div>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-6 border-bottom">Total Reward Points</div>
+                                <div class="col-sm-6 border-bottom text-title">{{ variables.reward_points }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">Spent Reward Points</div>
+                                <div class="col-sm-6 border-bottom text-title">{{ total_rp_spent }}</div>
+                            </div>
+                            <div class="row">
+                                {% if variables.reward_unique != 0 %} 
+                                <div class="col-sm-6">Unique Advances</div>
+                                <div class="col-sm-6 border-bottom text-title">{{ variables.reward_unique }} / {{ variables.reward_unique *10 }}</div>
+                                {%  endif %}
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">Available Reward Points</div>
+                                <div class="col-sm-6 border-bottom text-title">{{ variables.reward_points - total_rp_spent }}</div>
+                            </div>
+                            <div class="row">
+                                {% if variables.reward_unique != 0 %} 
+                                <div class="col-sm-12 card-info-label">Unique Advances are included in Total RP calculation</div>
+                                {%  endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Disclaimer -->
-    <div class="row">
-        <div class="col-sm-12">Powered by Zweihander d100 Character Sheet created by Verencius#6819 with a lot of help and patience from Tillerz#3807, Graylion#1115 and Ranentil. Uploaded 2020-12-20 (Version 1.0).
-        Due to unknown error EUCLID text editor is NOT SUPPORTED. Please use Plato if some input areas show collapsed or invisible!</div>
-    </div>
+        <!-- Disclaimer -->
+        <div class="row">
+            <div class="col-sm-12">Powered by Zweihander d100 Character Sheet created by Verencius#6819 with a lot of help and patience from Tillerz#3807, Graylion#1115 and Ranentil. Uploaded 2020-12-20 (Version 1.0).
+            Due to unknown error EUCLID text editor is NOT SUPPORTED. Please use Plato if some input areas show collapsed or invisible!</div>
+        </div>
 </div>

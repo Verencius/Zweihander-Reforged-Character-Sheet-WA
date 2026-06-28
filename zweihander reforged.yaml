@@ -40,7 +40,7 @@ fields:
     label: "personal weight"
     input: string
 
-  personal build:
+  personal build type:
     label: "personal build"
     input: string
 
@@ -64,10 +64,6 @@ fields:
     label: "personal social class"
     input: string
 
-  personal death:
-    label: "personal death"
-    input: string
-
   personal pronoun:
     label: "personal pronoun"
     input: string
@@ -84,21 +80,21 @@ fields:
     label: "personal language"
     input: string
 
-  alignment tragic flaw:
+  tragic flaw:
     label: "alignment tragic flaw"
     input: text
 
-  alignment inner strength:
+  inner strength:
     label: "alignment inner strength"
     input: text
 
-  alignment corruption:
+  corruption:
     label: "alignment corruption"
     input: integer
     min: 0
     max: 9
 
-  alignment permanent corruption:
+  corruption permanent:
     label: "alignment permanent corruption"
     input: integer
     min: 0
@@ -158,8 +154,8 @@ fields:
     label: "injury description 5"
     input: text
 
-  Malignancies and Scars:
-    label: "Malignancies and Scars"
+  malignancies and scars:
+    label: "malignancies and scars"
     input: text
 
   attribute brawn:
@@ -504,8 +500,8 @@ fields:
     label: "Burden"
     input: text
 
-  burden.penalty:
-    label: "Burden Penalty"
+  burden penalty:
+    label: "burden penalty"
     input: integer
     min: 0
 
@@ -3082,8 +3078,8 @@ fields:
       minus15: minus15
       exhausted: exhausted
   
-  peril condition track:
-    label: "peril condition track"
+  peril stress:
+    label: "peril stress"
     input: select
     options:
       none: None
@@ -3136,19 +3132,19 @@ fields:
     label: "reward unique text"
     input: text
 
-peril_situational:
-  label: "Peril Situational Modifier"
-  input: integer
+  peril_situational:
+    label: "Peril Situational Modifier"
+    input: integer
 
-damage_situational:
-  label: "Damage Situational Modifier"
-  input: integer
+  damage_situational:
+    label: "Damage Situational Modifier"
+    input: integer
 
-initiative_temporary:
-  label: "Initiative Temporary Modifier"
-  input: integer
+  initiative_temporary:
+    label: "Initiative Temporary Modifier"
+    input: integer
 
-burden_penalty:
-  label: "Burden Penalty"
-  input: integer
-  min: 0
+  burden_penalty:
+    label: "Burden Penalty"
+    input: integer
+    min: 0
