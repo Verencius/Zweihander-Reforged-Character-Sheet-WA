@@ -147,6 +147,36 @@
 {% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor')+ attribute_willpower_advance_array %}
 {% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + attribute_fellowship_advance_array %}
 <!-- skill advances value -->
+<!-- talismans -->
+{# === TALISMAN BONUSES === #}
+{% set skills = [
+  'Athletics', 'Awareness', 'Blackpowder', 'Coordination', 'Craft',
+  'Disguise', 'Folklore', 'Gamble', 'Guile', 'Handling',
+  'Insight', 'Leechcraft', 'Melee', 'Occultism', 'Persuasion',
+  'Ranged', 'Resolve', 'Stealth', 'Survival', 'Thievery', 'Toughness'
+] %}
+{# Build objects array from variables #}
+{% set talisman_objects = [] %}
+{% for i in 2..10 %}
+  {% set talisman_objects = talisman_objects | merge([variables["object_" ~ i]|default('')|lower]) %}
+{% endfor %}
+{# Build result array — index matches skills array #}
+{% set talisman_bonuses = [] %}
+{% for skill in skills %}
+  {% set found = [false] %}
+  {% for obj in talisman_objects %}
+    {% if obj is not empty and ('talisman of ' ~ skill|lower) in obj %}
+      {% set found = [true] %}
+    {% endif %}
+  {% endfor %}
+  {% set talisman_bonuses = talisman_bonuses | merge([found[0] ? 5 : 0]) %}
+{% endfor %}
+{# talisman_bonuses index reference: #}
+{# 0=Athletics, 1=Awareness, 2=Blackpowder, 3=Coordination, 4=Craft    #}
+{# 5=Disguise,  6=Folklore,  7=Gamble,      8=Guile,        9=Handling  #}
+{# 10=Insight,  11=Leechcraft, 12=Melee,    13=Occultism,   14=Persuasion #}
+{# 15=Ranged,   16=Resolve,   17=Stealth,   18=Survival,    19=Thievery  #}
+{# 20=Toughness #}
 <!-- athletics -->
 {% set athletics_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -160,7 +190,7 @@
     {% endfor %}
 {% endfor %}
 {% set athletics_advance = athletics_count > 3 ? 3 : athletics_count %}
-{% set skill_athletics_total = attribute_brawn_final + (athletics_advance * 10) %}
+{% set skill_athletics_total = attribute_brawn_final + (athletics_advance * 10) + talisman_bonuses[0] %}
 <!-- awareness -->
 {% set awareness_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -174,7 +204,7 @@
     {% endfor %}
 {% endfor %}
 {% set awareness_advance = awareness_count > 3 ? 3 : awareness_count %}
-{% set skill_awareness_total = attribute_perception_final + (awareness_advance * 10) %}
+{% set skill_awareness_total = attribute_perception_final + (awareness_advance * 10) + talisman_bonuses[1] %}
 <!-- blackpowder -->
 {% set blackpowder_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -188,7 +218,7 @@
     {% endfor %}
 {% endfor %}
 {% set blackpowder_advance = blackpowder_count > 3 ? 3 : blackpowder_count %}
-{% set skill_blackpowder_total = attribute_combat_final + (blackpowder_advance * 10) %}
+{% set skill_blackpowder_total = attribute_combat_final + (blackpowder_advance * 10) + talisman_bonuses[2] %}
 <!-- coordination -->
 {% set coordination_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -202,21 +232,20 @@
     {% endfor %}
 {% endfor %}
 {% set coordination_advance = coordination_count > 3 ? 3 : coordination_count %}
-{% set skill_coordination_total = attribute_agility_final + (coordination_advance * 10) %}
+{% set skill_coordination_total = attribute_agility_final + (coordination_advance * 10) + talisman_bonuses[3] %}
 <!-- craft -->
 {% set craft_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Craft" and toggle == 1 %}
             {% set craft_count = craft_count + 1 %}
         {% endif %}
     {% endfor %}
 {% endfor %}
 {% set craft_advance = craft_count > 3 ? 3 : craft_count %}
-{% set skill_craft_total = attribute_willpower_final + (craft_advance * 10) %}
+{% set skill_craft_total = attribute_willpower_final + (craft_advance * 10) + talisman_bonuses[4] %}
 <!-- disguise -->
 {% set disguise_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -230,7 +259,7 @@
     {% endfor %}
 {% endfor %}
 {% set disguise_advance = disguise_count > 3 ? 3 : disguise_count %}
-{% set skill_disguise_total = attribute_fellowship_final + (disguise_advance * 10) %}
+{% set skill_disguise_total = attribute_fellowship_final + (disguise_advance * 10) + talisman_bonuses[5] %}
 <!-- folklore -->
 {% set folklore_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -244,7 +273,7 @@
     {% endfor %}
 {% endfor %}
 {% set folklore_advance = folklore_count > 3 ? 3 : folklore_count %}
-{% set skill_folklore_total = attribute_intelligence_final + (folklore_advance * 10) %}
+{% set skill_folklore_total = attribute_intelligence_final + (folklore_advance * 10) + talisman_bonuses[6] %}
 <!-- gamble -->
 {% set gamble_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -258,7 +287,7 @@
     {% endfor %}
 {% endfor %}
 {% set gamble_advance = gamble_count > 3 ? 3 : gamble_count %}
-{% set skill_gamble_total = attribute_intelligence_final + (gamble_advance * 10) %}
+{% set skill_gamble_total = attribute_intelligence_final + (gamble_advance * 10) + talisman_bonuses[7] %}
 <!-- guile -->
 {% set guile_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -272,7 +301,7 @@
     {% endfor %}
 {% endfor %}
 {% set guile_advance = guile_count > 3 ? 3 : guile_count %}
-{% set skill_guile_total = attribute_fellowship_final + (guile_advance * 10) %}
+{% set skill_guile_total = attribute_fellowship_final + (guile_advance * 10) + talisman_bonuses[8] %}
 <!-- handling -->
 {% set handling_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -286,7 +315,7 @@
     {% endfor %}
 {% endfor %}
 {% set handling_advance = handling_count > 3 ? 3 : handling_count %}
-{% set skill_handling_total = attribute_brawn_final + (handling_advance * 10) %}
+{% set skill_handling_total = attribute_brawn_final + (handling_advance * 10) + talisman_bonuses[9] %}
 <!-- insight -->
 {% set insight_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -299,7 +328,7 @@
     {% endfor %}
 {% endfor %}
 {% set insight_advance = insight_count > 3 ? 3 : insight_count %}
-{% set skill_insight_total = attribute_perception_final + (insight_advance * 10) %}
+{% set skill_insight_total = attribute_perception_final + (insight_advance * 10) + talisman_bonuses[10] %}
 <!-- leechcraft -->
 {% set leechcraft_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -312,7 +341,7 @@
     {% endfor %}
 {% endfor %}
 {% set leechcraft_advance = leechcraft_count > 3 ? 3 : leechcraft_count %}
-{% set skill_leechcraft_total = attribute_intelligence_final + (leechcraft_advance * 10) %}
+{% set skill_leechcraft_total = attribute_intelligence_final + (leechcraft_advance * 10) + talisman_bonuses[11] %}
 <!-- melee -->
 {# 1. Initialize our counter directly as an integer #}
 {% set melee_count = 0 %}
@@ -329,7 +358,7 @@
 {# 3. Cap the bonus at 3 (simulating your if/else check) #}
 {% set melee_advance = melee_count > 3 ? 3 : melee_count %}
 {# 4. Calculate final total #}
-{% set skill_melee_total = attribute_combat_final + (melee_advance * 10) %}
+{% set skill_melee_total = attribute_combat_final + (melee_advance * 10) + talisman_bonuses[12] %}
 <!-- occultism -->
 {% set occultism_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -342,7 +371,7 @@
     {% endfor %}
 {% endfor %}
 {% set occultism_advance = occultism_count > 3 ? 3 : occultism_count %}
-{% set skill_occultism_total = attribute_willpower_final + (occultism_advance * 10) %}
+{% set skill_occultism_total = attribute_willpower_final + (occultism_advance * 10) + talisman_bonuses[13] %}
 <!-- ranged -->
 {% set ranged_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -356,7 +385,7 @@
     {% endfor %}
 {% endfor %}
 {% set ranged_advance = ranged_count > 3 ? 3 : ranged_count %}
-{% set skill_ranged_total = attribute_combat_final + (ranged_advance * 10) %}
+{% set skill_ranged_total = attribute_combat_final + (ranged_advance * 10) + talisman_bonuses[14] %}
 <!-- persuasion -->
 {% set persuasion_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -369,7 +398,7 @@
     {% endfor %}
 {% endfor %}
 {% set persuasion_advance = persuasion_count > 3 ? 3 : persuasion_count %}
-{% set skill_persuasion_total = attribute_fellowship_final + (persuasion_advance * 10) %}
+{% set skill_persuasion_total = attribute_fellowship_final + (persuasion_advance * 10) + talisman_bonuses[15] %}
 <!-- resolve -->
 {% set resolve_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -383,7 +412,7 @@
     {% endfor %}
 {% endfor %}
 {% set resolve_advance = resolve_count > 3 ? 3 : resolve_count %}
-{% set skill_resolve_total = attribute_willpower_final + (resolve_advance * 10) %}
+{% set skill_resolve_total = attribute_willpower_final + (resolve_advance * 10) + talisman_bonuses[16] %}
 <!-- stealth -->
 {% set stealth_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -396,7 +425,7 @@
     {% endfor %}
 {% endfor %}
 {% set stealth_advance = stealth_count > 3 ? 3 : stealth_count %}
-{% set skill_stealth_total = attribute_agility_final + (stealth_advance * 10) %}
+{% set skill_stealth_total = attribute_agility_final + (stealth_advance * 10) + talisman_bonuses[17] %}
 <!-- survival -->
 {% set survival_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -409,7 +438,7 @@
     {% endfor %}
 {% endfor %}
 {% set survival_advance = survival_count > 3 ? 3 : survival_count %}
-{% set skill_survival_total = attribute_perception_final + (survival_advance * 10) %}
+{% set skill_survival_total = attribute_perception_final + (survival_advance * 10) + talisman_bonuses[18] %}
 <!-- thievery -->
 {% set thievery_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -567,7 +596,7 @@
 {% endif %}
 <!-- initiative final calculation -->
 {% set initiative_armor = 0 %} {% if "ill-fitted" in variables.armor_qualities|default('')|lower %} {% set initiative_armor = -3 %} {% endif %}
-{% set initiative_final = initiative_base + initiative_armor + initiative_burden + initiative_weapon + initiative_instincts + (initiative_ancestral ? 1 : 0) + variables.initiative_temporary %}
+{% set initiative_final = initiative_base - initiative_armor - initiative_burden - initiative_weapon + initiative_instincts + (initiative_ancestral ? 1 : 0) + variables.initiative_temporary %}
 <!-- reward points -->
 {% set rp_basic = [] %}
 {% set rp_intermediate = [] %}
@@ -591,6 +620,8 @@
 {% endfor %}
 {% set starting_advances = rp_basic | length > 9 ? 9 : rp_basic | length %}
 {% set total_rp_spent = (rp_basic | length * 10) + (rp_intermediate | length * 20) + (rp_advanced | length * 30) + (rp_unique | length * 10) - (starting_advances * 10) %}
+<!-- corruption -->
+{% set total_corruption = variables.corruption|default(0) + variables.corruption_permanent|default(0) %}
 <!-- end of macros -->
 <div id="karta" class="container-fluid">
     <!-- Tabbing -->
@@ -615,14 +646,14 @@
                         I'm&nbsp;<strong>{{ variables.personal_age_group}}&nbsp;{{ variables.personal_ancestry }}&nbsp;{{ variables.personal_gender }}</strong>.&nbsp;I was born in&nbsp;<strong>{{ variables.personal_season_of_birth }}&nbsp;</strong>
                         in the place called&nbsp;<strong>{{ variables.personal_place_of_birth}}</strong>.&nbsp;I was raised in a/an&nbsp;<strong>{{ variables.personal_upbringing}}&nbsp;</strong>home of the&nbsp;<strong>{{ variables.personal_social_class}}&nbsp;</strong>class
                          {% if variables.personal_patron_deity is not empty %} and became a follower of&nbsp;<strong>{{ variables.personal_patron_deity}}</strong>{% endif %}.
-                        When you see me  I am of a/an&nbsp;<strong>{{ variables.personal_height}} stature</strong>&nbsp;with a/an&nbsp;<strong>{{ variables.personal_build}} build</strong>,<strong>&nbsp;{{ variables.personal_hair_color }} hair</strong>,
+                        When you see me  I am of a/an&nbsp;<strong>{{ variables.personal_height}} stature</strong>&nbsp;and&nbsp;<strong>{{ variables.personal_build}} build</strong> with<strong>&nbsp;{{ variables.personal_hair_color }} hair</strong>,
                         <strong>&nbsp;{{ variables.personal_eye_color}} eyes</strong>,<strong>&nbsp;{{ variables.personal_complexion}} complexion</strong>&nbsp;and&nbsp;<strong>{{ variables.personal_distinguishing_marks }}</strong>.
                         My life changed the day that{% if variables.personal_death is not empty %}{{ variables.personal_death}}{% else %}<strong>&nbsp;is shrouded in the fog of war</strong>{% endif %}.
                         Yet I lived to tell the tale. 
                     </div>
                 </div>
                 <div class="row card">
-                    <div class="col-sm-12 text-title">Languages:&nbsp;{{ variables.personal_language }}</div>
+                    <div class="col-sm-12"><strong>Languages:</strong>&nbsp;{{ variables.personal_language }}</div>
                 </div>
                 <div class="row card">
                     <div class="col-sm-12 text-title">Inner Strength:&nbsp;{{ variables.inner_strength }}</div>
@@ -1237,7 +1268,9 @@
                         {% if variables.object_10 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_10 }}</div><div class="row card-info-label"></div>{% endif %}
                     </div>
                     <div class="col-sm-12 ">
-                        <div class="row card-info-label content-spacing">When you’re in a scene related to your Brush With Death, hold the Memento to ignore all Peril Condition Track penalties. <br>These benefits last until you escape or defeat the situation.</div>
+                        <div class="row card-info-label content-spacing">When you’re in a scene related to your Brush With Death, hold the Memento to ignore all Peril Condition Track penalties. These benefits last until you escape or defeat the situation. Keyword: 'Talisman of [skill]' to gain benefit directly.
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1298,8 +1331,7 @@
                     <div class="col-sm-12 card-title">Extra Burden I Carry</div>
                     <div class="col-sm-12"> {{ variables.burden }}</div>
                     {% if variables.burden_penalty >0 %}
-                    <div class="col-sm-8 card-title">Burden Penalty</div>
-                    <div class="col-sm-4 card-title">{{ variables.burden_penalty }}</div>
+                    <div class="col-sm-12 card-title">Burden Penalty ({{ variables.burden_penalty }})</div>
                     {% endif %}
                 </div>
             </div>

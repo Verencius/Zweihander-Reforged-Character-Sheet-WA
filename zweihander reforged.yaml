@@ -40,7 +40,7 @@ fields:
     label: "personal weight"
     input: string
 
-  personal build type:
+  personal build:
     label: "personal build"
     input: string
 
@@ -64,10 +64,6 @@ fields:
     label: "personal social class"
     input: string
 
-  personal pronoun:
-    label: "personal pronoun"
-    input: string
-
   personal patron deity:
     label: "personal patron deity"
     input: string
@@ -82,11 +78,11 @@ fields:
 
   tragic flaw:
     label: "alignment tragic flaw"
-    input: text
+    input: string
 
   inner strength:
     label: "alignment inner strength"
-    input: text
+    input: strong
 
   corruption:
     label: "alignment corruption"
@@ -106,52 +102,12 @@ fields:
     min: 0
 
   reputation:
-    label: "reward reputation"
+    label: "reputation"
     input: integer
     min: 0
 
   reputation text:
-    label: "reward reputation text"
-    input: text
-
-  injury name 1:
-    label: "injury name 1"
-    input: string
-
-  injury description 1:
-    label: "injury description 1"
-    input: text
-
-  injury name 2:
-    label: "injury name 2"
-    input: string
-
-  injury description 2:
-    label: "injury description 2"
-    input: text
-
-  injury name 3:
-    label: "injury name 3"
-    input: string
-
-  injury description 3:
-    label: "injury description 3"
-    input: text
-
-  injury name 4:
-    label: "injury name 4"
-    input: string
-
-  injury description 4:
-    label: "injury description 4"
-    input: text
-
-  injury name 5:
-    label: "injury name 5"
-    input: string
-
-  injury description 5:
-    label: "injury description 5"
+    label: "reputation text"
     input: text
 
   malignancies and scars:
@@ -267,7 +223,7 @@ fields:
 
   armor qualities:
     label: "armor qualities"
-    input: text
+    input: string
 
   armor clothes:
     label: "armor clothes"
@@ -291,7 +247,7 @@ fields:
   
   weapon qualities 1:
     label: "weapon qualities 1"
-    input: text
+    input: string
       
   weapon active 1:
     label: "weapon active 1"
@@ -315,7 +271,7 @@ fields:
   
   weapon qualities 2:
     label: "weapon qualities 2"
-    input: text
+    input: string
     
   weapon active 2:
     label: "weapon active 2"
@@ -339,7 +295,7 @@ fields:
   
   weapon qualities 3:
     label: "weapon qualities 3"
-    input: text
+    input: string
     
   weapon active 3:
     label: "weapon active 3"
@@ -363,7 +319,7 @@ fields:
   
   weapon qualities 4:
     label: "weapon qualities 4"
-    input: text
+    input: string
     
   weapon active 4:
     label: "weapon active 4"
@@ -2159,7 +2115,7 @@ fields:
   
   profession basic profession talent desc:
     label: "profession basic profession talent desc"
-    input: text
+    input: string
 
   profession basic toggle 8:
     label: "profession basic toggle 8"
@@ -2171,7 +2127,7 @@ fields:
 
   profession basic ancestral talent desc:
     label: "profession basic ancestral talent desc"
-    input: text
+    input: string
   
   profession basic toggle 9:
     label: "profession basic toggle 9"
@@ -3063,10 +3019,6 @@ fields:
     label: "option toggle rituals"
     input: checkbox
 
-  initiative base:
-    label: "initiative base"
-    input: integer
-
   peril condition track:
     label: "peril condition track"
     input: select
@@ -3127,24 +3079,27 @@ fields:
   reward unique:
     label: "unique advances cost"
     input: integer
-  
-  reward unique text:
-    label: "reward unique text"
-    input: text
 
-  peril_situational:
+  peril situational:
     label: "Peril Situational Modifier"
     input: integer
 
-  damage_situational:
+  damage situational:
     label: "Damage Situational Modifier"
     input: integer
 
-  initiative_temporary:
-    label: "Initiative Temporary Modifier"
+  initiative temporary:
+    label: "initiative temporary modifier"
     input: integer
-
-  burden_penalty:
-    label: "Burden Penalty"
+  
+  spells_count:
+    label: "spells count"
     input: integer
     min: 0
+    max: 20
+
+  rituals_count:
+    label: "spells count"
+    input: integer
+    min: 0
+    max: 20
