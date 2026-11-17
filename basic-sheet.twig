@@ -35,117 +35,62 @@
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Willpower +5%" ? 5 : 0)
 %}
 <!-- set attribute advancement -->
-{% set attribute_agility_advance_array= 0 %}
-{% for i in 1..6 %}
-    {% for j in 10..15 %}
-        {% if attribute(variables, "profession_basic_toggle_" ~ j) == true and attribute(variables, "profession_basic_bonus_" ~ i) == "Agility" %}
-            {% set attribute_agility_advance_array = attribute_agility_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_intermediate_toggle_" ~ j) == true and attribute(variables, "profession_intermediate_bonus_" ~ i) == "Agility" %}
-            {% set attribute_agility_advance_array = attribute_agility_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_advanced_toggle_" ~ j) == true and attribute(variables, "profession_advanced_bonus_" ~ i) == "Agility" %}
-            {% set attribute_agility_advance_array = attribute_agility_advance_array + 1 %}
+{% macro countAdvances(variables, attrName) %}
+    {% set count = 0 %}
+    {% for i in 1..6 %}
+        {% for j in 10..15 %}
+            {% for tier in ['basic', 'intermediate', 'advanced'] %}
+                {% if attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ j) == true and attribute(variables, "profession_" ~ tier ~ "_bonus_" ~ i) == attrName %}
+                    {% set count = count + 1 %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+    {{ count }}
+{% endmacro %}
+{% set attribute_agility_advance_array = _self.countAdvances(variables, 'Agility')|trim|number_format(0) %}
+{% set attribute_brawn_advance_array = _self.countAdvances(variables, 'Brawn')|trim|number_format(0) %}
+{% set attribute_combat_advance_array = _self.countAdvances(variables, 'Combat')|trim|number_format(0) %}
+{% set attribute_perception_advance_array = _self.countAdvances(variables, 'Perception')|trim|number_format(0) %}
+{% set attribute_intelligence_advance_array = _self.countAdvances(variables, 'Intelligence')|trim|number_format(0) %}
+{% set attribute_willpower_advance_array = _self.countAdvances(variables, 'Willpower')|trim|number_format(0) %}
+{% set attribute_fellowship_advance_array = _self.countAdvances(variables, 'Fellowship')|trim|number_format(0) %}
+<!-- factor in ancestral talents to attribute bonuses -->
+{% set attrNames = ['agility', 'brawn', 'combat', 'fellowship', 'intelligence', 'perception', 'willpower'] %}
+{% set attrKeywords = [
+    ['underfoot', 'deadly aim', 'warg-blooded'],
+    ['mountain among men', 'inhuman strength', 'big folk', 'monstrous body'],
+    ['combat prowess'],
+    [],
+    [],
+    [],
+    []
+] %}
+{% set attrAncestralBonus = [] %}
+{% for idx in 0..(attrNames|length - 1) %}
+    {% set keywords = attrKeywords[idx] %}
+    {% set bonus = 0 %}
+    {% for tier in ['basic', 'intermediate', 'advanced'] %}
+        {% set toggleOn = attribute(variables, "profession_" ~ tier ~ "_toggle_9") %}
+        {% set talentText = attribute(variables, "profession_" ~ tier ~ "_ancestral_talent")|lower %}
+        {% if toggleOn == true %}
+            {% for kw in keywords %}
+                {% if kw in talentText %}
+                    {% set bonus = bonus + 1 %}
+                {% endif %}
+            {% endfor %}
         {% endif %}
     {% endfor %}
-{% endfor %}
-
-{% set attribute_brawn_advance_array= 0 %}
-{% for i in 1..6 %}
-    {% for j in 10..15 %}
-        {% if attribute(variables, "profession_basic_toggle_" ~ j) == true and attribute(variables, "profession_basic_bonus_" ~ i) == "Brawn" %}
-            {% set attribute_brawn_advance_array = attribute_brawn_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_intermediate_toggle_" ~ j) == true and attribute(variables, "profession_intermediate_bonus_" ~ i) == "Brawn" %}
-            {% set attribute_brawn_advance_array = attribute_brawn_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_advanced_toggle_" ~ j) == true and attribute(variables, "profession_advanced_bonus_" ~ i) == "Brawn" %}
-            {% set attribute_brawn_advance_array = attribute_brawn_advance_array + 1 %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-
-{% set attribute_combat_advance_array= 0 %}
-{% for i in 1..6 %}
-    {% for j in 10..15 %}
-        {% if attribute(variables, "profession_basic_toggle_" ~ j) == true and attribute(variables, "profession_basic_bonus_" ~ i) == "Combat" %}
-            {% set attribute_combat_advance_array = attribute_combat_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_intermediate_toggle_" ~ j) == true and attribute(variables, "profession_intermediate_bonus_" ~ i) == "Combat" %}
-            {% set attribute_combat_advance_array = attribute_combat_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_advanced_toggle_" ~ j) == true and attribute(variables, "profession_advanced_bonus_" ~ i) == "Combat" %}
-            {% set attribute_combat_advance_array = attribute_combat_advance_array + 1 %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-
-{% set attribute_perception_advance_array= 0 %}
-{% for i in 1..6 %}
-    {% for j in 10..15 %}
-        {% if attribute(variables, "profession_basic_toggle_" ~ j) == true and attribute(variables, "profession_basic_bonus_" ~ i) == "Perception" %}
-            {% set attribute_perception_advance_array = attribute_perception_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_intermediate_toggle_" ~ j) == true and attribute(variables, "profession_intermediate_bonus_" ~ i) == "Perception" %}
-            {% set attribute_perception_advance_array = attribute_perception_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_advanced_toggle_" ~ j) == true and attribute(variables, "profession_advanced_bonus_" ~ i) == "Perception" %}
-            {% set attribute_perception_advance_array = attribute_perception_advance_array + 1 %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-
-{% set attribute_intelligence_advance_array= 0 %}
-{% for i in 1..6 %}
-    {% for j in 10..15 %}
-        {% if attribute(variables, "profession_basic_toggle_" ~ j) == true and attribute(variables, "profession_basic_bonus_" ~ i) == "Intelligence" %}
-            {% set attribute_intelligence_advance_array = attribute_intelligence_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_intermediate_toggle_" ~ j) == true and attribute(variables, "profession_intermediate_bonus_" ~ i) == "Intelligence" %}
-            {% set attribute_intelligence_advance_array = attribute_intelligence_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_advanced_toggle_" ~ j) == true and attribute(variables, "profession_advanced_bonus_" ~ i) == "Intelligence" %}
-            {% set attribute_intelligence_advance_array = attribute_intelligence_advance_array + 1 %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-
-{% set attribute_willpower_advance_array= 0 %}
-{% for i in 1..6 %}
-    {% for j in 10..15 %}
-        {% if attribute(variables, "profession_basic_toggle_" ~ j) == true and attribute(variables, "profession_basic_bonus_" ~ i) == "Willpower" %}
-            {% set attribute_willpower_advance_array = attribute_willpower_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_intermediate_toggle_" ~ j) == true and attribute(variables, "profession_intermediate_bonus_" ~ i) == "Willpower" %}
-            {% set attribute_willpower_advance_array = attribute_willpower_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_advanced_toggle_" ~ j) == true and attribute(variables, "profession_advanced_bonus_" ~ i) == "Willpower" %}
-            {% set attribute_willpower_advance_array = attribute_willpower_advance_array + 1 %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-{% set attribute_fellowship_advance_array= 0 %}
-{% for i in 1..6 %}
-    {% for j in 10..15 %}
-        {% if attribute(variables, "profession_basic_toggle_" ~ j) == true and attribute(variables, "profession_basic_bonus_" ~ i) == "Fellowship" %}
-            {% set attribute_fellowship_advance_array = attribute_fellowship_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_intermediate_toggle_" ~ j) == true and attribute(variables, "profession_intermediate_bonus_" ~ i) == "Fellowship" %}
-            {% set attribute_fellowship_advance_array = attribute_fellowship_advance_array + 1 %}
-        {% endif %}
-        {% if attribute(variables, "profession_advanced_toggle_" ~ j) == true and attribute(variables, "profession_advanced_bonus_" ~ i) == "Fellowship" %}
-            {% set attribute_fellowship_advance_array = attribute_fellowship_advance_array + 1 %}
-        {% endif %}
-    {% endfor %}
+    {% set attrAncestralBonus = attrAncestralBonus|merge([bonus]) %}
 {% endfor %}
 <!-- set attribute final bonus calculations -->
-{% set attribute_combat_bonus_final = (variables.attribute_combat/10)|round (0,'floor') + attribute_combat_advance_array %}
-{% set attribute_brawn_bonus_final = (variables.attribute_brawn/10)|round (0,'floor') + attribute_brawn_advance_array %}
-{% set attribute_agility_bonus_final = (variables.attribute_agility/10)|round (0,'floor') + attribute_agility_advance_array %}
-{% set attribute_perception_bonus_final = (variables.attribute_perception/10)|round (0,'floor') + attribute_perception_advance_array %}
-{% set attribute_intelligence_bonus_final = (variables.attribute_intelligence/10)|round (0,'floor') + attribute_intelligence_advance_array %}
-{% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor')+ attribute_willpower_advance_array %}
-{% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + attribute_fellowship_advance_array %}
+{% set attribute_combat_bonus_final = (variables.attribute_combat/10)|round (0,'floor') + attribute_combat_advance_array + variables.combat_bonus_custom + attrAncestralBonus[2] %}
+{% set attribute_brawn_bonus_final = (variables.attribute_brawn/10)|round (0,'floor') + attribute_brawn_advance_array + variables.brawn_bonus_custom + attrAncestralBonus[1] %}
+{% set attribute_agility_bonus_final = (variables.attribute_agility/10)|round (0,'floor') + attribute_agility_advance_array + variables.agility_bonus_custom + attrAncestralBonus[0] %}
+{% set attribute_perception_bonus_final = (variables.attribute_perception/10)|round (0,'floor') + attribute_perception_advance_array + variables.perception_bonus_custom + attrAncestralBonus[5] %}
+{% set attribute_intelligence_bonus_final = (variables.attribute_intelligence/10)|round (0,'floor') + attribute_intelligence_advance_array + variables.intelligence_bonus_custom + attrAncestralBonus[4] %}
+{% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor')+ attribute_willpower_advance_array + variables.willpower_bonus_custom + attrAncestralBonus[6] %}
+{% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + attribute_fellowship_advance_array + variables.fellowship_bonus_custom %}
 <!-- skill advances value -->
 <!-- talismans -->
 {# === TALISMAN BONUSES === #}
@@ -183,7 +128,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Athletics" and toggle == 1 %}
             {% set athletics_count = athletics_count + 1 %}
         {% endif %}
@@ -197,7 +141,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Awareness" and toggle == 1 %}
             {% set awareness_count = awareness_count + 1 %}
         {% endif %}
@@ -211,7 +154,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Blackpowder" and toggle == 1 %}
             {% set blackpowder_count = blackpowder_count + 1 %}
         {% endif %}
@@ -252,7 +194,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Disguise" and toggle == 1 %}
             {% set disguise_count = disguise_count + 1 %}
         {% endif %}
@@ -280,7 +221,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Gamble" and toggle == 1 %}
             {% set gamble_count = gamble_count + 1 %}
         {% endif %}
@@ -294,7 +234,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Guile" and toggle == 1 %}
             {% set guile_count = guile_count + 1 %}
         {% endif %}
@@ -308,7 +247,6 @@
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Handling" and toggle == 1 %}
             {% set handling_count = handling_count + 1 %}
         {% endif %}
@@ -372,20 +310,6 @@
 {% endfor %}
 {% set occultism_advance = occultism_count > 3 ? 3 : occultism_count %}
 {% set skill_occultism_total = attribute_willpower_final + (occultism_advance * 10) + talisman_bonuses[13] %}
-<!-- ranged -->
-{% set ranged_count = 0 %}
-{% for tier in ['basic', 'intermediate', 'advanced'] %}
-    {% for i in 1..6 %}
-        {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
-        {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
-        {% if skill == "Ranged" and toggle == 1 %}
-            {% set ranged_count = ranged_count + 1 %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-{% set ranged_advance = ranged_count > 3 ? 3 : ranged_count %}
-{% set skill_ranged_total = attribute_combat_final + (ranged_advance * 10) + talisman_bonuses[14] %}
 <!-- persuasion -->
 {% set persuasion_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
@@ -399,13 +323,25 @@
 {% endfor %}
 {% set persuasion_advance = persuasion_count > 3 ? 3 : persuasion_count %}
 {% set skill_persuasion_total = attribute_fellowship_final + (persuasion_advance * 10) + talisman_bonuses[15] %}
+<!-- ranged -->
+{% set ranged_count = 0 %}
+{% for tier in ['basic', 'intermediate', 'advanced'] %}
+    {% for i in 1..6 %}
+        {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
+        {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
+        {% if skill == "Ranged" and toggle == 1 %}
+            {% set ranged_count = ranged_count + 1 %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% set ranged_advance = ranged_count > 3 ? 3 : ranged_count %}
+{% set skill_ranged_total = attribute_combat_final + (ranged_advance * 10) + talisman_bonuses[14] %}
 <!-- resolve -->
 {% set resolve_count = 0 %}
 {% for tier in ['basic', 'intermediate', 'advanced'] %}
     {% for i in 1..6 %}
         {% set skill = attribute(variables, "profession_" ~ tier ~ "_skill_" ~ i)|default('') %}
         {% set toggle = attribute(variables, "profession_" ~ tier ~ "_toggle_" ~ i)|default(0) %}
-        
         {% if skill == "Resolve" and toggle == 1 %}
             {% set resolve_count = resolve_count + 1 %}
         {% endif %}
@@ -465,6 +401,58 @@
 {% endfor %}
 {% set toughness_advance = toughness_count > 3 ? 3 : toughness_count %}
 {% set skill_toughness_total = attribute_brawn_final + (toughness_advance * 10) %}
+<!-- ancestral talent skill bonuses (+5% Melee / Ranged, Jack of All Trades) -->
+{% set ancestral_melee_talents = ['saber-toothed', 'mighty thews', 'horrific claws', 'razor-sharp claws'] %}
+{% set ancestral_ranged_talents = ['blue-blooded', 'fieldwarden'] %}
+{% set ancestral_melee_bonus = 0 %}
+{% set ancestral_ranged_bonus = 0 %}
+{% set jack_of_all_trades = false %}
+{% for tier in ['basic', 'intermediate', 'advanced'] %}
+    {% if attribute(variables, "profession_" ~ tier ~ "_toggle_9") == true %}
+        {% set ancestralText = attribute(variables, "profession_" ~ tier ~ "_ancestral_talent")|default('')|lower %}
+        {% for kw in ancestral_melee_talents %}
+            {% if kw in ancestralText %}
+                {% set ancestral_melee_bonus = ancestral_melee_bonus + 5 %}
+            {% endif %}
+        {% endfor %}
+        {% for kw in ancestral_ranged_talents %}
+            {% if kw in ancestralText %}
+                {% set ancestral_ranged_bonus = ancestral_ranged_bonus + 5 %}
+            {% endif %}
+        {% endfor %}
+        {% if 'jack of all trades' in ancestralText %}
+            {% set jack_of_all_trades = true %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+<!-- ancestral talents for skills -->
+{# Melee / Ranged ancestral bonuses #}
+{% set skill_melee_total = skill_melee_total + ancestral_melee_bonus %}
+{% set skill_ranged_total = skill_ranged_total + ancestral_ranged_bonus %}
+{# Jack of All Trades: +5% to any skill with no Skill Ranks #}
+{% if jack_of_all_trades %}
+    {% set skill_athletics_total     = skill_athletics_total     + (athletics_advance == 0 ? 5 : 0) %}
+    {% set skill_awareness_total     = skill_awareness_total     + (awareness_advance == 0 ? 5 : 0) %}
+    {% set skill_blackpowder_total   = skill_blackpowder_total   + (blackpowder_advance == 0 ? 5 : 0) %}
+    {% set skill_coordination_total  = skill_coordination_total  + (coordination_advance == 0 ? 5 : 0) %}
+    {% set skill_craft_total         = skill_craft_total         + (craft_advance == 0 ? 5 : 0) %}
+    {% set skill_disguise_total      = skill_disguise_total      + (disguise_advance == 0 ? 5 : 0) %}
+    {% set skill_folklore_total      = skill_folklore_total      + (folklore_advance == 0 ? 5 : 0) %}
+    {% set skill_gamble_total        = skill_gamble_total        + (gamble_advance == 0 ? 5 : 0) %}
+    {% set skill_guile_total         = skill_guile_total         + (guile_advance == 0 ? 5 : 0) %}
+    {% set skill_handling_total      = skill_handling_total      + (handling_advance == 0 ? 5 : 0) %}
+    {% set skill_insight_total       = skill_insight_total       + (insight_advance == 0 ? 5 : 0) %}
+    {% set skill_leechcraft_total    = skill_leechcraft_total    + (leechcraft_advance == 0 ? 5 : 0) %}
+    {% set skill_melee_total         = skill_melee_total         + (melee_advance == 0 ? 5 : 0) %}
+    {% set skill_occultism_total     = skill_occultism_total     + (occultism_advance == 0 ? 5 : 0) %}
+    {% set skill_persuasion_total    = skill_persuasion_total    + (persuasion_advance == 0 ? 5 : 0) %}
+    {% set skill_ranged_total        = skill_ranged_total        + (ranged_advance == 0 ? 5 : 0) %}
+    {% set skill_resolve_total       = skill_resolve_total       + (resolve_advance == 0 ? 5 : 0) %}
+    {% set skill_stealth_total       = skill_stealth_total       + (stealth_advance == 0 ? 5 : 0) %}
+    {% set skill_survival_total      = skill_survival_total      + (survival_advance == 0 ? 5 : 0) %}
+    {% set skill_thievery_total      = skill_thievery_total      + (thievery_advance == 0 ? 5 : 0) %}
+    {% set skill_toughness_total     = skill_toughness_total     + (toughness_advance == 0 ? 5 : 0) %}
+{% endif %}
 <!-- dodge and parry values -->
 <!-- current profession selector -->
 {% if variables.profession_advanced != "" %}
@@ -473,6 +461,51 @@
     {% set profession_current = variables.profession_intermediate %}
 {% else %}
     {% set profession_current = variables.profession_basic %}
+{% endif %}
+<!-- ancestral traits: Peril / Damage / Initiative modifiers -->
+{% set ancestral_all = '' %}
+{% for tier in ['basic', 'intermediate', 'advanced'] %}
+    {% if attribute(variables, "profession_" ~ tier ~ "_toggle_9") == true %}
+        {% set ancestral_all = ancestral_all ~ ' | ' ~ attribute(variables, "profession_" ~ tier ~ "_ancestral_talent")|default('')|lower %}
+    {% endif %}
+{% endfor %}
+{# armor worn = armor name filled in or armor DTh above 0 #}
+{% set armor_worn = (variables.armor_name|default('')|trim is not empty) or (variables.armor_dth|default(0) > 0) %}
+{% set peril_stressed = variables.peril_stress|default('') in ['stressed', 'frightened', 'terrified'] %}
+{% set damage_wounded = variables.damage_condition_track|default('') in ['seriously', 'grievously', 'dying'] %}
+{# --- Peril Threshold --- #}
+{% set ancestral_pth = 0 %}
+{% if 'servant of the steward' in ancestral_all and not peril_stressed %}
+    {% set ancestral_pth = ancestral_pth + 2 %}
+{% endif %}
+{% if 'broad-bellied' in ancestral_all and variables.starving|default(false) != true %}
+    {% set ancestral_pth = ancestral_pth + 2 %}
+{% endif %}
+{% if 'ironclad' in ancestral_all and armor_worn %}
+    {% set ancestral_pth = ancestral_pth + 2 %}
+{% endif %}
+{# --- Damage Threshold --- #}
+{% set ancestral_dth = 0 %}
+{% if 'hide of scales' in ancestral_all and not armor_worn %}
+    {% set ancestral_dth = ancestral_dth + 2 %}
+{% endif %}
+{% if 'leathery skin' in ancestral_all and not armor_worn %}
+    {% set ancestral_dth = ancestral_dth + 2 %}
+{% endif %}
+{% if 'warg-blooded' in ancestral_all and damage_wounded %}
+    {% set ancestral_dth = ancestral_dth + 3 %}
+{% endif %}
+{# --- Initiative (Steam-powered, not cumulative) --- #}
+{% set ancestral_steam_init = 0 %}
+{% if 'steam-powered' in ancestral_all %}
+    {% set peril_track = variables.peril_condition_track|default('') %}
+    {% if peril_track == 'minus5' %}
+        {% set ancestral_steam_init = 1 %}
+    {% elseif peril_track == 'minus10' %}
+        {% set ancestral_steam_init = 2 %}
+    {% elseif peril_track == 'minus15' %}
+        {% set ancestral_steam_init = 3 %}
+    {% endif %}
 {% endif %}
 <!-- peril threshold calculactions -->
 {% set peril_base = attribute_willpower_bonus_final + 3 %}
@@ -502,9 +535,9 @@
     {% endif %}
 {% endfor %}
 <!-- peril threshold finalization -->
-{% set peril_threshold_adjusted = peril_base + weapon_pth + talent_pth_salt + variables.peril_situational %}
+{% set peril_threshold_adjusted = peril_base + weapon_pth + talent_pth_salt + ancestral_pth + variables.peril_situational %}
 <!-- damage threshold modifiers -->
-{% set damage_base = attribute_brawn_bonus_final %}
+{% set damage_base = ('upper crust' in ancestral_all and attribute_fellowship_bonus_final > attribute_brawn_bonus_final) ? attribute_fellowship_bonus_final : attribute_brawn_bonus_final %}
 <!-- armor dth mod -->
 {% if variables.armor_qualities is defined and variables.armor_qualities is not empty %}
     {% if "ruined" in variables.armor_qualities|lower %}
@@ -552,8 +585,13 @@
     {% endif %}
 {% endfor %}
 <!-- final DTH calculactions -->
-{% set damage_threshold_adjusted = damage_base + armor_dth_final + weapon_dth + talent_dth_end + talent_dth_salt + variables.damage_situational %}
+{% set damage_threshold_adjusted = damage_base + armor_dth_final + weapon_dth + talent_dth_end + talent_dth_salt + ancestral_dth + variables.damage_situational %}
+<!-- supply max -->
+{% set supply_max = attribute_intelligence_bonus_final %}
 <!-- initiative overage tools -->
+{% set tools_limit = 3 %}
+{% set weapons_limit = 3 %}
+{% set encumbrance_limit = weapons_limit + tools_limit %}
 {% set silver_enc = (variables.silver / 1000)|round(0, 'floor') %}
 {% set burden_tools = [] %}
 {% for n in 1..6 %}
@@ -596,7 +634,7 @@
 {% endif %}
 <!-- initiative final calculation -->
 {% set initiative_armor = 0 %} {% if "ill-fitted" in variables.armor_qualities|default('')|lower %} {% set initiative_armor = -3 %} {% endif %}
-{% set initiative_final = initiative_base - initiative_armor - initiative_burden - initiative_weapon + initiative_instincts + (initiative_ancestral ? 1 : 0) + variables.initiative_temporary %}
+{% set initiative_final = initiative_base - initiative_armor - initiative_burden - initiative_weapon + initiative_instincts + (initiative_ancestral ? 1 : 0) + ancestral_steam_init + variables.initiative_temporary %}
 <!-- reward points -->
 {% set rp_basic = [] %}
 {% set rp_intermediate = [] %}
@@ -642,7 +680,7 @@
                         <!-- this should loop through 3 different professions and select the highest defined -->
                         and I'm&nbsp;<strong>a&nbsp;{% if profession_current is not empty %}{{ profession_current|title}}{% else %}Survivor{% endif %}</strong></h2>
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 border-bottom">
                         I'm&nbsp;<strong>{{ variables.personal_age_group}}&nbsp;{{ variables.personal_ancestry }}&nbsp;{{ variables.personal_gender }}</strong>.&nbsp;I was born in&nbsp;<strong>{{ variables.personal_season_of_birth }}&nbsp;</strong>
                         in the place called&nbsp;<strong>{{ variables.personal_place_of_birth}}</strong>.&nbsp;I was raised in a/an&nbsp;<strong>{{ variables.personal_upbringing}}&nbsp;</strong>home of the&nbsp;<strong>{{ variables.personal_social_class}}&nbsp;</strong>class
                          {% if variables.personal_patron_deity is not empty %} and became a follower of&nbsp;<strong>{{ variables.personal_patron_deity}}</strong>{% endif %}.
@@ -651,38 +689,49 @@
                         My life changed the day that{% if variables.personal_death is not empty %}{{ variables.personal_death}}{% else %}<strong>&nbsp;is shrouded in the fog of war</strong>{% endif %}.
                         Yet I lived to tell the tale. 
                     </div>
+                    <div class="col-sm-12">
+                        <div class="text-title">Inner Strength:&nbsp;{{ variables.inner_strength }}</div>
+                        <div class="card-info-label content-spacing"><i>Did you call upon one of your Inner Strengths 5 RP</i></div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="text-title">Tragic Flaw:&nbsp;{{ variables.tragic_flaw }}</div>
+                        <div class="card-info-label content-spacing"><i>Did you call upon one of your Tragic Flaws 5 RP</i></div>
+                    </div>
                 </div>
-                <div class="row card">
-                    <div class="col-sm-12"><strong>Languages:</strong>&nbsp;{{ variables.personal_language }}</div>
-                </div>
-                <div class="row card">
-                    <div class="col-sm-12 text-title">Inner Strength:&nbsp;{{ variables.inner_strength }}</div>
-                    <div class="col-sm-12 card-info-label"><i>Did you call upon one of your Inner Strengths 5 RP</i></div>
-                </div>
-                <div class="row card">
-                    <div class="col-sm-12 text-title">Tragic Flaw:&nbsp;{{ variables.tragic_flaw }}</div>
-                    <div class="col-sm-12 card-info-label"><i>Did you call upon one of your Tragic Flaws 5 RP</i></div>
+                <div class="row card"> 
+                    <div class="col-sm-12 card-title"><h5>In my adventures I have been tained by corruption:
+                        {% for i in 1..9 %}{% if total_corruption >= i %}&nbsp;<i class="fas fa-square"></i> {% else %}&nbsp;<i class="far fa-square"></i>{% endif %}{% endfor %}
+                        &nbsp;<i class="fa-sharp fa-regular fa-eye-evil"></i>&nbsp;Gain Malignancy /// <strong>Permanent Corrupton</strong>&nbsp;{% if variables.corruption_permanent == 0 %} 0 {% else %} {{ variables.corruption_permanent }} {% endif %} /// AND THE WORLD HAS LEFT A MARK ON ME:</h5>
+                    </div>
+                    <div class="col-sm-12 border-bottom content-spacing">
+                        {% if variables.scars is not empty %}{{ variables.scars |nl2br}}{% else %}&nbsp;{% endif %}
+                    </div>
+                    <div class="col-sm-12 card-info-label content-spacing">Scars</div>
+                    <div class="col-sm-12 border-bottom content-spacing">
+                        {% if variables.malignancies is not empty %}{{ variables.malignancies |nl2br}}{% else %}&nbsp;{% endif %}
+                    </div>
+                    <div class="col-sm-12 card-info-label content-spacing">Malignancies</div>
+                    <div class="col-sm-12 border-bottom content-spacing">
+                        {% if variables.injuries is not empty %}{{ variables.injuries |nl2br}}{% else %}&nbsp;{% endif %}
+                    </div>
+                    <div class="col-sm-12 card-info-label content-spacing">Injuries</div>
                 </div>
                 <div class="row card">
                     {% if variables.personal_goals is not empty %}
-                    <div class="col-sm-12 card-title">My Goals & Ambitions</div>
-                    <div class="col-sm-12">{{ variables.personal_goals|nl2br}}</div>
-                    {%  endif %}
-                    {% if variables.reputation_text is not empty or variables.reputation != 0 %}
-                    <div class="col-sm-12 card-title">I am known for</div>
-                    <div class="col-sm-12">{{ variables.reputation_text|nl2br}}</div>
-                    <div class="col-sm-12 card-info-label">Current reputation points&nbsp;{{ variables.reputation }}</div>
+                    <div class="col-sm-12 card-title"><h5>MY GOALS & AMBITIONS</h5></div>
+                    <div class="col-sm-12 border-bottom">{{ variables.personal_goals|nl2br}}</div>
                     {%  endif %}
                 </div>
                 <div class="row card">
-                    <div class="col-sm-12 card-title"><h5>In my adventures I have been tained by corruption:
-                    {% for i in 1..9 %}{% if total_corruption >= i %}&nbsp;<i class="fas fa-square"></i> {% else %}&nbsp;<i class="far fa-square"></i>{% endif %}{% endfor %}
-                    &nbsp;<i class="fa-sharp fa-regular fa-eye-evil"></i>&nbsp;Gain Malignancy || <strong>Permanent Corrupton</strong>&nbsp;{% if variables.corruption_permanent == 0 %} 0 {% else %} {{ variables.corruption_permanent }} {% endif %}</h5>
-                    </div>
-                    {% if malignancies_and_scars is not empty %}
-                    <div class="col-sm-12 text-title">And the world has left a mark on me:</div>
-                    <div class="col-sm-12">{{ variables.malignancies_and_scars |nl2br}}</div>
-                    {% endif %}
+                    {% if variables.reputation_text is not empty or variables.reputation != 0 %}
+                    <div class="col-sm-12 card-title"><h5>I'M KNOWN FOR:</h5></div>
+                    <div class="col-sm-12 border-bottom">{{ variables.reputation_text|nl2br}}</div>
+                    <div class="col-sm-12 card-info-text content-spacing">Current reputation points&nbsp;{{ variables.reputation }}</div>
+                    {%  endif %}
+                </div>
+                <div class="row card">
+                    <div class="col-sm-12 card-title"><h5>LANGUAGES I SPEAK</h5></div>
+                    <div class="col-sm-12">{{ variables.personal_language }}</div>
                 </div>
             </div>    
             <div class="col-sm-3 card-mt3">{% if variables.imageid is defined and variables.imageid > 0 %}[img:{{variables.imageid}}|nolink]{% endif %} </div>
@@ -982,7 +1031,7 @@
                             <div class="col-sm-6 border-bottom">{%if variables.peril_temporary != "" %}{{ variables.peril_temporary }} {% else %} 0 {%endif%}</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 card-info-label">All listed modifiers are included in the final score</div>
+                            <div class="col-sm-12 card-info-text">All listed modifiers are included in the final score</div>
                         </div>
                         <div class="row"><div class="col-sm-12"><h5>Peril Condition Track</h5></div></div>
                         <div class="row">
@@ -1070,7 +1119,7 @@
                             <div class="col-sm-5 border-bottom">{%if variables.damage_temporary != "" %}{{ variables.damage_temporary }} {% else %} 0 {%endif%}</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 card-info-label">All listed modifiers are included in the final score</div>
+                            <div class="col-sm-12 card-info-text">All listed modifiers are included in the final score</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12"><h5>Damage Condition Track</h5></div>
@@ -1150,6 +1199,15 @@
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_load_1 }}</div>
                             <div class="col-sm-3 border-bottom">{{ variables.weapon_qualities_1 }}</div>
                         </div>
+                        {% else %}                        
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom"><i class="far fa-square"></i></div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-3 border-bottom">&nbsp;</div>
+                        </div>
                         {% endif %}
                         {% if variables.weapon_name_2 is not empty %}
                         <div class="row">
@@ -1159,6 +1217,15 @@
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_damage_2 }}</div>
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_load_2 }}</div>
                             <div class="col-sm-3 border-bottom">{{ variables.weapon_qualities_2 }}</div>
+                        </div>
+                         {% else %}                        
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom"><i class="far fa-square"></i></div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-3 border-bottom">&nbsp;</div>
                         </div>
                         {% endif %}
                         {% if variables.weapon_name_3 is not empty %}
@@ -1170,6 +1237,15 @@
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_load_3 }}</div>
                             <div class="col-sm-3 border-bottom">{{ variables.weapon_qualities_3 }}</div>
                         </div>
+                        {% else %}                        
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom"><i class="far fa-square"></i></div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-3 border-bottom">&nbsp;</div>
+                        </div>
                         {% endif %}
                         {% if variables.weapon_name_4 is not empty %}
                         <div class="row">
@@ -1180,9 +1256,56 @@
                             <div class="col-sm-2 border-bottom">{{ variables.weapon_load_4 }}</div>
                             <div class="col-sm-3 border-bottom">{{ variables.weapon_qualities_4 }}</div>
                         </div>
+                        {% else %}
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom"><i class="far fa-square"></i></div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-3 border-bottom">&nbsp;</div>
+                        </div>
+                        {% endif %}
+                        {% if variables.weapon_name_5 is not empty %}
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom">{% if variables.weapon_active_5 == 0 %}<i class="far fa-square"></i>{% else %}<i class="fas fa-square"></i>{% endif %}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_name_5 }}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_distance_5 }}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_damage_5 }}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_load_5 }}</div>
+                            <div class="col-sm-3 border-bottom">{{ variables.weapon_qualities_5 }}</div>
+                        </div>
+                        {% else %}
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom"><i class="far fa-square"></i></div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-3 border-bottom">&nbsp;</div>
+                        </div>
+                        {% endif %}
+                        {% if variables.weapon_name_6 is not empty %}
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom">{% if variables.weapon_active_6 == 0 %}<i class="far fa-square"></i>{% else %}<i class="fas fa-square"></i>{% endif %}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_name_6 }}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_distance_6 }}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_damage_6 }}</div>
+                            <div class="col-sm-2 border-bottom">{{ variables.weapon_load_6 }}</div>
+                            <div class="col-sm-3 border-bottom">{{ variables.weapon_qualities_6 }}</div>
+                        </div>
+                        {% else %}                        
+                        <div class="row">
+                            <div class="col-sm-1 border-bottom"><i class="far fa-square"></i></div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-2 border-bottom">&nbsp;</div>
+                            <div class="col-sm-3 border-bottom">&nbsp;</div>
+                        </div>
                         {% endif %}
                         <div class="row">
-                            <div class="col-sm-12 card-info-label">Having more than 3 weapons will trigger IM penalty (but as saying goes you can never have too many knives). Use Keywords: Ruined, Defensive, Hardened. These are auto-calculated. Equip weapon to get benefits</div>
+                            <div class="col-sm-12 card-info-label">Carrying more than {{ weapons_limit }} weapons will trigger IM penalty (but as saying goes you can never have too many knives). Use Keywords: Ruined, Defensive, Hardened. These are auto-calculated. Equip weapon to get benefits</div>
                         </div>
                     </div>
                 </div>
@@ -1222,7 +1345,7 @@
                             <div class="col-sm-6 ml-auto text-title border-bottom">{{ initiative_final }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 card-info-label">All listed modifiers are included in the final score</div>
+                            <div class="col-sm-12 card-info-text">All listed modifiers are included in the final score</div>
                         </div>
                     </div>
                 </div>
@@ -1234,18 +1357,13 @@
                     <div class="col-sm-12 card-title">Tools</div>
                     <div class="col-sm-12">
                         {# Display tools only if they exist #}
-                        {% if variables.tool_1 is not empty %}<div class="row content-spacing">{{ variables.tool_1 }}</div>{% endif %}
-                        {% if variables.tool_2 is not empty %}<div class="row content-spacing">{{ variables.tool_2 }}</div>{% endif %}
-                        {% if variables.tool_3 is not empty %}<div class="row content-spacing">{{ variables.tool_3 }}</div>{% endif %}
-                        {% if variables.tool_4 is not empty %}<div class="row content-spacing">{{ variables.tool_4 }}</div>{% endif %}
-                        {% if variables.tool_5 is not empty %}<div class="row content-spacing">{{ variables.tool_5 }}</div>{% endif %}
-                        {% if variables.tool_6 is not empty %}<div class="row content-spacing">{{ variables.tool_6 }}</div>{% endif %}
-                        {# Penalty Warning Logic #}
-                        {% if initiative_burden > 0 %}
-                        <div class="row card-info-label content-spacing text-danger font-weight-bold">
-                            IM penalty applied (Carrying {{ total_tools }} tools)
-                        </div>
-                        {% endif %}
+                        <div class="row item">{% if variables.tool_1 is not empty %}{{ variables.tool_1 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.tool_2 is not empty %}{{ variables.tool_2 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.tool_3 is not empty %}{{ variables.tool_3 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.tool_4 is not empty %}{{ variables.tool_4 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.tool_5 is not empty %}{{ variables.tool_5 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.tool_6 is not empty %}{{ variables.tool_6 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="col-sm-12 card-info-text">Carrying more than {{ tools_limit }} tools will trigger IM penalty</div>
                     </div>
                 </div>
             </div>
@@ -1253,22 +1371,21 @@
                 <div class="row card">
                     <div class="col-sm-12 card-title">Small Objects</div>
                     <div class="col-sm-6">
-                        {% if variables.memento is not empty %}<div class="row memento">{{ variables.memento }}</div>
-                        <div class="row card-info-label">memento</div>{% endif %}
-                        {% if variables.object_2 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_2 }}</div><div class="row card-info-label"></div>{% endif %}
-                        {% if variables.object_3 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_3 }}</div><div class="row card-info-label"></div>{% endif %}
-                        {% if variables.object_4 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_4 }}</div><div class="row card-info-label"></div>{% endif %}
-                        {% if variables.object_5 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_5 }}</div><div class="row card-info-label"></div>{% endif %}
+                        <div class="row memento">Memento: {% if variables.memento is not empty %}{{ variables.memento }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">1. {% if variables.object_2 is not empty %}{{ variables.object_2 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">2. {% if variables.object_3 is not empty %}{{ variables.object_3 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">3. {% if variables.object_4 is not empty %}{{ variables.object_4 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">4. {% if variables.object_5 is not empty %}{{ variables.object_5 }}{% else %}&nbsp;{% endif %}</div>
                     </div>
                     <div class="col-sm-6">
-                        {% if variables.object_6 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_6 }}</div><div class="row card-info-label"></div>{% endif %}
-                        {% if variables.object_7 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_7 }}</div><div class="row card-info-label"></div>{% endif %}
-                        {% if variables.object_8 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_8 }}</div><div class="row card-info-label"></div>{% endif %}
-                        {% if variables.object_9 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_9 }}</div><div class="row card-info-label"></div>{% endif %}
-                        {% if variables.object_10 is not empty %}<div class="row border-bottom content-spacing">{{ variables.object_10 }}</div><div class="row card-info-label"></div>{% endif %}
+                        <div class="row item">5. {% if variables.object_6 is not empty %}{{ variables.object_6 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">6. {% if variables.object_7 is not empty %}{{ variables.object_7 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">7. {% if variables.object_8 is not empty %}{{ variables.object_8 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">8. {% if variables.object_9 is not empty %}{{ variables.object_9 }}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">9. {% if variables.object_10 is not empty %}{{ variables.object_10 }}{% else %}&nbsp;{% endif %}</div>
                     </div>
                     <div class="col-sm-12 ">
-                        <div class="row card-info-label content-spacing">When you’re in a scene related to your Brush With Death, hold the Memento to ignore all Peril Condition Track penalties. These benefits last until you escape or defeat the situation. Keyword: 'Talisman of [skill]' to gain benefit directly.
+                        <div class="row card-info-text content-spacing">When you’re in a scene related to your Brush With Death, hold the Memento to ignore all Peril Condition Track penalties. These benefits last until you escape or defeat the situation. Keyword: 'Talisman of [skill]' to gain benefit directly.
                             
                         </div>
                     </div>
@@ -1276,46 +1393,25 @@
             </div>
             <div class="col-sm-3">
                 <div class="row card">
-                    <div class="col-sm-8 card-title">Supplies</div>
-                    <div class="col-sm-4 card-title">Rating</div>
-                    <div class="col-sm-12">
-                        {% if variables.supply_name_1 is not empty%}
-                        <div class="row">
-                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_1}}</div>
-                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_1}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.supply_name_2 is not empty%}
-                        <div class="row">
-                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_2}}</div>
-                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_2}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.supply_name_3 is not empty%}
-                        <div class="row">
-                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_3}}</div>
-                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_3}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.supply_name_4 is not empty%}
-                        <div class="row">
-                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_4}}</div>
-                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_4}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.supply_name_5 is not empty%}
-                        <div class="row">
-                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_5}}</div>
-                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_5}}</div>
-                        </div>
-                        {% endif %}
-                        {% if variables.supply_name_6 is not empty%}
-                        <div class="row">
-                            <div class="col-sm-8 border-bottom content-spacing">{{ variables.supply_name_6}}</div>
-                            <div class="col-sm-4 border-bottom content-spacing text-center">{{ variables.supply_rating_6}}</div>
-                        </div>
-                        {% endif %}
+                    <div class="col-sm-9 card-title">Supplies</div>
+                    <div class="col-sm-3 card-title">Rating</div>
+                    <div class="col-sm-9">
+                        <div class="row item">{% if variables.supply_name_1 is not empty%}{{ variables.supply_name_1}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_name_2 is not empty%}{{ variables.supply_name_2}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_name_3 is not empty%}{{ variables.supply_name_3}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_name_4 is not empty%}{{ variables.supply_name_4}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_name_5 is not empty%}{{ variables.supply_name_5}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_name_6 is not empty%}{{ variables.supply_name_6}}{% else %}&nbsp;{% endif %}</div>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="row item">{% if variables.supply_rating_1 is not empty%}{{ variables.supply_rating_1}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_rating_2 is not empty%}{{ variables.supply_rating_2}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_rating_3 is not empty%}{{ variables.supply_rating_3}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_rating_4 is not empty%}{{ variables.supply_rating_4}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_rating_5 is not empty%}{{ variables.supply_rating_5}}{% else %}&nbsp;{% endif %}</div>
+                        <div class="row item">{% if variables.supply_rating_6 is not empty%}{{ variables.supply_rating_6}}{% else %}&nbsp;{% endif %}</div>
+                    </div>
+                    <div class="col-sm-12 card-info-text">Max Supply Rating {{ supply_max }}</div>
                 </div>
             </div>
         </div>
@@ -1323,22 +1419,22 @@
             <div class="col-sm-3">
                 <div class="row card">
                     <div class="col-sm-12 card-title">Titles and Deeds</div>
-                    <div class="col-sm-12"> {{ variables.property }}</div>
+                    <div class="col-sm-12">{% if variables.property is not empty %}{{ variables.property }}{% else %}&nbsp;{% endif %}</div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="row card">
                     <div class="col-sm-12 card-title">Extra Burden I Carry</div>
-                    <div class="col-sm-12"> {{ variables.burden }}</div>
-                    {% if variables.burden_penalty >0 %}
-                    <div class="col-sm-12 card-title">Burden Penalty ({{ variables.burden_penalty }})</div>
+                    <div class="col-sm-12">{% if variables.burden is not empty %}{{ variables.burden }}{% else %}&nbsp;{% endif %}</div>
+                    {% if variables.burden_penalty > 0 %}
+                    <div class="col-sm-12 card-info-text">Burden Penalty ({{ variables.burden_penalty }})</div>
                     {% endif %}
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="row card">
-                    <div class="col-sm-8 card-title">Silver</div>
-                    <div class="col-sm-4 card-title">{% if variables.silver|default %} {{ variables.silver }} {% else %}0{% endif %}</div>
+                    <div class="col-sm-12 card-title">Silver Pieces</div>
+                    <div class="col-sm-12 text-medium text-center">{% if variables.silver|default %}{{ variables.silver }}{% else %}0{% endif %}</div>
                     <div class="col-sm-12 card-info-label content-spacing">You can carry up to 1,000 SP. Additional coins must be stored inside a tool, such as a backpack.</div>
                 </div>
             </div>
@@ -1361,19 +1457,18 @@
                     {% for tier in tiers %}
                     {% if variables["profession_" ~ tier ~ "_ancestral_talent"] is not empty and variables["profession_" ~ tier ~ "_toggle_9"] == true %}
                     <div class="row">
-                        <div class="col-sm-2 text-title">{{ variables["profession_" ~ tier ~ "_ancestral_talent"]|title }}</div>
-                        <div class="col-sm-10">{{ variables["profession_" ~ tier ~ "_ancestral_talent_desc"] }}</div>
+                        <div class="col-sm-12 content-spacing"><strong>{{ variables["profession_" ~ tier ~ "_ancestral_talent"]|title }}</strong>&nbsp;&nbsp;{{ variables["profession_" ~ tier ~ "_ancestral_talent_desc"] }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
+                    <div class="col-sm-12">
+                        <div class="row card-info-label content-spacing">Keywords: Blue-blooded, Broad-bellied, Fieldwarden, Hide of Scales, Horrific Claws, Ironclad, Leathery Skin, Mighty Thews, Razor-sharp Claws, Saber-toothed, Servant of the Steward, Steam-powered, Upper Crust, Warg-blooded</div>
+                    </div>
                      {# Professional Talents #}
                     <div class="col-sm-12 border-bottom"><h5>Professional Talents</h5></div>
                     {% for tier in tiers %}
                     {% if variables["profession_" ~ tier ~ "_profession_talent"] is not empty and variables["profession_" ~ tier ~ "_toggle_8"] == true %}
-                    <div class="row">
-                        <div class="col-sm-2"><strong>{{ variables["profession_" ~ tier ~ "_profession_talent"]|title }}</strong></div>
-                        <div class="col-sm-10">{{ variables["profession_" ~ tier ~ "_profession_talent_desc"] }}</div>
-                    </div>
+                        <div class="col-sm-12 content-spacing"><strong>{{ variables["profession_" ~ tier ~ "_profession_talent"]|title }}</strong>&nbsp;&nbsp;{{ variables["profession_" ~ tier ~ "_profession_talent_desc"] }}</div>
                     {% endif %}
                     {% endfor %}
                     {# General Talents #}
@@ -1382,8 +1477,7 @@
                     {% for i in 1..3 %}
                     {% if variables["profession_" ~ tier ~ "_talent_" ~ i] is not empty and variables["profession_" ~ tier ~ "_toggle_" ~ (15 + i)] == true %}
                     <div class="row">
-                        <div class="col-sm-2"><strong>{{ variables["profession_" ~ tier ~ "_talent_" ~ i]|title }}</strong></div>
-                        <div class="col-sm-10">{{ variables["profession_" ~ tier ~ "_talent_" ~ i ~ "_desc"] }}</div>
+                        <div class="col-sm-12 content-spacing"><strong>{{ variables["profession_" ~ tier ~ "_talent_" ~ i]|title }}</strong>&nbsp;&nbsp;{{ variables["profession_" ~ tier ~ "_talent_" ~ i ~ "_desc"] }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -1395,40 +1489,34 @@
             </div>
         </div>
     </div>
-    <!-- TAB #5 Combat Profile -->
-    <!--Trappings -->
     <!-- Magic Profile -->
         <div class="tab content7">
-            <div class="row card mt-3">
-                <div class="col-sm-4">
+            <div class="row card">
+                <div class="col-sm-12">
                     Cast Magic (Occultism):&nbsp;<strong>{{ skill_occultism_total }}</strong>
                     {% for i in 1..3 %}{% if occultism_advance >= i %}<i class="fas fa-square-full"></i>{% else %}<i class="far fa-square-full"></i>{% endif %}{% endfor %}
-                </div>
-                <div class="col-sm-4">
+                        &nbsp;///&nbsp;
                     Intelligence Bonus [IB]:&nbsp;<strong>{{ attribute_intelligence_bonus_final}}</strong>
-                </div>
-                <div class="col-sm-4">
+                        &nbsp;///&nbsp;
                     Willpower Bonus [WB]&nbsp;<strong>{{ attribute_willpower_bonus_final}}</strong>
                 </div>
             </div>
-            <div class="row card mt-3">
-                <div class="col-sm-12 card-title"><h5>Spells</h5></div>
+            <div class="row card">
+                <div class="col-sm-12 card-title"><h3>Spells</h3></div>
             </div>
-            <div class="row mt-3">
-            {% for n in 1..20 %}
-            {% if variables["magic_name_" ~ n] is not empty %}
-                <div class="col-sm-6 card">
-                    <div class="row">
-                        <div class="col-sm-12"><h3>{{ variables["magic_name_" ~ n]|title }}&nbsp;({{ variables["magic_principle_" ~ n] }})</h3></div>
+            <div class="row">
+                {% for n in 1..20 %}
+                {% if variables["magic_name_" ~ n] is not empty %}
+                <div class="col-sm-4">
+                    <div class="row card">
+                        <div class="col-sm-12 text-title border-bottom">{{ variables["magic_name_" ~ n]|title }}&nbsp;({{ variables["magic_principle_" ~ n] }})</div>
                         <div class="col-sm-12">{{ variables["magic_wellspring_" ~ n] }}</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 text-title">Distance</div><div class="col-sm-6">&nbsp;{{ variables["magic_distance_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Materials</div><div class="col-sm-6">&nbsp;{{ variables["magic_material_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Duration</div><div class="col-sm-6">&nbsp;{{ variables["magic_duration_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Effect</div><div class="col-sm-6">&nbsp;{{ variables["magic_effect_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Crit Success</div><div class="col-sm-6">&nbsp;{{ variables["magic_crit_success_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Crit Failure</div><div class="col-sm-6">&nbsp;{{ variables["magic_crit_fail_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Distance:</strong>&nbsp;{{ variables["magic_distance_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Materials:</strong>&nbsp;{{ variables["magic_material_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Duration:</strong>&nbsp;{{ variables["magic_duration_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Effect:</strong>&nbsp;{{ variables["magic_effect_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Crit Success:</strong>&nbsp;{{ variables["magic_crit_success_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Crit Failure:</strong>&nbsp;{{ variables["magic_crit_fail_" ~ n] }}</div>
                     </div>
                 </div>
             {% endif %}
@@ -1436,24 +1524,24 @@
             </div>
             <!-- end of spells tab-->
             <!-- TAB: Rituals -->
-            <div class="row card mt-3">
-                <div class="col-sm-12 card-title"><h5>Rituals</h5></div>
+            <div class="row card">
+                <div class="col-sm-12 card-title"><h3>Rituals</h3></div>
             </div>
-            <div class="row mt-3">
+            <div class="row">
             {% for n in 1..10 %}
             {% if variables["ritual_name_" ~ n] is not empty %}
-                <div class="col-sm-6 card">
+                <div class="col-sm-4 card">
                     <div class="row">
                         <div class="col-sm-12"><h3>{{ variables["ritual_name_" ~ n]|title }}</h3></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 text-title">Time to Conduct</div><div class="col-sm-6">&nbsp;{{ variables["ritual_time_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Materials</div><div class="col-sm-6">&nbsp;{{ variables["ritual_material_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Conditions</div><div class="col-sm-6">&nbsp;{{ variables["ritual_condition_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Duration</div><div class="col-sm-6">&nbsp;{{ variables["ritual_duration_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Effect</div><div class="col-sm-6">&nbsp;{{ variables["ritual_effect_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Crit Success</div><div class="col-sm-6">&nbsp;{{ variables["ritual_crit_success_" ~ n] }}</div>
-                        <div class="col-sm-6 text-title">Crit Failure</div><div class="col-sm-6">&nbsp;{{ variables["ritual_crit_fail_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Time to Conduct:</strong>&nbsp;{{ variables["ritual_time_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Materials:</strong>&nbsp;{{ variables["ritual_material_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Conditions:</strong>&nbsp;{{ variables["ritual_condition_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Duration:</strong>&nbsp;{{ variables["ritual_duration_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Effect:</strong>&nbsp;{{ variables["ritual_effect_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Crit Success:</strong>&nbsp;{{ variables["ritual_crit_success_" ~ n] }}</div>
+                        <div class="col-sm-12"><strong>Crit Failure:</strong>&nbsp;{{ variables["ritual_crit_fail_" ~ n] }}</div>
                     </div>
                 </div>
                 {% endif %}
@@ -1571,25 +1659,25 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="row card">
-                        <div class="col-sm-12 card-title">Reward Points</div>
+                        <div class="col-sm-12 card-title"><h3>Reward Points</h3></div>
                         <div class="col-sm-12">
                             <div class="row">
                                 <div class="col-sm-6 border-bottom">Total Reward Points</div>
-                                <div class="col-sm-6 border-bottom text-title">{{ variables.reward_points }}</div>
+                                <div class="col-sm-6 border-bottom text-title text-center">{{ variables.reward_points }}</div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">Spent Reward Points</div>
-                                <div class="col-sm-6 border-bottom text-title">{{ total_rp_spent }}</div>
+                                <div class="col-sm-6 border-bottom text-title text-center">{{ total_rp_spent }}</div>
                             </div>
                             <div class="row">
                                 {% if variables.reward_unique != 0 %} 
                                 <div class="col-sm-6">Unique Advances</div>
-                                <div class="col-sm-6 border-bottom text-title">{{ variables.reward_unique }} / {{ variables.reward_unique *10 }}</div>
+                                <div class="col-sm-6 border-bottom text-title text-center">{{ variables.reward_unique }} / {{ variables.reward_unique *10 }}</div>
                                 {%  endif %}
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">Available Reward Points</div>
-                                <div class="col-sm-6 border-bottom text-title">{{ variables.reward_points - total_rp_spent }}</div>
+                                <div class="col-sm-6 border-bottom text-title text-center">{{ variables.reward_points - total_rp_spent }}</div>
                             </div>
                             <div class="row">
                                 {% if variables.reward_unique != 0 %} 
@@ -1598,6 +1686,24 @@
                             </div>
                         </div>
                     </div>
+                    {% set visibleAttrs = [] %}
+                    {% set visibleValues = [] %}
+                    {% for attr in ['agility', 'brawn', 'combat', 'fellowship', 'intelligence', 'perception', 'willpower'] %}
+                        {% set bonusValue = attribute(variables, attr ~ '_bonus_custom') %}
+                        {% if bonusValue != 0 %}
+                            {% set visibleAttrs = visibleAttrs|merge([attr]) %}
+                            {% set visibleValues = visibleValues|merge([bonusValue]) %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if visibleAttrs|length > 0 %}
+                    <div class="row card">
+                        <div class="col-sm-12 card-title"><h3>Custom Bonuses</h3></div>
+                        {% for i in 0..(visibleAttrs|length - 1) %}
+                        <div class="col-sm-6 border-bottom">{{ visibleAttrs[i]|first|upper }}B</div>
+                        <div class="col-sm-6 border-bottom text-center"><strong>{{ visibleValues[i] }}</strong></div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

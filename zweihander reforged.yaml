@@ -110,10 +110,18 @@ fields:
     label: "reputation text"
     input: text
 
-  malignancies and scars:
-    label: "malignancies and scars"
+  malignancies::
+    label: "malignancies"
     input: text
-
+  
+  scars:
+    label: "scars"
+    input: text
+  
+  injuries:
+    label: "injuries"
+    input: text
+  
   attribute brawn:
     label: "attribute brawn"
     input: integer
@@ -323,6 +331,54 @@ fields:
     
   weapon active 4:
     label: "weapon active 4"
+    input: "checkbox"
+
+  weapon name 5:
+    label: "weapon name 5"
+    input: string
+
+  weapon load 5:
+    label: "weapon load 5"
+    input: string
+
+  weapon distance 5:
+    label: "weapon distance 5"
+    input: string
+
+  weapon damage 5:
+    label: "weapon damage 5"
+    input: string
+  
+  weapon qualities 5:
+    label: "weapon qualities 5"
+    input: string
+      
+  weapon active 5:
+    label: "weapon active 5"
+    input: "checkbox"
+
+  weapon name 6:
+    label: "weapon name 6"
+    input: string
+
+  weapon load 6:
+    label: "weapon load 6"
+    input: string
+
+  weapon distance 6:
+    label: "weapon distance 6"
+    input: string
+
+  weapon damage 6:
+    label: "weapon damage 6"
+    input: string
+  
+  weapon qualities 6:
+    label: "weapon qualities 6"
+    input: string
+      
+  weapon active 6:
+    label: "weapon active 6"
     input: "checkbox"
 
   tool 1:
@@ -3103,3 +3159,35 @@ fields:
     input: integer
     min: 0
     max: 20
+
+  agility_bonus_custom:
+    label: "agility bonus custom"
+    input: integer
+  
+  brawn_bonus_custom:
+    label: "brawn bonus custom"
+    input: integer
+
+  combat_bonus_custom:
+    label: "combat bonus custom"
+    input: integer
+
+  fellowship_bonus_custom:
+    label: "fellowship bonus custom"
+    input: integer
+  
+  intelligence_bonus_custom:
+    label: "intelligence bonus custom"
+    input: integer
+  
+  perception_bonus_custom:
+    label: "perception bonus custom"
+    input: integer
+  
+  willpower_bonus_custom:
+    label: "willpower bonus custom"
+    input: integer 
+
+  starving_toggle:
+    label: "starving toggle"
+    input: checkbox
