@@ -118,6 +118,11 @@ fields:
     label: "scars"
     input: text
   
+  scars number:
+    label: "scars number"
+    input: integer
+    min: 0
+
   injuries:
     label: "injuries"
     input: text
@@ -381,6 +386,78 @@ fields:
     label: "weapon active 6"
     input: "checkbox"
 
+  weapon name 7:
+    label: "weapon name 7"
+    input: string
+
+  weapon load 7:
+    label: "weapon load 7"
+    input: string
+
+  weapon distance 7:
+    label: "weapon distance 7"
+    input: string
+
+  weapon damage 7:
+    label: "weapon damage 7"
+    input: string
+  
+  weapon qualities 7:
+    label: "weapon qualities 7"
+    input: string
+      
+  weapon active 7:
+    label: "weapon active 7"
+    input: "checkbox"
+
+  weapon name 8:
+    label: "weapon name 8"
+    input: string
+
+  weapon load 8:
+    label: "weapon load 8"
+    input: string
+
+  weapon distance 8:
+    label: "weapon distance 8"
+    input: string
+
+  weapon damage 8:
+    label: "weapon damage 8"
+    input: string
+  
+  weapon qualities 8:
+    label: "weapon qualities 8"
+    input: string
+      
+  weapon active 8:
+    label: "weapon active 8"
+    input: "checkbox"
+
+  weapon name 9:
+    label: "weapon name 9"
+    input: string
+
+  weapon load 9:
+    label: "weapon load 9"
+    input: string
+
+  weapon distance 9:
+    label: "weapon distance 9"
+    input: string
+
+  weapon damage 9:
+    label: "weapon damage 9"
+    input: string
+  
+  weapon qualities 9:
+    label: "weapon qualities 9"
+    input: string
+      
+  weapon active 9:
+    label: "weapon active 9"
+    input: "checkbox"
+
   tool 1:
     label: "tool name 1"
     input: string
@@ -403,6 +480,18 @@ fields:
 
   tool 6:
     label: "tool name 6"
+    input: string
+
+  tool 7:
+    label: "tool name 7"
+    input: string
+
+  tool 8:
+    label: "tool name 8"
+    input: string
+
+  tool 9:
+    label: "tool name 9"
     input: string
 
   supply name 1:
@@ -3188,6 +3277,6 @@ fields:
     label: "willpower bonus custom"
     input: integer 
 
-  starving_toggle:
-    label: "starving toggle"
+  starving:
+    label: "starving"
     input: checkbox

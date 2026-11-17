@@ -136,6 +136,9 @@
                         <textarea class="form-control" id="scars" name="scars" rows="3" placeholder="Scars">{{ variables.scars is defined ? variables.scars }}</textarea>
                         <div class="card-info-label">Scars</div>
                     </div>
+                    <div class="col-sm-12">
+                        <label>Scars</label><input type="number" class="form-control" name="scars" value="{{ variables.scars_number is defined ? variables.scars_number : 0 }}">
+                    </div>  
                 </div>
             </div>
         </div>

@@ -1,24 +1,19 @@
-{ 
+ { 
     padding:0 !important;}
  #karta {
     border: 1px black solid;
     background: #ebe6dd;
     color: #27241f;
     font-size: 13px;}
- h1,  h2,  h3,  h4,  h5,  h6 {
+ h2,  h3,  h5 {
     margin: .5rem 0;
     line-height: 1.2;}
  h5 {
     font-size: .85em;}
- h4 {
-    font-size: 1.05em;}
  h3 {
     font-size: 1.17em;}
- h1,  h2 {    
+ h2 {    
     font-weight: 400;}
- #karta .header h1 {
-    margin-bottom: 0;
-    color: black;}
  .header h2 {
     margin-top: 0;
     font-size: 1.6em;
@@ -29,12 +24,6 @@
     font-style: italic;
     font-weight: normal;
     margin: 10px 10px 20px;}
- .border {
-    border: 1px solid #e6e6df!important;}
- .border-right {
-    border-right: 1px solid #e6e6df!important;}
- .border-left {
-    border-left: 1px solid #e6e6df!important;}
  .card {
     border: 1px solid #27241f;
     background-color: #fefefe!important;
@@ -43,13 +32,6 @@
     color: #000!important;
     flex-shrink: 0;
     min-width: fit-content;}
- .card-left {
-    border: 1px solid #27241f;
-    background-color: #fefefe!important;
-    margin-left: 4px;
-    font-size: 13px;
-    color: #000!important;
-   }
  .card.row {
     flex-direction: row;}
  .card-title {
@@ -58,20 +40,8 @@
     color: #f9f9f9;
     background-color: #27241f;
     margin-bottom: 0;}
- .card-title h3,  .card-title h4,  .card-title h5 {
+ .card-title h3,  .card-title h5 {
     color: white;}
- .card .border {
-    padding: 4px;}
- .card .border-strong {
-    border: 1px solid #716c64;
-    text-align: center;
-    background-color: #ebe6dd;
-    border-radius: 15px;
-    margin: 1px;}
- .card .border-strong.btext {
-    display: inline-block;
-    min-width: 38px;
-    padding: 0 2px;}
  .card-content {
     padding: 8px 10px;}
  .card-info-label {
@@ -85,120 +55,60 @@
     color: #858585;
     font-size: 0.8em;
     padding-bottom: 6px;}
- .card-info-leader {
-   text-transform: uppercase;
-   border-bottom: 1px solid #858585;
-   color: #858585;
-   font-size: 1.2em;
-   padding-top: 6px; }
  .memento {
    text-transform: uppercase;
    border-bottom: 1px solid #858585;
    background-color: #8d5a5a;
    padding-top: 6px;
-   margin: 0 2px; }
-.item {
+   margin: 0 2px;}
+ .item {
    border-bottom: 1px solid #858585;
    padding-top: 6px;
-   margin: 0 2px; }
+   margin: 0 2px;}
  .card i.fa-square-full {
     margin: 0 2px;}
  .content-spacing {
     margin: 0 2px;
     word-break: break-word !important;
     white-space: normal !important;}
- .table th {
-    background-color: #fefefe;
-    color: #27241f;
-    text-align: left;}
- .table td {
-    color: #27241f;}
- .table tr {
-    background-color: #fefefe !important;
-    border-bottom: 1px solid #eae5dc;}
- .table td.circle {    
-    width: 60px;
-    text-align: right;}
- .col-xs-equal,  .col-sm-equal,  .col-md-equal,  .col-lg-equal {
-    position: relative;
-    min-height: 1px;
-    padding-right: 10px;
-    padding-left: 10px;}
- /* Bootstrap 3 fixes */
-.ml-auto {
+ .ml-auto {
     margin-left: auto!important;}
- .mr-auto {
-    margin-right: auto!important;}
- .pr-0 {
-    padding-right: 0!important;}
- .text-right {
-    text-align: right!important;}
-.text-center {
+ .text-center {
     text-align: center!important;}
- .form-control {
-    background: #e2dfca!important;
-    color: #000!important;
-    border: 1px solid #b9b384!important;}
- .form-control::placeholder{
-    color: #777!important;}
- .form-control::-webkit-input-placeholder {
-    color: #777!important;}
- .form-control:-ms-input-placeholder {
-    color: #777!important;}
- .form-control:focus,  .form-control:active {
-    background: #c5be8c!important;
-    color: #000!important;}
+ /* ===== inputs (edit form): #karta + element selector beat the host theme's .form-control ===== */
+ #karta input.form-control,  #karta select.form-control,  #karta textarea.form-control {
+    background: #e2dfca !important;
+    color: #000 !important;
+    border: 1px solid #b9b384 !important;
+    box-shadow: none !important;
+    margin-bottom: 2px;}
+ #karta input.form-control:focus,  #karta select.form-control:focus,  #karta textarea.form-control:focus,  #karta input.form-control:active,  #karta select.form-control:active,  #karta textarea.form-control:active {
+    background: #c5be8c !important;
+    color: #000 !important;}
+ #karta .form-control::placeholder {
+    color: #777 !important;
+    opacity: 1;}
+ #karta .form-control::-webkit-input-placeholder {
+    color: #777 !important;}
+ #karta .form-control:-ms-input-placeholder {
+    color: #777 !important;}
+ /* label directly under an input: the input already has its own border */
+ #karta .form-control + .card-info-label {
+    border-top: 0;
+    padding-top: 2px;}
  .form-control option {
     color: #000;}
- .border-strong .form-control {
-    border-radius: 15px;
-    margin: 0;}
  .checkbox {
     margin: 0 2px;}
- .input-large,  .input-large:focus {
-    text-align: center;
-    font-size: 42px !important;}
  .text-medium {
    font-size: 14px !important;
    font-weight: bold;}
  .text-title {
    font-weight:bold;}
- .marque.row {
-    display: flex;
-    align-items: center;
-    justify-content: center;}
- .CodeMirror {
-    background: #e2dfca!important;
-    color: #000!important;
-    text-shadow: none!important;
-    height: 150px!important}
- .CodeMirror-buttonsPanel [type="button"] {
-    background: #e2dfca!important;
-    border: 1px solid #b9b38d;}
- .CodeMirror-buttonsPanel [type="button"]:hover {
-    background: #b9b38d!important;
-    border: 1px solid #a7a077;
-    color: #000;}
- .CodeMirror-gutters {
-    background: #f1efe8!important;}
- .sceditor-container {
-    width: 100%!important;
-    background-color: #e2dfca!important;
-    color: #000!important;}
- div.sceditor-toolbar {
-    background: #e2dfca!important;}
- div.sceditor-toolbar .sceditor-button {
-    color: #000!important;
-    text-shadow: 0 0 black;}
- div.sceditor-toolbar .sceditor-button.active,  div.sceditor-toolbar .sceditor-button:hover {
-    background: #b9b38d!important;}
- div.sceditor-toolbar .sceditor-button.disabled,  div.sceditor-toolbar .sceditor-button.disabled:hover {
-    background: #e2dfca!important;
-    color: #666!important;}
  .input-hidden { display: none;}
  .input-hidden + label { display: inline-block}
  .input-hidden ~ .tab { display: none}
- #tab1:checked ~ .tab.content1,  #tab2:checked ~ .tab.content2,  #tab3:checked ~ .tab.content3,  #tab4:checked ~ .tab.content4,  #tab5:checked ~ .tab.content5,  #tab6:checked ~ .tab.content6,  #tab7:checked ~ .tab.content7,  #tab8:checked ~ .tab.content8,  #tab9:checked ~ .tab.content9,  #tab10:checked ~ .tab.content10,  #tab11:checked ~ .tab.content11,  #tab12:checked ~ .tab.content12 { 
+ #tab1:checked ~ .tab.content1,  #tab7:checked ~ .tab.content7,  #tab8:checked ~ .tab.content8 { 
   display: block;}
  .input-hidden + label {
   flex: 1 0 16%;
@@ -233,8 +143,9 @@
     scale: 1.5;
     cursor: pointer;
     text-align: center;}
- .highlight {
-   background-color: indianred !important;
-   padding: 2px;
-   border-bottom: 1px solid #e6e6df !important;
-}
+  /* field labels in the edit form (Agility, Brawn, Purchased, ...) */
+ #karta .card-content label {
+    color: #27241f !important;
+    font-weight: bold;
+    font-size: 2.0em;
+    margin-bottom: 2px;}
