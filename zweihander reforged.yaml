@@ -82,7 +82,7 @@ fields:
 
   inner strength:
     label: "alignment inner strength"
-    input: strong
+    input: string
 
   corruption:
     label: "alignment corruption"
@@ -110,7 +110,7 @@ fields:
     label: "reputation text"
     input: text
 
-  malignancies::
+  malignancies:
     label: "malignancies"
     input: text
   
@@ -3207,23 +3207,10 @@ fields:
     label: "damage threshold"
     input: integer
 
-
-  peril threshold 6:
-    label: "peril threshold 6"
-    input: integer
-
-
-  peril threshold 12:
-    label: "peril threshold 12"
-    input: integer
-
-  peril threshold 18:
-    label: "peril threshold 18"
-    input: integer
-
   reward unique:
     label: "unique advances cost"
     input: integer
+    min: 0
 
   peril situational:
     label: "Peril Situational Modifier"
@@ -3280,3 +3267,7 @@ fields:
   starving:
     label: "starving"
     input: checkbox
+
+  talent unique bond:
+    label: "unique bond"
+    input: text

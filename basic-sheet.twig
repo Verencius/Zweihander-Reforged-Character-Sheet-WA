@@ -455,12 +455,12 @@
 {% endif %}
 <!-- dodge and parry values -->
 <!-- current profession selector -->
-{% if variables.profession_advanced != "" %}
-    {% set profession_current = variables.profession_advanced %}
-{% elseif variables.profession_intermediate != "" %}
-    {% set profession_current = variables.profession_intermediate %}
+{% if variables.profession_advanced_name != "" %}
+    {% set profession_current = variables.profession_advanced_name %}
+{% elseif variables.profession_intermediate_name != "" %}
+    {% set profession_current = variables.profession_intermediate_name %}
 {% else %}
-    {% set profession_current = variables.profession_basic %}
+    {% set profession_current = variables.profession_basic_name %}
 {% endif %}
 <!-- ancestral traits: Peril / Damage / Initiative modifiers -->
 {% set ancestral_all = '' %}
@@ -732,7 +732,7 @@
 <!--    <input class="input-hidden" type="radio" name="tabs" id="tab4"/><label for="tab4">Traits Talents & Gifts</label> -->
 <!--    <input class="input-hidden" type="radio" name="tabs" id="tab5"/><label for="tab5">Combat Profile</label> -->
 <!--    <input class="input-hidden" type="radio" name="tabs" id="tab6"/><label for="tab6">Trappings</label> -->
-    <input class="input-hidden" type="radio" name="tabs" id="tab7"/><label for="tab7">Magic Profile</label>
+    <input class="input-hidden" type="radio" name="tabs" id="tab7"/><label for="tab7">Magic</label>
     <input class="input-hidden" type="radio" name="tabs" id="tab8"/><label for="tab8">Advancement</label>
     <!-- TAB #1Personal -->
     <div class="tab content1">
@@ -1110,14 +1110,14 @@
                         {% endif %}
                         <div class="row">
                             <div class="col-sm-6 border-bottom">Situational Modifier</div>
-                            <div class="col-sm-6 border-bottom">{%if variables.peril_temporary != "" %}{{ variables.peril_temporary }} {% else %} 0 {%endif%}</div>
+                            <div class="col-sm-6 border-bottom">{%if variables.peril_situational != "" %}{{ variables.peril_situational }} {% else %} 0 {%endif%}</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 card-info-text">All listed modifiers are included in the final score</div>
                         </div>
                         <div class="row"><div class="col-sm-12"><h5>Peril Condition Track</h5></div></div>
                         <div class="row">
-                            <div class="col-sm-1">{% if variables.peril_condition_track == "unhindered" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
+                            <div class="col-sm-1">{% if variables.peril_condition_track == "fine" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>
                             <div class="col-sm-11">FINE</div>
                         </div>
                         <div class="row">
@@ -1228,7 +1228,7 @@
                         {% endif %}
                         <div class="row">
                             <div class="col-sm-7 border-bottom">Situational Modifier</div>
-                            <div class="col-sm-5 border-bottom">{%if variables.damage_temporary != "" %}{{ variables.damage_temporary }} {% else %} 0 {%endif%}</div>
+                            <div class="col-sm-5 border-bottom">{%if variables.damage_situational != "" %}{{ variables.damage_situational }} {% else %} 0 {%endif%}</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 card-info-text">All listed modifiers are included in the final score</div>
@@ -1496,7 +1496,7 @@
                     {% endif %}
                     {% endfor %}
                     <div class="col-sm-12">
-                        <div class="row card-info-label content-spacing">Keywords: Blue-blooded, Broad-bellied, Fieldwarden, Hide of Scales, Horrific Claws, Ironclad, Leathery Skin, Mighty Thews, Razor-sharp Claws, Saber-toothed, Servant of the Steward, Steam-powered, Upper Crust, Warg-blooded</div><div class="row card-info-label content-spacing">Keywords: Bend Like a Reed, Big Folk, Blue-blooded, Broad-bellied, Combat Prowess, Deadly Aim, Fieldwarden, Hide of Scales, Horrific Claws, Inhuman Strength, Ironclad, Jack of All Trades, Leathery Skin, Liquid Poise, Mighty Thews, Monstrous Body, Mountain Among Men, Prehensile Tail, Razor-sharp Claws, Saber-toothed, Servant of the Steward, Steam-powered, Strength of the Mountain, Underfoot, Upper Crust, Warg-blooded</div>
+                        <div class="row card-info-label content-spacing">Keywords: Bend Like a Reed, Big Folk, Blue-blooded, Broad-bellied, Combat Prowess, Deadly Aim, Fieldwarden, Hide of Scales, Horrific Claws, Inhuman Strength, Ironclad, Jack of All Trades, Leathery Skin, Liquid Poise, Mighty Thews, Monstrous Body, Mountain Among Men, Prehensile Tail, Razor-sharp Claws, Saber-toothed, Servant of the Steward, Steam-powered, Strength of the Mountain, Underfoot, Upper Crust, Warg-blooded</div>
                     </div>
                      {# Professional Talents #}
                     <div class="col-sm-12 border-bottom"><h5>Professional Talents</h5></div>
@@ -1522,6 +1522,9 @@
                     <div class="col-sm-12">
                         <div class="row card-info-label content-spacing">Keywords: Instincts, Salt of the Earth, Supernatural Paranoia</div>
                     </div>
+                    {# Unique Bond Talent#}
+                    <div class="col-sm-12 border-bottom"><h5>Unique Bond</h5></div>
+                    <div class="col-sm-12 content-spacing">{{ variables.unique_bond }}</div>
                 </div>
             </div>
         </div>

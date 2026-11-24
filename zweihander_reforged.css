@@ -1,4 +1,4 @@
- { 
+{ 
     padding:0 !important;}
  #karta {
     border: 1px black solid;
@@ -96,8 +96,12 @@
  #karta .form-control + .card-info-label {
     border-top: 0;
     padding-top: 2px;}
- .form-control option {
-    color: #000;}
+ #karta select.form-control option {
+    background: #e2dfca !important;
+    color: #000 !important;}
+ #karta select.form-control option:checked,  #karta select.form-control option:hover {
+    background: #c5be8c !important;
+    color: #000 !important;}
  .checkbox {
     margin: 0 2px;}
  .text-medium {
@@ -149,3 +153,40 @@
     font-weight: bold;
     font-size: 2.0em;
     margin-bottom: 2px;}
+    /* Smaller "Purchased" text, matching the rest of the sheet */
+#karta label.checkbox-label {
+    font-size: inherit !important;
+    font-weight: normal !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+}
+/* Equipment tab: hidden by default, shown when its tab is selected */
+#karta .content2 { display: none; }
+#karta #tab2:checked ~ .content2 { display: block !important; }
+/* Spell & Ritual cards: two per row (works with float- and flex-based grids) */
+#karta .spell-card {
+    --gap: 8px;
+    box-sizing: border-box !important;
+    float: left !important;
+    clear: none !important;
+    flex: 0 0 calc(50% - var(--gap)) !important;   /* beats .col-sm-6 { flex: 0 0 50% } */
+    width: calc(50% - var(--gap)) !important;
+    max-width: calc(50% - var(--gap)) !important;  /* beats .col-sm-6 { max-width: 50% } */
+    min-width: 0 !important;                       /* beats .card { min-width: fit-content } */
+    margin: 0 calc(var(--gap) / 2) var(--gap) !important;
+}
+/* forces a line break after every second card */
+#karta .spell-clear {
+    clear: both !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    height: 0 !important;
+    margin: 0 !important;
+}
+@media (max-width: 767px) {
+    #karta .spell-card {
+        flex-basis: calc(100% - var(--gap)) !important;
+        width: calc(100% - var(--gap)) !important;
+        max-width: calc(100% - var(--gap)) !important;
+    }
+}
