@@ -1,0 +1,205 @@
+{ 
+    padding:0 !important;}
+ /* Zweihander Reforged palette: red #a4262c (dark #7a1a1f), page #dcdcdc, card #e9e7e3, ink #2b2724, rule #3b3733, tan #b5a584, field #f2efe8 (focus #e7ddc9), muted #6b6358 */
+ #karta {
+    border: 1px solid #3b3733;
+    background: #dcdcdc;
+    color: #2b2724;
+    font-family: "EB Garamond", Garamond, "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-size: 14px;}
+ h2,  h3,  h5 {
+    margin: .5rem 0;
+    line-height: 1.2;}
+ h5 {
+    font-size: .85em;}
+ h3 {
+    font-size: 1.17em;}
+ h2 {    
+    font-weight: 400;}
+ /* headings in the Zweihander red; headings inside title bars stay white */
+ #karta h2,  #karta h3,  #karta h5 {
+    color: #a4262c;
+    letter-spacing: .02em;}
+ #karta .card-title h3,  #karta .card-title h5 {
+    color: #fff;}
+ .header h2 {
+    margin-top: 0;
+    font-size: 1.6em;
+    margin-left: 2px;
+    color: #a4262c;}
+ .header h3 {    
+    font-size: 16px;
+    font-style: italic;
+    font-weight: normal;
+    margin: 10px 10px 20px;}
+ .card {
+    border: 1px solid #3b3733;
+    /* double-rule frame like the book's boxed text, without changing the box size */
+    box-shadow: inset 0 0 0 2px #e9e7e3, inset 0 0 0 3px #b5a584;
+    background-color: #e9e7e3!important;
+    margin: 2px;
+    font-size: 14px;
+    color: #2b2724!important;
+    flex-shrink: 0;
+    min-width: fit-content;}
+ .card.row {
+    flex-direction: row;}
+ .card-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .04em;
+    color: #fff;
+    background-color: #a4262c;
+    border-bottom: 2px solid #7a1a1f;
+    margin-bottom: 0;}
+ .card-title h3,  .card-title h5 {
+    color: #fff;}
+ .card-content {
+    padding: 8px 10px;}
+ .card-info-label {
+    text-transform: uppercase;
+    border-top: 1px solid #b5a584;
+    color: #6b6358;
+    font-size: 0.8em;
+    padding-bottom: 6px;}
+ .card-info-text {
+    text-transform: uppercase;
+    color: #6b6358;
+    font-size: 0.8em;
+    padding-bottom: 6px;}
+ .memento {
+   text-transform: uppercase;
+   border-bottom: 1px solid #b5a584;
+   background-color: #b98a84;
+   padding-top: 6px;
+   margin: 0 2px;}
+ .item {
+   border-bottom: 1px solid #b5a584;
+   padding-top: 6px;
+   margin: 0 2px;}
+ .card i.fa-square-full {
+    margin: 0 2px;}
+ .content-spacing {
+    margin: 0 2px;
+    word-break: break-word !important;
+    white-space: normal !important;}
+ .ml-auto {
+    margin-left: auto!important;}
+ .text-center {
+    text-align: center!important;}
+ /* ===== inputs (edit form): #karta + element selector beat the host theme's .form-control ===== */
+ #karta input.form-control,  #karta select.form-control,  #karta textarea.form-control {
+    background: #f2efe8 !important;
+    color: #2b2724 !important;
+    border: 1px solid #b5a584 !important;
+    box-shadow: none !important;
+    font-family: inherit;
+    margin-bottom: 2px;}
+ #karta input.form-control:focus,  #karta select.form-control:focus,  #karta textarea.form-control:focus,  #karta input.form-control:active,  #karta select.form-control:active,  #karta textarea.form-control:active {
+    background: #e7ddc9 !important;
+    border-color: #a4262c !important;
+    color: #2b2724 !important;}
+ #karta .form-control::placeholder {
+    color: #777 !important;
+    opacity: 1;}
+ #karta .form-control::-webkit-input-placeholder {
+    color: #777 !important;}
+ #karta .form-control:-ms-input-placeholder {
+    color: #777 !important;}
+ /* label directly under an input: the input already has its own border */
+ #karta .form-control + .card-info-label {
+    border-top: 0;
+    padding-top: 2px;}
+ #karta select.form-control option {
+    background: #f2efe8 !important;
+    color: #2b2724 !important;}
+ #karta select.form-control option:checked,  #karta select.form-control option:hover {
+    background: #e7ddc9 !important;
+    color: #2b2724 !important;}
+ .checkbox {
+    margin: 0 2px;}
+ .text-medium {
+   font-size: 14px !important;
+   font-weight: bold;}
+ .text-title {
+   font-weight:bold;}
+ .input-hidden { display: none;}
+ .input-hidden + label { display: inline-block}
+ .input-hidden ~ .tab { display: none}
+ #tab1:checked ~ .tab.content1,  #tab7:checked ~ .tab.content7,  #tab8:checked ~ .tab.content8 { 
+  display: block;}
+ .input-hidden + label {
+  flex: 1 0 16%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #7a1a1f;
+  background: #a4262c;
+  color: #fff;
+  padding: 4px;
+  border-radius: 1rem !important;
+  position: relative;
+  top: 1px;
+  min-width: 240px;
+  max-width: 240px;
+  width: 240px;
+  height: 30px;}
+ .input-hidden:hover + label {
+  background: #e9e7e3 !important;
+  color: #a4262c;
+  font-weight: 800;}
+ .input-hidden:checked + label {
+  background: #e9e7e3 !important;
+  color: #a4262c;
+  font-weight: 800;}
+ .checkbox-large {
+    width: 20px;
+    height: 20px;
+    scale: 1.5;
+    cursor: pointer;
+    text-align: center;}
+  /* field labels in the edit form (Agility, Brawn, Purchased, ...) */
+ #karta .card-content label {
+    color: #2b2724 !important;
+    font-weight: bold;
+    font-size: 2.0em;
+    margin-bottom: 2px;}
+    /* Smaller "Purchased" text, matching the rest of the sheet */
+#karta label.checkbox-label {
+    font-size: inherit !important;
+    font-weight: normal !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+}
+/* Equipment tab: hidden by default, shown when its tab is selected */
+#karta .content2 { display: none; }
+#karta #tab2:checked ~ .content2 { display: block !important; }
+/* Spell & Ritual cards: two per row (works with float- and flex-based grids) */
+#karta .spell-card {
+    box-sizing: border-box !important;
+    float: left !important;
+    clear: none !important;
+    flex: 0 0 calc(50% - 8px) !important;   /* beats .col-sm-6 { flex: 0 0 50% } */
+    width: calc(50% - 8px) !important;
+    max-width: calc(50% - 8px) !important;  /* beats .col-sm-6 { max-width: 50% } */
+    min-width: 0 !important;                       /* beats .card { min-width: fit-content } */
+    margin: 0 4px 8px !important;
+}
+/* forces a line break after every second card */
+#karta .spell-clear {
+    clear: both !important;
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    height: 0 !important;
+    margin: 0 !important;
+}
+@media (max-width: 767px) {
+    #karta .spell-card {
+        flex-basis: calc(100% - 8px) !important;
+        width: calc(100% - 8px) !important;
+        max-width: calc(100% - 8px) !important;
+    }
+}
