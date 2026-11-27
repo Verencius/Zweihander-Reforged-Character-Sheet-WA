@@ -1,35 +1,35 @@
 <!-- set primary attribute final value -->
-{% set attribute_agility_final = variables.attribute_agility
+{% set attribute_agility_final = (variables.attribute_agility|default(30))
     + (variables.profession_basic_toggle_7 == true and variables.profession_basic_attribute == "Agility +5%" ? 5 : 0)
     + (variables.profession_intermediate_toggle_7 == true and variables.profession_intermediate_attribute == "Agility +5%" ? 5 : 0)
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Agility +5%" ? 5 : 0)
 %}
-{% set attribute_brawn_final = variables.attribute_brawn
+{% set attribute_brawn_final = (variables.attribute_brawn|default(30))
     + (variables.profession_basic_toggle_7 == true and variables.profession_basic_attribute == "Brawn +5%" ? 5 : 0)
     + (variables.profession_intermediate_toggle_7 == true and variables.profession_intermediate_attribute == "Brawn +5%" ? 5 : 0)
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Brawn +5%" ? 5 : 0)
 %}
-{% set attribute_combat_final = variables.attribute_combat
+{% set attribute_combat_final = (variables.attribute_combat|default(30))
     + (variables.profession_basic_toggle_7 == true and variables.profession_basic_attribute == "Combat +5%" ? 5 : 0)
     + (variables.profession_intermediate_toggle_7 == true and variables.profession_intermediate_attribute == "Combat +5%" ? 5 : 0)
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Combat +5%" ? 5 : 0)
 %}
-{% set attribute_fellowship_final = variables.attribute_fellowship
+{% set attribute_fellowship_final = (variables.attribute_fellowship|default(30))
     + (variables.profession_basic_toggle_7 == true and variables.profession_basic_attribute == "Fellowship +5%" ? 5 : 0)
     + (variables.profession_intermediate_toggle_7 == true and variables.profession_intermediate_attribute == "Fellowship +5%" ? 5 : 0)
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Fellowship +5%" ? 5 : 0)
 %}
-{% set attribute_intelligence_final = variables.attribute_intelligence
+{% set attribute_intelligence_final = (variables.attribute_intelligence|default(30))
     + (variables.profession_basic_toggle_7 == true and variables.profession_basic_attribute == "Intelligence +5%" ? 5 : 0)
     + (variables.profession_intermediate_toggle_7 == true and variables.profession_intermediate_attribute == "Intelligence +5%" ? 5 : 0)
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Intelligence +5%" ? 5 : 0)
 %}
-{% set attribute_perception_final = variables.attribute_perception
+{% set attribute_perception_final = (variables.attribute_perception|default(30))
     + (variables.profession_basic_toggle_7== true and variables.profession_basic_attribute == "Perception +5%" ? 5 : 0)
     + (variables.profession_intermediate_toggle_7 == true and variables.profession_intermediate_attribute == "Perception +5%" ? 5 : 0)
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Perception +5%" ? 5 : 0)
 %}
-{% set attribute_willpower_final = variables.attribute_willpower
+{% set attribute_willpower_final = (variables.attribute_willpower|default(30))
     + (variables.profession_basic_toggle_7 == true and variables.profession_basic_attribute == "Willpower +5%" ? 5 : 0)
     + (variables.profession_intermediate_toggle_7 == true and variables.profession_intermediate_attribute == "Willpower +5%" ? 5 : 0)
     + (variables.profession_advanced_toggle_7 == true and variables.profession_advanced_attribute == "Willpower +5%" ? 5 : 0)
@@ -84,13 +84,13 @@
     {% set attrAncestralBonus = attrAncestralBonus|merge([bonus]) %}
 {% endfor %}
 <!-- set attribute final bonus calculations -->
-{% set attribute_combat_bonus_final = (variables.attribute_combat/10)|round (0,'floor') + attribute_combat_advance_array + variables.combat_bonus_custom + attrAncestralBonus[2] %}
-{% set attribute_brawn_bonus_final = (variables.attribute_brawn/10)|round (0,'floor') + attribute_brawn_advance_array + variables.brawn_bonus_custom + attrAncestralBonus[1] %}
-{% set attribute_agility_bonus_final = (variables.attribute_agility/10)|round (0,'floor') + attribute_agility_advance_array + variables.agility_bonus_custom + attrAncestralBonus[0] %}
-{% set attribute_perception_bonus_final = (variables.attribute_perception/10)|round (0,'floor') + attribute_perception_advance_array + variables.perception_bonus_custom + attrAncestralBonus[5] %}
-{% set attribute_intelligence_bonus_final = (variables.attribute_intelligence/10)|round (0,'floor') + attribute_intelligence_advance_array + variables.intelligence_bonus_custom + attrAncestralBonus[4] %}
-{% set attribute_willpower_bonus_final = (variables.attribute_willpower/10)|round (0,'floor')+ attribute_willpower_advance_array + variables.willpower_bonus_custom + attrAncestralBonus[6] %}
-{% set attribute_fellowship_bonus_final = (variables.attribute_fellowship/10)|round (0,'floor') + attribute_fellowship_advance_array + variables.fellowship_bonus_custom %}
+{% set attribute_combat_bonus_final = ((variables.attribute_combat|default(30))/10)|round (0,'floor') + attribute_combat_advance_array + variables.combat_bonus_custom + attrAncestralBonus[2] %}
+{% set attribute_brawn_bonus_final = ((variables.attribute_brawn|default(30))/10)|round (0,'floor') + attribute_brawn_advance_array + variables.brawn_bonus_custom + attrAncestralBonus[1] %}
+{% set attribute_agility_bonus_final = ((variables.attribute_agility|default(30))/10)|round (0,'floor') + attribute_agility_advance_array + variables.agility_bonus_custom + attrAncestralBonus[0] %}
+{% set attribute_perception_bonus_final = ((variables.attribute_perception|default(30))/10)|round (0,'floor') + attribute_perception_advance_array + variables.perception_bonus_custom + attrAncestralBonus[5] %}
+{% set attribute_intelligence_bonus_final = ((variables.attribute_intelligence|default(30))/10)|round (0,'floor') + attribute_intelligence_advance_array + variables.intelligence_bonus_custom + attrAncestralBonus[4] %}
+{% set attribute_willpower_bonus_final = ((variables.attribute_willpower|default(30))/10)|round (0,'floor')+ attribute_willpower_advance_array + variables.willpower_bonus_custom + attrAncestralBonus[6] %}
+{% set attribute_fellowship_bonus_final = ((variables.attribute_fellowship|default(30))/10)|round (0,'floor') + attribute_fellowship_advance_array + variables.fellowship_bonus_custom %}
 <!-- skill advances value -->
 <!-- talismans -->
 {# === TALISMAN BONUSES === #}
@@ -826,7 +826,7 @@
                                     <div class="col-sm-3">
                                         <div class="row">
                                             <div class="col-sm-8 text-medium">Agility</div>
-                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ variables.attribute_agility }}</div>
+                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ (variables.attribute_agility|default(30)) }}</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -859,7 +859,7 @@
                                     <div class="col-sm-3">
                                         <div class="row">
                                             <div class="col-sm-8 text-medium">Brawn</div>
-                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ variables.attribute_brawn }}</div>
+                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ (variables.attribute_brawn|default(30)) }}</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -892,7 +892,7 @@
                                     <div class="col-sm-3">
                                         <div class="row">
                                             <div class="col-sm-8 text-medium">Combat</div>
-                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ variables.attribute_combat }}</div>
+                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ (variables.attribute_combat|default(30)) }}</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -925,7 +925,7 @@
                                     <div class="col-sm-3">
                                         <div class="row">
                                             <div class="col-sm-8 text-medium">Perception</div>
-                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ variables.attribute_perception }}</div>
+                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ (variables.attribute_perception|default(30)) }}</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -991,7 +991,7 @@
                                     <div class="col-sm-3">
                                         <div class="row">
                                             <div class="col-sm-8 text-medium">Willpower</div>
-                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ variables.attribute_willpower }}</div>
+                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ (variables.attribute_willpower|default(30)) }}</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -1024,7 +1024,7 @@
                                     <div class="col-sm-3">
                                         <div class="row">
                                             <div class="col-sm-8 text-medium">Fellowship</div>
-                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ variables.attribute_fellowship }}</div>
+                                            <div class="col-sm-4 text-medium border-bottom text-center">{{ (variables.attribute_fellowship|default(30)) }}</div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -1141,7 +1141,7 @@
                             <div class="col-sm-11">EXHAUSTED!&nbsp;-20% TO SKILL TESTS<div class="row card-info-label">Suffer an Affliction</div></div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 card-title">Temporary Conditions</div>
+                            <div class="col-sm-12 card-title">Horror</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-1">{% if variables.peril_stress == "stressed" %}<i class="fas fa-circle"></i>{% else %}<i class="far fa-circle"></i>{% endif %}</div>

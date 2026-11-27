@@ -118,7 +118,7 @@
                         <div class="row">
                             <div class="col-sm-7 text-title">{{ a.label }}</div>
                             <div class="col-sm-5">
-                                <input value="{{ variables[a.key] is defined ? variables[a.key] }}" class="form-control" id="{{ a.key }}" name="{{ a.key }}" placeholder="25" type="number" min="0" max="100" />
+                                <input value="{{ variables[a.key]|default(30) }}" class="form-control" id="{{ a.key }}" name="{{ a.key }}" placeholder="30" type="number" min="0" max="100" />
                             </div>
                         </div>
                         {% endfor %}
